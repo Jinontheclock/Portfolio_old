@@ -109,7 +109,7 @@ const typographyScale: Array<{ label: string; value: string; style: CSSPropertie
   },
 ];
 
-const PROLOG_LAYOUT_BASE_HEIGHT = 13600;
+const PROLOG_LAYOUT_BASE_HEIGHT = 13800;
 const PROLOG_FOOTER_TOP = PROLOG_LAYOUT_BASE_HEIGHT - 300;
 
 export default function ProjectProLog({ currentPage, language, onNavigate, onLanguageChange }: Props) {
@@ -324,7 +324,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                         The site map organizes core features into clear sections such as Work, School, Journey, Finances, and Competencies.
                         It structures the user flow to centralize scattered resources and make progress tracking and navigation more intuitive.
                       </p>
-                      <div className="prolog-media-block w-full border border-black/10 rounded-[4px] overflow-hidden">
+                      <div className="prolog-media-block w-full rounded-[4px] overflow-hidden">
                         <iframe
                           title="ProLog Site Map"
                           style={{ border: '0' }}
@@ -428,7 +428,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                             Low-fidelity wireframes were used to quickly explore layout, user flow, and core functionality.
                             This stage focused on structuring key features and validating early interaction patterns.
                           </p>
-                          <div className="prolog-media-block w-full border border-black/10 rounded-[4px] overflow-hidden">
+                          <div className="prolog-media-block w-full rounded-[4px] overflow-hidden">
                             <iframe
                               title="ProLog low fidelity wireframes"
                               style={{ border: '0' }}
@@ -446,7 +446,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                             Mid-fidelity wireframes refined the interface with clearer hierarchy and more defined components.
                             This stage focused on improving usability, consistency, and preparing for visual design.
                           </p>
-                          <div className="prolog-media-block w-full border border-black/10 rounded-[4px] overflow-hidden">
+                          <div className="prolog-media-block w-full rounded-[4px] overflow-hidden">
                             <iframe
                               title="ProLog middle fidelity wireframes"
                               style={{ border: '0' }}
@@ -476,7 +476,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                             onMouseEnter={() => setActiveUsabilitySide('left')}
                             onFocus={() => setActiveUsabilitySide('left')}
                             onClick={() => setActiveUsabilitySide('left')}
-                            className="w-[46.2%] p-0 border border-black/10 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
+                            className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
                             style={{
                               transformOrigin: 'left center',
                               transform:
@@ -503,7 +503,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                             onMouseEnter={() => setActiveUsabilitySide('right')}
                             onFocus={() => setActiveUsabilitySide('right')}
                             onClick={() => setActiveUsabilitySide('right')}
-                            className="w-[46.2%] p-0 border border-black/10 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
+                            className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
                             style={{
                               transformOrigin: 'right center',
                               transform:
@@ -574,7 +574,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                           onMouseEnter={() => setActiveUsabilitySideSecond('left')}
                           onFocus={() => setActiveUsabilitySideSecond('left')}
                           onClick={() => setActiveUsabilitySideSecond('left')}
-                          className="w-[46.2%] p-0 border border-black/10 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
+                          className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
                           style={{
                             transformOrigin: 'left center',
                             transform:
@@ -601,7 +601,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                           onMouseEnter={() => setActiveUsabilitySideSecond('right')}
                           onFocus={() => setActiveUsabilitySideSecond('right')}
                           onClick={() => setActiveUsabilitySideSecond('right')}
-                          className="w-[46.2%] p-0 border border-black/10 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
+                          className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
                           style={{
                             transformOrigin: 'right center',
                             transform:
@@ -671,7 +671,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                           onMouseEnter={() => setActiveUsabilitySideThird('left')}
                           onFocus={() => setActiveUsabilitySideThird('left')}
                           onClick={() => setActiveUsabilitySideThird('left')}
-                          className="w-[46.2%] p-0 border border-black/10 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
+                          className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
                           style={{
                             transformOrigin: 'left center',
                             transform:
@@ -698,7 +698,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                           onMouseEnter={() => setActiveUsabilitySideThird('right')}
                           onFocus={() => setActiveUsabilitySideThird('right')}
                           onClick={() => setActiveUsabilitySideThird('right')}
-                          className="w-[46.2%] p-0 border border-black/10 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
+                          className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
                           style={{
                             transformOrigin: 'right center',
                             transform:
@@ -764,7 +764,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                         High-fidelity wireframes translate validated layouts into detailed screens with finalized UI components and visual styles.
                         Refinements were informed by usability testing, improving interactions and ensuring consistency across the main user flows.
                       </p>
-                      <div className="prolog-media-block w-full border border-black/10 rounded-[4px] overflow-hidden">
+                      <div className="prolog-media-block w-full rounded-[4px] overflow-hidden">
                         <iframe
                           title="ProLog high fidelity wireframes"
                           style={{ border: '0' }}
@@ -810,7 +810,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                         </div>
                         <div className="prolog-sub-block">
                           <p className="type-body-lg m-0 text-black-normal font-semibold">Video</p>
-                          <div className="w-full border border-black/10 rounded-[4px] overflow-hidden bg-black">
+                          <div className="w-full rounded-[4px] overflow-hidden bg-black">
                             <video className="w-full h-auto block" controls playsInline preload="metadata">
                               <source src={PrologPromotionalVideo} type="video/mp4" />
                             </video>
@@ -828,7 +828,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
 
                     <div className="prolog-sub-block">
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Brochure</p>
-                      <div className="prolog-media-block w-full aspect-[16/10] border border-black/10 rounded-[4px] overflow-hidden">
+                      <div className="prolog-media-block w-full aspect-[16/10] rounded-[4px] overflow-hidden">
                         <img
                           src={PrologBrochureMockup}
                           alt="ProLog brochure mockup"
@@ -863,7 +863,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                     <div className="prolog-sub-block">
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Billboard</p>
                       <div className="prolog-media-block grid grid-cols-2 gap-6">
-                        <div className="w-full border border-black/10 rounded-[4px] overflow-hidden">
+                        <div className="w-full rounded-[4px] overflow-hidden">
                           <img
                             src={PrologBillboard1}
                             alt="ProLog billboard mockup 1"
@@ -871,7 +871,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                             onClick={() => openImageLightbox(PrologBillboard1, 'ProLog billboard mockup 1')}
                           />
                         </div>
-                        <div className="w-full border border-black/10 rounded-[4px] overflow-hidden">
+                        <div className="w-full rounded-[4px] overflow-hidden">
                           <img
                             src={PrologBillboard2}
                             alt="ProLog billboard mockup 2"
@@ -889,7 +889,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                         Each frame was intentionally connected to create a seamless and continuous narrative when swiping.
                       </p>
                       <div className="prolog-media-block grid gap-6">
-                        <div className="w-full border border-black/10 rounded-[4px] overflow-hidden">
+                        <div className="w-full rounded-[4px] overflow-hidden">
                           <img
                             src={PrologInstagram1}
                             alt="ProLog instagram post 1"
@@ -897,7 +897,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                             onClick={() => openImageLightbox(PrologInstagram1, 'ProLog instagram post 1')}
                           />
                         </div>
-                        <div className="w-full border border-black/10 rounded-[4px] overflow-hidden">
+                        <div className="w-full rounded-[4px] overflow-hidden">
                           <img
                             src={PrologInstagram2}
                             alt="ProLog instagram post 2"
@@ -905,7 +905,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                             onClick={() => openImageLightbox(PrologInstagram2, 'ProLog instagram post 2')}
                           />
                         </div>
-                        <div className="w-full border border-black/10 rounded-[4px] overflow-hidden">
+                        <div className="w-full rounded-[4px] overflow-hidden">
                           <img
                             src={PrologInstagram3}
                             alt="ProLog instagram post 3"
@@ -927,12 +927,12 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                     <div className="prolog-media-block flex gap-6 items-start">
                       <div className="prolog-sub-block w-1/2 min-w-0">
                         <p className="type-heading-3 text-black-normal m-0 leading-[1.2]">Prototyping</p>
-                        <div className="w-full border border-black/10 rounded-[4px] overflow-hidden">
+                        <div className="w-full rounded-[4px] overflow-hidden">
                           <iframe
                             title="ProLog prototype"
                             style={{ border: '0' }}
                             width="100%"
-                            height="560"
+                            height="800"
                             src="https://www.figma.com/embed?embed_host=share&hide-ui=1&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FZmmIx6VY9EicEFrv7Rvdjh%2FWireFrames%3Fpage-id%3D2332%253A2031%26node-id%3D3814-20926%26p%3Df%26viewport%3D719%252C470%252C0.06%26t%3DbRs0KPqwlh1Pl2k9-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26starting-point-node-id%3D3814%253A20926%26show-proto-sidebar%3D1"
                             allowFullScreen
                           />
@@ -941,12 +941,12 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
 
                       <div className="prolog-sub-block w-1/2 min-w-0">
                         <p className="type-heading-3 text-black-normal m-0 leading-[1.3]">App</p>
-                        <div className="w-full border border-black/10 rounded-[4px] overflow-hidden bg-white">
+                        <div className="w-full rounded-[4px] overflow-hidden bg-white">
                           <iframe
                             title="ProLog app (React Expo)"
                             style={{ border: '0' }}
                             width="100%"
-                            height="560"
+                            height="800"
                             src="/prolog/app/index.html?v=20260219"
                             allowFullScreen
                           />

@@ -173,7 +173,7 @@ export default function ProjectIceland({ currentPage, language, onNavigate, onLa
               <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
                 <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">02 Digital Edition</h2>
                 <div className="project-right-column pl-48">
-                  <div className="border border-black/15 rounded-[4px] shadow-sm overflow-hidden bg-white" style={{ height: 640, minHeight: 400 }}>
+                  <div className="rounded-[4px] shadow-sm overflow-hidden bg-white" style={{ height: 640, minHeight: 400 }}>
                     <iframe
                       title="Best of Iceland publication"
                       src="https://indd.adobe.com/view/6f46e287-a8e6-4a4a-ae30-9abd17aed38b"

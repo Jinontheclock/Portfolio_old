@@ -17,6 +17,7 @@ import UserTestBeforeSecond from '../assets/projects/tinypaws/tinypaws_user3.web
 import UserTestAfterSecond from '../assets/projects/tinypaws/tinypaws_user4.webp';
 import TinypawsPromotionalVideo from '../assets/projects/tinypaws/TinypawsPromotionalVideo.mp4';
 import TinypawsMockup from '../assets/projects/tinypaws/tinypaws_mockup.webp';
+import TinypawsMockup2 from '../assets/projects/tinypaws/tinypaws_mockup2.png';
 
 type Props = {
   currentPage: Page;
@@ -26,11 +27,11 @@ type Props = {
 };
 
 const brandPalette = [
-  { hex: '#DC6E00', textClass: 'text-black-normal' },
-  { hex: '#301800', textClass: 'text-black-normal' },
-  { hex: '#000000', textClass: 'text-black-normal' },
-  { hex: '#F2F2F2', textClass: 'text-black-normal' },
-  { hex: '#FFFFFF', textClass: 'text-black-normal' },
+  { hex: '#DC6E00' },
+  { hex: '#301800' },
+  { hex: '#000000' },
+  { hex: '#F2F2F2' },
+  { hex: '#FFFFFF' },
 ];
 
 const typographyScale: Array<{ label: string; value: string; style: CSSProperties }> = [
@@ -76,7 +77,7 @@ const typographyScale: Array<{ label: string; value: string; style: CSSPropertie
   },
 ];
 
-const TINYPAWS_LAYOUT_BASE_HEIGHT = 10900;
+const TINYPAWS_LAYOUT_BASE_HEIGHT = 10400;
 const TINYPAWS_FOOTER_TOP = TINYPAWS_LAYOUT_BASE_HEIGHT - 300;
 
 export default function ProjectTinyPaws({ currentPage, language, onNavigate, onLanguageChange }: Props) {
@@ -100,12 +101,14 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                   title="TinyPaws"
                   category="Website"
                   timeline="5 months"
-                  tools={['Figma', 'WordPress', 'Adobe Photoshop', 'Adobe Illustrator', 'Adobe Premiere', 'Trello']}
+                  tools={['Figma', 'WordPress', 'Adobe Creative Suite', 'Google Analytics', 'Trello']}
                   role="UI/UX Designer"
+                  link="TinyPaws.ca"
                   textRevealOnEnter
                   description={[
-                    'TinyPaws reimagines the cat adoption journey for a volunteer-driven rescue organization in Greater Vancouver.',
-                    'Designed to replace an outdated site, it clarifies adoption, fostering, and donation pathways through friendly branding, structured navigation, and accessible resources.',
+                    'TinyPaws is a website redesign project for a volunteer-driven non-profit rescue organization in Greater Vancouver.',
+                    'The project reimagines the cat adoption journey by organizing information into a clear, structured platform that guides users through adoption and fostering pathways.',
+                    'Through refined information architecture and cohesive branding, the site supports prospective adopters in navigating from initial interest to application with greater clarity and direction.',
                   ]}
                 />
 
@@ -125,7 +128,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                 {/* 01 Why ProLog was created */}
                 <section className="px-7 pb-16 mt-16">
                   <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
-                    <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">01 Why ProLog was created</h2>
+                    <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">01 Why TinyPaws was created</h2>
                     <div className="grid gap-6 pl-48 max-w-[1280px]">
                       <div className="project-sub-block">
                         <p className="type-body-lg m-0 text-black-normal font-semibold leading-[1.2]">Outdated First Impression</p>
@@ -257,7 +260,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                         User flows were then structured to support different goals, such as exploring available cats, learning about adoption, and completing applications.
                       </p>
                     </div>
-                    <div className="w-full border border-black/10 rounded-[4px] overflow-hidden">
+                    <div className="w-full rounded-[4px] overflow-hidden">
                       <iframe
                         title="TinyPaws Site Map"
                         style={{ border: '0' }}
@@ -278,7 +281,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                     <div className="project-right-block">
                       <p className="type-heading-3 text-black-normal m-0 leading-[1]">Branding</p>
                       <div className="project-sub-block">
-                        <p className="type-body text-black-normal m-0 leading-[1.5]">Logo Design</p>
+                        <p className="type-body-lg m-0 text-black-normal font-semibold">Logo Design</p>
                         <p className="type-body text-black-normal m-0 leading-[1.5]">
                           The logo combines playful, rounded forms with a cat-inspired silhouette to create a friendly and approachable identity that reflects the warmth of the adoption experience.
                         </p>
@@ -301,25 +304,33 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                     </div>
 
                     <div className="project-sub-block mt-12">
-                      <p className="type-body text-black-normal m-0 leading-[1.5]">Colors</p>
+                      <p className="type-body-lg m-0 text-black-normal font-semibold">Colors</p>
                       <p className="type-body text-black-normal m-0 leading-[1.5]">
                         A warm orange is used as the primary color to convey friendliness and energy, supported by deep brown and neutral tones to maintain balance, readability, and trust.
                       </p>
                       <div className="grid grid-cols-5 gap-6">
-                        {brandPalette.map(({ hex, textClass }) => (
+                        {brandPalette.map(({ hex }, index) => {
+                          const useDefaultTextColor = index >= 3;
+                          return (
                           <div
                             key={hex}
-                            className={`w-full aspect-square rounded-[14px] flex items-center justify-center border border-black/5 ${textClass}`}
+                            className="w-full aspect-square rounded-[14px] flex items-center justify-center border border-black/5"
                             style={{ backgroundColor: hex }}
                           >
-                            <span className="text-[14px] leading-none font-medium">{hex}</span>
+                            <span
+                              className="text-[14px] leading-none font-medium text-black-normal"
+                              style={useDefaultTextColor ? undefined : { color: 'var(--color-grey-normal)' }}
+                            >
+                              {hex}
+                            </span>
                           </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
 
                     <div className="project-sub-block mt-12">
-                      <p className="type-body text-black-normal m-0 leading-[1.5]">Typography</p>
+                      <p className="type-body-lg m-0 text-black-normal font-semibold">Typography</p>
                       <p className="type-body text-black-normal m-0 leading-[1.5]">
                         Nexa Round is used across all typography to maintain a consistent, approachable tone, with clear weight contrast and structured sizing enhancing readability and a clean, modern aesthetic.
                       </p>
@@ -349,7 +360,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                         <br />
                         This stage focused on content hierarchy, navigation clarity, and early interaction concepts.
                       </p>
-                      <div className="w-full border border-black/10 rounded-[4px] overflow-hidden">
+                      <div className="w-full rounded-[4px] overflow-hidden">
                         <iframe
                           title="TinyPaws low fidelity wireframes"
                           style={{ border: '0' }}
@@ -376,7 +387,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                           onMouseEnter={() => setActiveUsabilitySide('left')}
                           onFocus={() => setActiveUsabilitySide('left')}
                           onClick={() => setActiveUsabilitySide('left')}
-                          className="w-[94%] p-0 border border-black/10 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
+                          className="w-[66%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
                           style={{
                             transformOrigin: 'left center',
                             transform:
@@ -403,7 +414,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                           onMouseEnter={() => setActiveUsabilitySide('right')}
                           onFocus={() => setActiveUsabilitySide('right')}
                           onClick={() => setActiveUsabilitySide('right')}
-                          className="w-[94%] p-0 border border-black/10 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
+                          className="w-[66%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
                           style={{
                             transformOrigin: 'right center',
                             transform:
@@ -473,7 +484,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                           onMouseEnter={() => setActiveUsabilitySideSecond('left')}
                           onFocus={() => setActiveUsabilitySideSecond('left')}
                           onClick={() => setActiveUsabilitySideSecond('left')}
-                          className="w-[94%] p-0 border border-black/10 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
+                          className="w-[66%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
                           style={{
                             transformOrigin: 'left center',
                             transform:
@@ -500,7 +511,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                           onMouseEnter={() => setActiveUsabilitySideSecond('right')}
                           onFocus={() => setActiveUsabilitySideSecond('right')}
                           onClick={() => setActiveUsabilitySideSecond('right')}
-                          className="w-[94%] p-0 border border-black/10 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
+                          className="w-[66%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
                           style={{
                             transformOrigin: 'right center',
                             transform:
@@ -567,7 +578,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                         <br />
                         This stage refined usability, visual consistency, and interaction details aligned with the final product experience.
                       </p>
-                      <div className="w-full border border-black/10 rounded-[4px] overflow-hidden">
+                      <div className="w-full rounded-[4px] overflow-hidden">
                         <iframe
                           title="TinyPaws high fidelity wireframes"
                           style={{ border: '0' }}
@@ -596,7 +607,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                         <br />
                         The video focuses on building an emotional connection while reinforcing the project&apos;s purpose and accessibility.
                       </p>
-                      <div className="w-full border border-black/10 rounded-[4px] overflow-hidden bg-black">
+                      <div className="w-full rounded-[4px] overflow-hidden bg-black">
                         <video className="w-full h-auto block" controls playsInline preload="metadata">
                           <source src={TinypawsPromotionalVideo} type="video/mp4" />
                         </video>
@@ -613,18 +624,33 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                   <div className="project-right-column pl-48 max-w-[1280px]">
                     <div className="project-right-block">
                       <p className="type-heading-3 text-black-normal m-0 leading-[1.2]">Mockup</p>
-                      <div className="w-full border border-black/10 rounded-[4px] overflow-hidden">
-                        <img
-                          src={TinypawsMockup}
-                          alt="TinyPaws final mockup"
-                          className="w-full h-auto block object-cover"
-                        />
+                      <div className="flex flex-nowrap items-end gap-6">
+                        <div
+                          className="flex-shrink-0"
+                          style={{ width: 'calc((100% - 1.5rem) * 1.3333 / 2.3333)' }}
+                        >
+                          <img
+                            src={TinypawsMockup}
+                            alt="TinyPaws final mockup 1"
+                            className="w-full h-auto block object-contain"
+                          />
+                        </div>
+                        <div
+                          className="flex-shrink-0"
+                          style={{ width: 'calc((100% - 1.5rem) / 2.3333)' }}
+                        >
+                          <img
+                            src={TinypawsMockup2}
+                            alt="TinyPaws final mockup 2"
+                            className="w-full h-auto block object-contain"
+                          />
+                        </div>
                       </div>
                     </div>
 
                     <div className="project-right-block">
                       <p className="type-heading-3 text-black-normal m-0 leading-[1.3]">Prototyping</p>
-                      <div className="w-full border border-black/10 rounded-[4px] overflow-hidden">
+                      <div className="w-full rounded-[4px] overflow-hidden">
                         <iframe
                           title="TinyPaws prototype"
                           style={{ border: '0' }}

@@ -208,7 +208,7 @@ export default function ProjectArchiveOfVeilance({ currentPage, language, onNavi
 
                     <div className="project-sub-block mt-8">
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Mood Board</p>
-                      <div className="w-full border border-black/10 rounded-[4px] overflow-hidden">
+                      <div className="w-full rounded-[4px] overflow-hidden">
                         <iframe
                           title="Archive of Veilance mood board"
                           style={{ border: '0' }}
