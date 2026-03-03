@@ -3,6 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import ProjectHeader from './ProjectHeader';
 import { Language, Page } from '../types';
+import { useProjectImageLightbox } from '../hooks/useProjectImageLightbox';
 import MatchaBanner from '../assets/projects/matcha/matcha_banner.webp';
 import MatchaComponents1 from '../assets/projects/matcha/matcha_components1.webp';
 import MatchaComponents2 from '../assets/projects/matcha/matcha_components2.webp';
@@ -119,6 +120,8 @@ const matchaColorRows = [
 ] as const;
 
 export default function ProjectMatchaLatte({ currentPage, language, onNavigate, onLanguageChange }: Props) {
+  const { handleProjectImageClickCapture, projectImageLightbox } = useProjectImageLightbox();
+
   return (
     <div className="layout-viewport hide-scrollbar bg-grey-normal">
       <div className="layout-canvas" style={{ "--layout-base-height": `${VEILANCE_LAYOUT_BASE_HEIGHT}px` } as CSSProperties}>
@@ -127,7 +130,7 @@ export default function ProjectMatchaLatte({ currentPage, language, onNavigate, 
             <div className="tinypaws-page-enter-overlay" aria-hidden>
               <span className="tinypaws-page-enter-overlay-base" />
             </div>
-            <div className="tinypaws-page-enter-content">
+            <div className="tinypaws-page-enter-content" onClickCapture={handleProjectImageClickCapture}>
             <Header currentPage={currentPage} language={language} onNavigate={onNavigate} onLanguageChange={onLanguageChange} />
             <div className="flex flex-col gap-0 mt-12">
               <ProjectHeader
@@ -145,7 +148,7 @@ export default function ProjectMatchaLatte({ currentPage, language, onNavigate, 
               />
 
               {/* Hero image */}
-              <section className="px-7">
+              <section className="px-7" data-lightbox-disabled="true">
                 <div className="flex justify-center">
                   <img
                     src={MatchaBanner}
@@ -161,15 +164,17 @@ export default function ProjectMatchaLatte({ currentPage, language, onNavigate, 
               <section className="px-7 pb-16 mt-16">
                 <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
                   <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">01 Design Process</h2>
-                  <div className="grid gap-2 pl-48 max-w-[1280px]">
-                    <p className="type-body-lg m-0 text-black-normal font-semibold">Design Approach</p>
-                    <p className="type-body m-0 text-black-normal leading-[1.5]">
-                      This matcha latte project reinterprets traditional Japanese tea culture as a modern packaging concept.
-                      <br />
-                      The brand centers on calm, minimal expression, using a restrained green palette to reflect the natural depth of matcha. The product highlights distinct flavor variations through subtle tonal differences, creating a cohesive yet differentiated lineup.
-                    </p>
+                  <div className="project-right-column pl-48 max-w-[1280px]">
+                    <div className="project-sub-block">
+                      <p className="type-body-lg m-0 text-black-normal font-semibold leading-[1.2]">Design Approach</p>
+                      <p className="type-body m-0 text-black-normal leading-[1.5]">
+                        This matcha latte project reinterprets traditional Japanese tea culture as a modern packaging concept.
+                        <br />
+                        The brand centers on calm, minimal expression, using a restrained green palette to reflect the natural depth of matcha. The product highlights distinct flavor variations through subtle tonal differences, creating a cohesive yet differentiated lineup.
+                      </p>
+                    </div>
 
-                    <div className="grid gap-3 mt-8">
+                    <div className="project-sub-block mt-8">
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Typography</p>
                       <p className="type-body m-0 text-black-normal leading-[1.5] max-w-[1120px]">
                         This project uses a bilingual typographic system that supports both Japanese and English, ensuring
@@ -195,7 +200,7 @@ export default function ProjectMatchaLatte({ currentPage, language, onNavigate, 
                       </div>
                     </div>
 
-                    <div className="grid gap-3 mt-12">
+                    <div className="project-sub-block mt-12">
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Color</p>
                       <p className="type-body m-0 text-black-normal leading-[1.5] max-w-[1120px]">
                         Each flavor is represented through a distinct green tone that reflects the depth and intensity of
@@ -239,7 +244,7 @@ export default function ProjectMatchaLatte({ currentPage, language, onNavigate, 
                       </div>
                     </div>
 
-                    <div className="grid gap-3 mt-12">
+                    <div className="project-sub-block mt-12">
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Dieline Template</p>
                       <p className="type-body m-0 text-black-normal leading-[1.5] max-w-[1120px]">
                         The layout is based on standard 355 ml aluminum can dimensions to ensure production accuracy.
@@ -260,7 +265,7 @@ export default function ProjectMatchaLatte({ currentPage, language, onNavigate, 
                       </div>
                     </div>
 
-                    <div className="grid gap-3 mt-12">
+                    <div className="project-sub-block mt-12">
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Components</p>
                       <p className="type-body m-0 text-black-normal leading-[1.5] max-w-[1120px]">
                         The matcha whisk serves as a key visual motif, referencing traditional preparation methods.
@@ -288,49 +293,50 @@ export default function ProjectMatchaLatte({ currentPage, language, onNavigate, 
               <section className="px-7 pb-16 mt-12">
                 <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
                   <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">02 Final Result</h2>
-                  <div className="grid gap-6 pl-48 max-w-[1280px]">
-                    <div>
-                      <p className="type-heading-3 text-black-normal m-0 leading-[1.3]">Labels</p>
-                    </div>
-                    <div className="grid grid-cols-1 gap-0 max-w-[1180px]">
-                      {MATCHA_LABEL_IMAGES.map((imageSrc, index) => (
-                        <img
-                          key={imageSrc}
-                          src={imageSrc}
-                          alt={`Matcha latte label design ${index + 1}`}
-                          className="w-full h-auto block"
-                        />
-                      ))}
-                    </div>
-                    <div>
-                      <p className="type-heading-3 text-black-normal m-0 leading-[1.3]">Mockup</p>
-                    </div>
-                    <div className="grid grid-cols-1 gap-6 max-w-[1180px]">
-                      <div className="grid grid-cols-3 gap-6">
-                        {MATCHA_MOCKUP_ROW_ONE_IMAGES.map((imageSrc, index) => (
-                          <div key={imageSrc} className="w-full aspect-[4/3] overflow-hidden">
-                            <img
-                              src={imageSrc}
-                              alt={`Matcha latte mockup ${index + 1}`}
-                              className="w-full h-full object-cover block"
-                              style={index === 0 ? { objectPosition: '54% center' } : undefined}
-                            />
-                          </div>
+                  <div className="project-right-column pl-48 max-w-[1280px]">
+                    <div className="project-right-block">
+                      <p className="type-heading-3 text-black-normal m-0 leading-[1.2]">Labels</p>
+                      <div className="grid grid-cols-1 gap-0 max-w-[1180px]">
+                        {MATCHA_LABEL_IMAGES.map((imageSrc, index) => (
+                          <img
+                            key={imageSrc}
+                            src={imageSrc}
+                            alt={`Matcha latte label design ${index + 1}`}
+                            className="w-full h-auto block"
+                          />
                         ))}
                       </div>
-                      <div className="w-full aspect-[16/10] overflow-hidden">
-                        <img
-                          src={MatchaMockup4}
-                          alt="Matcha latte mockup 4"
-                          className="w-full h-full object-cover block"
-                          style={{ objectPosition: 'center 48%' }}
-                        />
+                    </div>
+                    <div className="project-right-block">
+                      <p className="type-heading-3 text-black-normal m-0 leading-[1.3]">Mockup</p>
+                      <div className="grid grid-cols-1 gap-6 max-w-[1180px]">
+                        <div className="grid grid-cols-3 gap-6">
+                          {MATCHA_MOCKUP_ROW_ONE_IMAGES.map((imageSrc, index) => (
+                            <div key={imageSrc} className="w-full aspect-[4/3] overflow-hidden">
+                              <img
+                                src={imageSrc}
+                                alt={`Matcha latte mockup ${index + 1}`}
+                                className="w-full h-full object-cover block"
+                                style={index === 0 ? { objectPosition: '54% center' } : undefined}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <div className="w-full aspect-[16/10] overflow-hidden">
+                          <img
+                            src={MatchaMockup4}
+                            alt="Matcha latte mockup 4"
+                            className="w-full h-full object-cover block"
+                            style={{ objectPosition: 'center 48%' }}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </section>
 
+              {projectImageLightbox}
               <Footer onNavigate={onNavigate} top={VEILANCE_FOOTER_TOP} />
             </div>
             </div>

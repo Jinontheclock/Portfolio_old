@@ -3,6 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import ProjectHeader from './ProjectHeader';
 import { Language, Page } from '../types';
+import { useProjectImageLightbox } from '../hooks/useProjectImageLightbox';
 import ArchiveHouseBanner from '../assets/projects/archivehouse/archivehouse_banner.webp';
 import ArchiveHouseLogo from '../assets/projects/archivehouse/archivehouse_logo.webp';
 import ArchiveHouseChair from '../assets/projects/archivehouse/archivehouse_chair.webp';
@@ -101,6 +102,8 @@ const ARCHIVE_HOUSE_LAYOUT_BASE_HEIGHT = 5700;
 const ARCHIVE_HOUSE_FOOTER_TOP = ARCHIVE_HOUSE_LAYOUT_BASE_HEIGHT - 300;
 
 export default function ProjectArchiveHouse({ currentPage, language, onNavigate, onLanguageChange }: Props) {
+  const { handleProjectImageClickCapture, projectImageLightbox } = useProjectImageLightbox();
+
   return (
     <div className="layout-viewport hide-scrollbar bg-grey-normal">
       <div className="layout-canvas" style={{ "--layout-base-height": `${ARCHIVE_HOUSE_LAYOUT_BASE_HEIGHT}px` } as CSSProperties}>
@@ -109,7 +112,7 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
             <div className="tinypaws-page-enter-overlay" aria-hidden>
               <span className="tinypaws-page-enter-overlay-base" />
             </div>
-            <div className="tinypaws-page-enter-content">
+            <div className="tinypaws-page-enter-content" onClickCapture={handleProjectImageClickCapture}>
             <Header currentPage={currentPage} language={language} onNavigate={onNavigate} onLanguageChange={onLanguageChange} />
 
             <div className="flex flex-col gap-0 mt-12">
@@ -125,7 +128,7 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
                 ]}
               />
 
-              <section className="px-7">
+              <section className="px-7" data-lightbox-disabled="true">
                 <div className="flex justify-center">
                   <div className="w-full max-w-[1400px] overflow-hidden">
                     <img
@@ -141,25 +144,29 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
             <section className="px-7 pb-16 mt-16">
               <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
                 <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">01 Design Approach</h2>
-                <div className="grid gap-10 pl-48 max-w-[1280px]">
-                  <div className="grid gap-3">
-                    <p className="type-body-lg m-0 text-black-normal font-semibold">Branding</p>
-                    <p className="type-body text-black-normal m-0 leading-[1.5] max-w-[980px]">
-                      A conceptual furniture concept store curating vintage pieces alongside a refined archive of
-                      contemporary selections, with a focus on the North American and Japanese markets.
-                      <br />
-                      The shop emphasizes timeless design, craftsmanship, and thoughtful curation across cultures.
-                    </p>
-                    <p className="type-body-lg m-0 text-black-normal font-semibold">Brand Logo</p>
-                    <img
-                      src={ArchiveHouseLogo}
-                      alt="Archive House logo"
-                      className="h-auto block"
-                      style={{ width: 320, maxWidth: '100%' }}
-                    />
+                <div className="project-right-column pl-48 max-w-[1280px]">
+                  <div className="project-right-block">
+                    <div className="project-sub-block">
+                      <p className="type-body-lg m-0 text-black-normal font-semibold leading-[1.2]">Branding</p>
+                      <p className="type-body text-black-normal m-0 leading-[1.5] max-w-[980px]">
+                        A conceptual furniture concept store curating vintage pieces alongside a refined archive of
+                        contemporary selections, with a focus on the North American and Japanese markets.
+                        <br />
+                        The shop emphasizes timeless design, craftsmanship, and thoughtful curation across cultures.
+                      </p>
+                    </div>
+                    <div className="project-sub-block">
+                      <p className="type-body-lg m-0 text-black-normal font-semibold">Brand Logo</p>
+                      <img
+                        src={ArchiveHouseLogo}
+                        alt="Archive House logo"
+                        className="h-auto block"
+                        style={{ width: 320, maxWidth: '100%' }}
+                      />
+                    </div>
                   </div>
 
-                  <div className="grid gap-3">
+                  <div className="project-sub-block">
                     <p className="type-body-lg m-0 text-black-normal font-semibold">Hero Product</p>
                     <div className="flex items-start max-w-[860px]" style={{ columnGap: 96 }}>
                       <img
@@ -181,7 +188,7 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
                     </div>
                   </div>
 
-                  <div className="grid gap-2">
+                  <div className="project-sub-block">
                     <p className="type-body-lg m-0 text-black-normal font-semibold">Typography</p>
                     <p className="type-body text-black-normal m-0 leading-[1.5]">
                       A unified type system anchors the brand identity across three distinct visual moods.
@@ -211,17 +218,19 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
               </div>
             </section>
 
-            <section className="px-7 pb-12 mt-0">
+            <section className="px-7 pb-16 mt-12">
               <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
                 <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">02 Comparison</h2>
-                <div className="grid gap-6 pl-48 max-w-[1280px]">
-                  <p className="type-body-lg m-0 text-black-normal font-semibold">Poster 01/03</p>
-                  <p className="type-body text-black-normal m-0 leading-[1.5] max-w-[1080px]">
-                    An archival, restrained layout inspired by mid-century modern editorial design, highlighting the
-                    chair&apos;s form and material through balanced composition.
-                  </p>
+                <div className="project-right-column pl-48 max-w-[1280px]">
+                  <div className="project-sub-block">
+                    <p className="type-body-lg m-0 text-black-normal font-semibold leading-[1.2]">Poster 01/03</p>
+                    <p className="type-body text-black-normal m-0 leading-[1.5] max-w-[1080px]">
+                      An archival, restrained layout inspired by mid-century modern editorial design, highlighting the
+                      chair&apos;s form and material through balanced composition.
+                    </p>
+                  </div>
 
-                  <div className="grid gap-3">
+                  <div className="project-sub-block">
                     <p className="type-body text-black-normal m-0 leading-[1.5]">Color</p>
                     <div
                       className="grid gap-6 max-w-[860px]"
@@ -239,7 +248,7 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
                     </div>
                   </div>
 
-                  <div className="grid gap-3">
+                  <div className="project-sub-block">
                     <p className="type-body text-black-normal m-0 leading-[1.5]">Graphics</p>
                     <div className="flex items-end gap-4 max-w-[1180px]">
                       <img
@@ -281,14 +290,16 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
                     </div>
                   </div>
 
-                  <div className="grid gap-6 mt-8">
-                    <p className="type-body-lg m-0 text-black-normal font-semibold">Poster 02/03</p>
-                    <p className="type-body text-black-normal m-0 leading-[1.5] max-w-[1080px]">
-                      A bold, high-contrast approach influenced by Swiss modernism, using strict typographic hierarchy
-                      and graphic clarity to emphasize structure and function.
-                    </p>
+                  <div className="project-right-block mt-8">
+                    <div className="project-sub-block">
+                      <p className="type-body-lg m-0 text-black-normal font-semibold">Poster 02/03</p>
+                      <p className="type-body text-black-normal m-0 leading-[1.5] max-w-[1080px]">
+                        A bold, high-contrast approach influenced by Swiss modernism, using strict typographic hierarchy
+                        and graphic clarity to emphasize structure and function.
+                      </p>
+                    </div>
 
-                    <div className="grid gap-3">
+                    <div className="project-sub-block">
                       <p className="type-body text-black-normal m-0 leading-[1.5]">Color</p>
                       <div
                         className="grid gap-6 max-w-[860px]"
@@ -306,7 +317,7 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
                       </div>
                     </div>
 
-                    <div className="grid gap-3">
+                    <div className="project-sub-block">
                       <p className="type-body text-black-normal m-0 leading-[1.5]">Graphics</p>
                       <div className="flex items-end gap-4 max-w-[1180px]">
                         <img
@@ -319,14 +330,16 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
                     </div>
                   </div>
 
-                  <div className="grid gap-6 mt-8">
-                    <p className="type-body-lg m-0 text-black-normal font-semibold">Poster 03/03</p>
-                    <p className="type-body text-black-normal m-0 leading-[1.5] max-w-[1080px]">
-                      A systematic composition based on the Bauhaus grid system, focusing on geometry, alignment, and
-                      functional order to present the product with clarity and precision.
-                    </p>
+                  <div className="project-right-block mt-8">
+                    <div className="project-sub-block">
+                      <p className="type-body-lg m-0 text-black-normal font-semibold">Poster 03/03</p>
+                      <p className="type-body text-black-normal m-0 leading-[1.5] max-w-[1080px]">
+                        A systematic composition based on the Bauhaus grid system, focusing on geometry, alignment, and
+                        functional order to present the product with clarity and precision.
+                      </p>
+                    </div>
 
-                    <div className="grid gap-3">
+                    <div className="project-sub-block">
                       <p className="type-body text-black-normal m-0 leading-[1.5]">Color</p>
                       <div
                         className="grid gap-6 max-w-[860px]"
@@ -344,7 +357,7 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
                       </div>
                     </div>
 
-                    <div className="grid gap-3">
+                    <div className="project-sub-block">
                       <p className="type-body text-black-normal m-0 leading-[1.5]">Graphics</p>
                       <div className="flex items-end gap-4 max-w-[1180px]">
                         <img
@@ -360,53 +373,58 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
               </div>
             </section>
 
-            <section className="px-7 pb-12 mt-0">
+            <section className="px-7 pb-16 mt-12">
               <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
                 <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">03 Final Result</h2>
-                <div className="grid gap-6 pl-48 max-w-[1280px]">
-                  <p className="type-body-lg m-0 text-black-normal font-semibold">Original View</p>
-                  <div className="grid grid-cols-3 gap-6 max-w-[1180px]">
-                    <div className="grid gap-2">
-                      <img
-                        src={ArchiveHouseResult1}
-                        alt="Archive House poster result 01"
-                        className="w-full h-[460px] object-contain"
-                      />
-                      <p className="type-body m-0 text-black-normal leading-[1.5]">Poster 01</p>
-                    </div>
-                    <div className="grid gap-2">
-                      <img
-                        src={ArchiveHouseResult2}
-                        alt="Archive House poster result 02"
-                        className="w-full h-[460px] object-contain"
-                      />
-                      <p className="type-body m-0 text-black-normal leading-[1.5]">Poster 02</p>
-                    </div>
-                    <div className="grid gap-2">
-                      <img
-                        src={ArchiveHouseResult3}
-                        alt="Archive House poster result 03"
-                        className="w-full h-[460px] object-contain"
-                      />
-                      <p className="type-body m-0 text-black-normal leading-[1.5]">Poster 03</p>
+                <div className="project-right-column pl-48 max-w-[1280px]">
+                  <div className="project-sub-block">
+                    <p className="type-body-lg m-0 text-black-normal font-semibold leading-[1.2]">Original View</p>
+                    <div className="grid grid-cols-3 gap-6 max-w-[1180px]">
+                      <div className="grid gap-2">
+                        <img
+                          src={ArchiveHouseResult1}
+                          alt="Archive House poster result 01"
+                          className="w-full h-[460px] object-contain"
+                        />
+                        <p className="type-body m-0 text-black-normal leading-[1.5]">Poster 01</p>
+                      </div>
+                      <div className="grid gap-2">
+                        <img
+                          src={ArchiveHouseResult2}
+                          alt="Archive House poster result 02"
+                          className="w-full h-[460px] object-contain"
+                        />
+                        <p className="type-body m-0 text-black-normal leading-[1.5]">Poster 02</p>
+                      </div>
+                      <div className="grid gap-2">
+                        <img
+                          src={ArchiveHouseResult3}
+                          alt="Archive House poster result 03"
+                          className="w-full h-[460px] object-contain"
+                        />
+                        <p className="type-body m-0 text-black-normal leading-[1.5]">Poster 03</p>
+                      </div>
                     </div>
                   </div>
-                  <p className="type-body-lg m-0 text-black-normal font-semibold">Mockup</p>
-                  <div className="grid grid-cols-2 gap-6 max-w-[1180px]">
-                    {archiveMockupImages.map((imageSrc, index) => (
-                      <div key={imageSrc} className="w-full aspect-[16/10] overflow-hidden">
-                        <img
-                          src={imageSrc}
-                          alt={`Archive House mockup ${index + 1}`}
-                          className="w-full h-full object-cover object-center block"
-                        />
-                      </div>
-                    ))}
+                  <div className="project-sub-block">
+                    <p className="type-body-lg m-0 text-black-normal font-semibold">Mockup</p>
+                    <div className="grid grid-cols-2 gap-6 max-w-[1180px]">
+                      {archiveMockupImages.map((imageSrc, index) => (
+                        <div key={imageSrc} className="w-full aspect-[16/10] overflow-hidden">
+                          <img
+                            src={imageSrc}
+                            alt={`Archive House mockup ${index + 1}`}
+                            className="w-full h-full object-cover object-center block"
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </section>
 
+            {projectImageLightbox}
             <Footer onNavigate={onNavigate} top={ARCHIVE_HOUSE_FOOTER_TOP} />
           </div>
           </div>

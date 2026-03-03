@@ -21,7 +21,7 @@ const columnLeft = {
   workType: 'left-[24px]',
   title: 'left-[calc(25%+18px)]',
   role: 'left-[calc(75%+6px)]',
-  year: 'right-[32px]',
+  year: 'right-[24px]',
 };
 
 const ROW_START = 696;
@@ -52,8 +52,8 @@ type ProjectRow = {
 
 const rows: ProjectRow[] = [
   { offset: 0, workType: 'App & Website', title: 'Individual Project', role: 'Independent', year: '2026', hidden: true },
-  { offset: 1, workType: 'App', title: 'ProLog', role: 'UI Developer', year: '2025', page: 'prolog', thumbnail: PrologMockup },
-  { offset: 2, workType: 'Website', title: 'TinyPaws', role: 'UI/UX Designer', year: '2025', page: 'tinypaws', thumbnail: TinypawsMockup },
+  { offset: 1, workType: 'Product', title: 'ProLog', role: 'UI Developer', year: '2025', page: 'prolog', thumbnail: PrologMockup },
+  { offset: 2, workType: 'Product', title: 'TinyPaws', role: 'UI/UX Designer', year: '2025', page: 'tinypaws', thumbnail: TinypawsMockup },
   { offset: 3, workType: 'Brochure', title: 'Best of Iceland', role: 'Independent', year: '2025', page: 'iceland', thumbnail: BestOfIcelandMockup5 },
   {
     offset: 4,
@@ -198,7 +198,7 @@ export default function ProjectsPage({ currentPage, language, onNavigate, onLang
               style={{ width: columnWidths.workType, paddingLeft: 8 }}
               data-node-id="117:409"
             >
-              {renderTextReveal('work type', 1120)}
+              {renderTextReveal('category', 1120)}
             </p>
             <p
               className={`absolute z-[30] font-['Plus_Jakarta_Sans',sans-serif] font-medium leading-[normal] text-black-normal text-[18px] top-[648px] ${columnLeft.title}`}

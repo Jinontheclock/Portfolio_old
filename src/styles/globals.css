@@ -1076,6 +1076,59 @@ html.platform-windows .layout-viewport {
   height: 100% !important;
 }
 
+.prolog-right-column {
+  display: grid;
+  row-gap: 24px;
+}
+
+.project-right-column {
+  display: grid;
+  row-gap: 24px;
+}
+
+.prolog-right-block,
+.project-right-block {
+  display: grid;
+  row-gap: 8px;
+}
+
+/* ProLog: body -> title spacing should be slightly larger than body -> subtitle spacing */
+.prolog-right-column > .prolog-right-block:not(:first-child) {
+  margin-top: 8px;
+}
+
+/* Other project pages: same rule, while preserving explicit mt-* overrides */
+.project-right-column > .project-right-block:not(:first-child):not([class*=" mt-"]):not([class^="mt-"]) {
+  margin-top: 8px;
+}
+
+.prolog-sub-block,
+.project-sub-block {
+  display: grid;
+  row-gap: 6px;
+}
+
+/* ProLog: unify text -> media spacing (frames/images/video) */
+.prolog-sub-block > .prolog-media-block {
+  margin-top: 2px;
+}
+
+/* Other project pages: unify subtitle/body -> media spacing */
+.project-sub-block > :not(.type-heading-3):not(.type-body-lg):not(.type-body):not(:first-child) {
+  margin-top: 2px;
+}
+
+.prolog-usability-comparison,
+.project-usability-comparison {
+  display: grid;
+  row-gap: 12px;
+}
+
+.prolog-usability-caption,
+.project-usability-caption {
+  min-height: 120px;
+}
+
 .layout-canvas-inner {
   position: absolute;
   left: 0;

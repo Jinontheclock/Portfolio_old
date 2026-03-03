@@ -19,6 +19,7 @@ type HeaderProps = {
 const NAV_TOP = 24;
 const NAV_GAP = 152; // distance between Projects and About
 const NAV_LEFT_BASE = 'calc(75% - 18px)';
+const HEADER_EDGE_INSET = 28;
 const DEFAULT_HEADER_VARIANT: HeaderVariant = 'with-mode';
 const BLUR_LIGHT_BG = 'rgba(243, 243, 242, 0.34)';
 const BLUR_DARK_BG = 'rgba(33, 34, 34, 0.34)';
@@ -244,6 +245,9 @@ export default function Header({
   const showModeSelector = variant === 'with-mode';
   const layoutMode = hoveredMode ?? themeMode;
   const oppositeMode: ThemeMode = themeMode === 'light' ? 'dark' : 'light';
+  const toggleThemeMode = () => {
+    setThemeMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+  };
   const setPreviewMode = (nextMode: ThemeMode) => {
     setHoveredMode(nextMode);
   };
@@ -264,7 +268,7 @@ export default function Header({
         className="absolute pointer-events-none z-[1]"
         style={{
           left: `calc(${NAV_LEFT_BASE} - 4px)`,
-          right: '24px',
+          right: `${HEADER_EDGE_INSET}px`,
           top: `${NAV_TOP - 4}px`,
           height: '28px',
           background: themeMode === 'dark' ? BLUR_DARK_BG : BLUR_LIGHT_BG,
@@ -275,7 +279,8 @@ export default function Header({
 
       <button
         onClick={handleLogoClick}
-        className="absolute left-[24px] size-[48px] top-[24px] cursor-pointer z-10"
+        className="absolute size-[48px] top-[24px] cursor-pointer z-10"
+        style={{ left: `${HEADER_EDGE_INSET}px` }}
         aria-label="Go to home"
         onMouseEnter={() => startLooping(false)}
         onMouseLeave={stopAfterOne}
@@ -316,7 +321,7 @@ export default function Header({
       )}
 
       {showModeSelector && (
-        <div className="absolute top-[20px] right-[24px] z-10">
+        <div className="absolute top-[20px] z-10" style={{ right: `${HEADER_EDGE_INSET}px` }}>
           <div
             className={`header-mode-toggle ${layoutMode === 'dark' ? 'is-dark' : 'is-light'}`}
             role="group"
@@ -330,7 +335,7 @@ export default function Header({
               className={`header-mode-option ${themeMode === 'light' ? 'is-active' : ''} ${layoutMode === 'light' ? 'is-expanded' : ''} ${hoveredMode === 'light' ? 'is-hovered' : ''}`}
               data-mode="light"
               onFocus={() => setPreviewMode('light')}
-              onClick={() => setThemeMode('light')}
+              onClick={toggleThemeMode}
             >
               <span className="header-mode-option-label">Light</span>
             </button>
@@ -340,7 +345,7 @@ export default function Header({
               className={`header-mode-option ${themeMode === 'dark' ? 'is-active' : ''} ${layoutMode === 'dark' ? 'is-expanded' : ''} ${hoveredMode === 'dark' ? 'is-hovered' : ''}`}
               data-mode="dark"
               onFocus={() => setPreviewMode('dark')}
-              onClick={() => setThemeMode('dark')}
+              onClick={toggleThemeMode}
             >
               <span className="header-mode-option-label">Dark</span>
             </button>

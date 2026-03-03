@@ -3,6 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import ProjectHeader from './ProjectHeader';
 import { Language, Page } from '../types';
+import { useProjectImageLightbox } from '../hooks/useProjectImageLightbox';
 import TinyBanner from '../assets/projects/tinypaws/tinypaws_banner.webp';
 import Persona1 from '../assets/projects/tinypaws/tinypaws_persona1.webp';
 import Persona2 from '../assets/projects/tinypaws/tinypaws_persona2.webp';
@@ -81,6 +82,7 @@ const TINYPAWS_FOOTER_TOP = TINYPAWS_LAYOUT_BASE_HEIGHT - 300;
 export default function ProjectTinyPaws({ currentPage, language, onNavigate, onLanguageChange }: Props) {
   const [activeUsabilitySide, setActiveUsabilitySide] = useState<'left' | 'right'>('left');
   const [activeUsabilitySideSecond, setActiveUsabilitySideSecond] = useState<'left' | 'right'>('left');
+  const { handleProjectImageClickCapture, projectImageLightbox } = useProjectImageLightbox();
 
   return (
     <div className="layout-viewport hide-scrollbar bg-grey-normal">
@@ -90,7 +92,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
             <div className="tinypaws-page-enter-overlay" aria-hidden>
               <span className="tinypaws-page-enter-overlay-base" />
             </div>
-            <div className="tinypaws-page-enter-content">
+            <div className="tinypaws-page-enter-content" onClickCapture={handleProjectImageClickCapture}>
               <Header currentPage={currentPage} language={language} onNavigate={onNavigate} onLanguageChange={onLanguageChange} />
 
               <div className="flex flex-col gap-0 mt-12">
@@ -108,7 +110,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                 />
 
                 {/* Hero image */}
-                <section className="px-7">
+                <section className="px-7" data-lightbox-disabled="true">
                   <div className="flex justify-center">
                     <img
                       src={TinyBanner}
@@ -125,8 +127,8 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                   <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
                     <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">01 Why ProLog was created</h2>
                     <div className="grid gap-6 pl-48 max-w-[1280px]">
-                      <div>
-                        <p className="type-body-lg m-0 text-black-normal font-semibold">Outdated First Impression</p>
+                      <div className="project-sub-block">
+                        <p className="type-body-lg m-0 text-black-normal font-semibold leading-[1.2]">Outdated First Impression</p>
                         <p className="type-body m-0 text-black-normal leading-[1.5]">
                           TinyPaws’ website was the first point of contact for potential adopters,
                           <br />
@@ -134,7 +136,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                         </p>
                       </div>
 
-                      <div>
+                      <div className="project-sub-block">
                         <p className="type-body-lg m-0 text-black-normal font-semibold">Need for Clear Adoption Guidance</p>
                         <p className="type-body m-0 text-black-normal leading-[1.5]">
                           Visitors often lacked understanding of the rescue adoption process,
@@ -143,7 +145,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                         </p>
                       </div>
 
-                      <div>
+                      <div className="project-sub-block">
                         <p className="type-body-lg m-0 text-black-normal font-semibold">Building Trust Through Accessibility</p>
                         <p className="type-body m-0 text-black-normal leading-[1.5]">
                           As a volunteer-driven non-profit,
@@ -159,17 +161,17 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                 <section className="px-7 pb-16 mt-12">
                   <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
                     <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">02 Research & Analysis</h2>
-                    <div className="grid gap-6 pl-48 max-w-[1280px]">
-                      <div>
-                        <p className="type-heading-3 text-black-normal m-0 leading-[1.3]">User Interview</p>
-                        <p className="type-body text-black-normal m-0 leading-[1.5] mt-1">
+                    <div className="project-right-column pl-48 max-w-[1280px]">
+                      <div className="project-right-block">
+                        <p className="type-heading-3 text-black-normal m-0 leading-[1.2]">User Interview</p>
+                        <p className="type-body text-black-normal m-0 leading-[1.5]">
                           We conducted a survey to understand common concerns adopters face when considering rescue cats,
                           <br />
                           including costs, health, and behavioural adjustment.
                         </p>
                       </div>
 
-                    <div>
+                    <div className="project-sub-block">
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Findings</p>
                       <p className="type-body m-0 text-black-normal leading-[1.5]">
                         Many adoption websites feel long, unclear, and difficult to navigate.
@@ -180,7 +182,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                       </p>
                     </div>
 
-                    <div>
+                    <div className="project-sub-block">
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Needs</p>
                       <p className="type-body m-0 text-black-normal leading-[1.5]">
                         A clear and friendly adoption journey with accessible information.
@@ -191,7 +193,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                       </p>
                     </div>
 
-                    <div>
+                    <div className="project-sub-block">
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Action Points</p>
                       <p className="type-body m-0 text-black-normal leading-[1.5]">
                         A playful, welcoming visual identity
@@ -202,7 +204,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                       </p>
                     </div>
 
-                    <div className="grid gap-2">
+                    <div className="project-right-block">
                       <p className="type-heading-3 text-black-normal m-0 leading-[1.3]">Secondary Research</p>
                       <p className="type-body text-black-normal m-0 leading-[1.6]">
                         Reviewed broader cat adoption and ownership studies in Canada to expand beyond our survey demographic.
@@ -216,7 +218,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                     </div>
 
                     {/* User Persona */}
-                    <div className="grid gap-2">
+                    <div className="project-right-block">
                       <p className="type-heading-3 text-black-normal m-0 leading-[1.3]">User Persona</p>
                       <p className="type-body text-black-normal m-0 leading-[1.5]">
                         User personas were developed based on research insights to represent key adopter types and their goals, behaviors, and concerns.
@@ -244,9 +246,9 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
               <section className="px-7 pb-16 mt-12">
                 <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
                   <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">03 Design Process</h2>
-                  <div className="grid gap-6 pl-48 max-w-[1280px]">
-                    <div className="grid gap-2">
-                      <p className="type-heading-3 text-black-normal m-0 leading-[1.3]">Site Map</p>
+                  <div className="project-right-column pl-48 max-w-[1280px]">
+                    <div className="project-right-block">
+                      <p className="type-heading-3 text-black-normal m-0 leading-[1.2]">Site Map</p>
                       <p className="type-body text-black-normal m-0 leading-[1.5]">
                         The site map was developed by mapping key user goals such as adoption, fostering, and donations identified during research.
                         <br />
@@ -270,33 +272,35 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
               </section>
 
               {/* Branding */}
-              <section className="px-7 pb-20 mt-0">
+              <section className="px-7 pb-16 mt-0">
                 <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
-                  <div className="grid gap-6 pl-48 max-w-[1280px] col-start-2">
-                    <div className="grid gap-2">
+                  <div className="project-right-column pl-48 max-w-[1280px] col-start-2">
+                    <div className="project-right-block">
                       <p className="type-heading-3 text-black-normal m-0 leading-[1]">Branding</p>
-                      <p className="type-body text-black-normal m-0 leading-[1.5]">Logo Design</p>
-                      <p className="type-body text-black-normal m-0 leading-[1.5]">
-                        The logo combines playful, rounded forms with a cat-inspired silhouette to create a friendly and approachable identity that reflects the warmth of the adoption experience.
-                      </p>
-                    </div>
-                    <div className="grid grid-cols-[2.2fr_1fr_1fr_1fr] gap-6 items-end">
-                      <img
-                        src={LogoBig}
-                        alt="TinyPaws primary logo"
-                        className="w-full h-auto object-contain col-span-1"
-                      />
-                      {[Logo1, Logo2, Logo3].map((src, idx) => (
+                      <div className="project-sub-block">
+                        <p className="type-body text-black-normal m-0 leading-[1.5]">Logo Design</p>
+                        <p className="type-body text-black-normal m-0 leading-[1.5]">
+                          The logo combines playful, rounded forms with a cat-inspired silhouette to create a friendly and approachable identity that reflects the warmth of the adoption experience.
+                        </p>
+                      </div>
+                      <div className="grid grid-cols-[2.2fr_1fr_1fr_1fr] gap-6 items-end">
                         <img
-                          key={src}
-                          src={src}
-                          alt={`TinyPaws logo variation ${idx + 1}`}
-                          className="w-full h-auto object-contain"
+                          src={LogoBig}
+                          alt="TinyPaws primary logo"
+                          className="w-full h-auto object-contain col-span-1"
                         />
-                      ))}
+                        {[Logo1, Logo2, Logo3].map((src, idx) => (
+                          <img
+                            key={src}
+                            src={src}
+                            alt={`TinyPaws logo variation ${idx + 1}`}
+                            className="w-full h-auto object-contain"
+                          />
+                        ))}
+                      </div>
                     </div>
 
-                    <div className="grid gap-2 mt-12">
+                    <div className="project-sub-block mt-12">
                       <p className="type-body text-black-normal m-0 leading-[1.5]">Colors</p>
                       <p className="type-body text-black-normal m-0 leading-[1.5]">
                         A warm orange is used as the primary color to convey friendliness and energy, supported by deep brown and neutral tones to maintain balance, readability, and trust.
@@ -314,7 +318,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                       </div>
                     </div>
 
-                    <div className="grid gap-2 mt-12">
+                    <div className="project-sub-block mt-12">
                       <p className="type-body text-black-normal m-0 leading-[1.5]">Typography</p>
                       <p className="type-body text-black-normal m-0 leading-[1.5]">
                         Nexa Round is used across all typography to maintain a consistent, approachable tone, with clear weight contrast and structured sizing enhancing readability and a clean, modern aesthetic.
@@ -338,7 +342,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                       </div>    
                     </div>
 
-                    <div className="grid gap-2 mt-16">
+                    <div className="project-right-block mt-16">
                       <p className="type-heading-3 text-black-normal m-0 leading-[1]">Low Fidelity Wireframes</p>
                       <p className="type-body text-black-normal m-0 leading-[1.5]">
                         Low-fidelity wireframes were created to explore layout structures and define core user flows.
@@ -357,7 +361,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                       </div>
                     </div>
 
-                    <div className="grid gap-2 mt-16">
+                    <div className="project-right-block mt-16" data-lightbox-disabled="true">
                       <p className="type-heading-3 text-black-normal m-0 leading-[1]">Usability Test</p>
                       <p className="type-body text-black-normal m-0 leading-[1.5]">
                         Participants tested TinyPaws&apos; low-fidelity website mockup to evaluate core adoption and support flows.
@@ -459,7 +463,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                       </div>
                     </div>
 
-                    <div className="grid gap-8 mt-2">
+                    <div className="grid gap-8 mt-2" data-lightbox-disabled="true">
                       <div
                         className="grid grid-cols-2 gap-8 items-start justify-items-center"
                         style={{ perspective: '1800px' }}
@@ -556,7 +560,7 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
                       </div>
                     </div>
 
-                    <div className="grid gap-2 mt-16">
+                    <div className="project-right-block mt-16">
                       <p className="type-heading-3 text-black-normal m-0 leading-[1]">High Fidelity Wireframes</p>
                       <p className="type-body text-black-normal m-0 leading-[1.5]">
                         High-fidelity wireframes were developed based on user testing insights and the established brand design system.
@@ -582,21 +586,21 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
               <section className="px-7 pb-16 mt-12">
                 <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
                   <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">04 Promotional Material</h2>
-                  <div className="grid gap-2 pl-48 max-w-[1280px]">
-                    <div className="flex items-center">
-                      <p className="type-heading-3 text-black-normal m-0 leading-[1.3]">Promotional Video</p>
-                    </div>
-                    <p className="type-body text-black-normal m-0 leading-[1.5]">
-                      This promotional video was created to introduce the project and encourage user engagement with the platform.
-                      <br />
-                      Through a bright and welcoming tone, it highlights the experience of discovering and adopting rescue cats.
-                      <br />
-                      The video focuses on building an emotional connection while reinforcing the project&apos;s purpose and accessibility.
-                    </p>
-                    <div className="w-full border border-black/10 rounded-[4px] overflow-hidden bg-black">
-                      <video className="w-full h-auto block" controls playsInline preload="metadata">
-                        <source src={TinypawsPromotionalVideo} type="video/mp4" />
-                      </video>
+                  <div className="project-right-column pl-48 max-w-[1280px]">
+                    <div className="project-right-block">
+                      <p className="type-heading-3 text-black-normal m-0 leading-[1.2]">Promotional Video</p>
+                      <p className="type-body text-black-normal m-0 leading-[1.5]">
+                        This promotional video was created to introduce the project and encourage user engagement with the platform.
+                        <br />
+                        Through a bright and welcoming tone, it highlights the experience of discovering and adopting rescue cats.
+                        <br />
+                        The video focuses on building an emotional connection while reinforcing the project&apos;s purpose and accessibility.
+                      </p>
+                      <div className="w-full border border-black/10 rounded-[4px] overflow-hidden bg-black">
+                        <video className="w-full h-auto block" controls playsInline preload="metadata">
+                          <source src={TinypawsPromotionalVideo} type="video/mp4" />
+                        </video>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -606,35 +610,36 @@ export default function ProjectTinyPaws({ currentPage, language, onNavigate, onL
               <section className="px-7 pb-16 mt-12">
                 <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
                   <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">05 Final Results</h2>
-                  <div className="grid gap-2 pl-48 max-w-[1280px]">
-                    <div className="flex items-center">
-                      <p className="type-heading-3 text-black-normal m-0 leading-[1.3]">Mockup</p>
-                    </div>
-                    <div className="w-full border border-black/10 rounded-[4px] overflow-hidden">
-                      <img
-                        src={TinypawsMockup}
-                        alt="TinyPaws final mockup"
-                        className="w-full h-auto block object-cover"
-                      />
+                  <div className="project-right-column pl-48 max-w-[1280px]">
+                    <div className="project-right-block">
+                      <p className="type-heading-3 text-black-normal m-0 leading-[1.2]">Mockup</p>
+                      <div className="w-full border border-black/10 rounded-[4px] overflow-hidden">
+                        <img
+                          src={TinypawsMockup}
+                          alt="TinyPaws final mockup"
+                          className="w-full h-auto block object-cover"
+                        />
+                      </div>
                     </div>
 
-                    <div className="flex items-center mt-6">
+                    <div className="project-right-block">
                       <p className="type-heading-3 text-black-normal m-0 leading-[1.3]">Prototyping</p>
-                    </div>
-                    <div className="w-full border border-black/10 rounded-[4px] overflow-hidden">
-                      <iframe
-                        title="TinyPaws prototype"
-                        style={{ border: '0' }}
-                        width="100%"
-                        height="560"
-                        src="https://www.figma.com/embed?embed_host=share&hide-ui=1&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FGLajfqOV2gqeDneSml8bE5%2FFi-Models%3Fpage-id%3D1%253A3%26node-id%3D191-1127%26viewport%3D2287%252C1347%252C0.16%26t%3D38Qt52GW30ibo8Rk-1%26scaling%3Dscale-down-width%26content-scaling%3Dfixed%26starting-point-node-id%3D191%253A1127"
-                        allowFullScreen
-                      />
+                      <div className="w-full border border-black/10 rounded-[4px] overflow-hidden">
+                        <iframe
+                          title="TinyPaws prototype"
+                          style={{ border: '0' }}
+                          width="100%"
+                          height="560"
+                          src="https://www.figma.com/embed?embed_host=share&hide-ui=1&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FGLajfqOV2gqeDneSml8bE5%2FFi-Models%3Fpage-id%3D1%253A3%26node-id%3D191-1127%26viewport%3D2287%252C1347%252C0.16%26t%3D38Qt52GW30ibo8Rk-1%26scaling%3Dscale-down-width%26content-scaling%3Dfixed%26starting-point-node-id%3D191%253A1127"
+                          allowFullScreen
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
               </section>
 
+                {projectImageLightbox}
                 <Footer onNavigate={onNavigate} top={TINYPAWS_FOOTER_TOP} />
               </div>
             </div>
