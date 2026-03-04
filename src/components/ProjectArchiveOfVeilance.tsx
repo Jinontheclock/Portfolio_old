@@ -14,6 +14,10 @@ import VeilanceKr1 from '../assets/projects/archiveofveilance/veilance_kr1.webp'
 import VeilanceKr2 from '../assets/projects/archiveofveilance/veilance_kr2.webp';
 import VeilanceJp1 from '../assets/projects/archiveofveilance/veilance_jp1.webp';
 import VeilanceJp2 from '../assets/projects/archiveofveilance/veilance_jp2.webp';
+import VeilanceComponent1 from '../assets/projects/archiveofveilance/veilance_component1.png';
+import VeilanceComponent2 from '../assets/projects/archiveofveilance/veilance_compoent2.png';
+import VeilanceComponent3 from '../assets/projects/archiveofveilance/veilance_component3.png';
+import VeilanceComponent4 from '../assets/projects/archiveofveilance/veilance_component4.png';
 
 type Props = {
   currentPage: Page;
@@ -26,7 +30,8 @@ type Props = {
 const MOOD_BOARD_FIGMA_URL = 'https://www.figma.com/design/1H8FYTkzKkDBKAPR01a5Wb/Archive-of-Veilance?node-id=1-2&t=unjbvFlGCW8CsnyK-1';
 const MOOD_BOARD_EMBED_URL = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(MOOD_BOARD_FIGMA_URL)}`;
 const VEILANCE_MOCKUP_IMAGES = [VeilanceEn1, VeilanceEn2, VeilanceKr1, VeilanceKr2, VeilanceJp1, VeilanceJp2];
-const VEILANCE_LAYOUT_BASE_HEIGHT = 5200;
+const VEILANCE_BACKGROUND_COMPONENTS = [VeilanceComponent1, VeilanceComponent2, VeilanceComponent3, VeilanceComponent4];
+const VEILANCE_LAYOUT_BASE_HEIGHT = 5700;
 const VEILANCE_FOOTER_TOP = VEILANCE_LAYOUT_BASE_HEIGHT - 300;
 
 type VeilanceTypographyRow = {
@@ -168,7 +173,7 @@ export default function ProjectArchiveOfVeilance({ currentPage, language, onNavi
                 roleLabel="Role"
                 description={[
                   'This project explores a conceptual exhibition poster series developed for an archive show hosted by Arc\'teryx Veliance, reflecting the brand\'s design legacy and evolution.',
-                  'The exhibition is imagined to take place across Canada, Japan, and Korea, with each poster adapting the presentation to its local cultural and linguistic context while preserving the integrity of Veliance\'s established identity.',
+                  'The exhibition is imagined to take place across Canada, Japan, and Korea, with each poster adapting the presentation to its local cultural and linguistic context while preserving the integrity of its established identity.',
                 ]}
               />
 
@@ -213,7 +218,7 @@ export default function ProjectArchiveOfVeilance({ currentPage, language, onNavi
                           title="Archive of Veilance mood board"
                           style={{ border: '0' }}
                           width="100%"
-                          height="560"
+                          height="600"
                           src={MOOD_BOARD_EMBED_URL}
                           allowFullScreen
                         />
@@ -222,7 +227,12 @@ export default function ProjectArchiveOfVeilance({ currentPage, language, onNavi
 
                     <div className="project-sub-block mt-12">
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Typography</p>
-                      <div className="grid gap-14">
+                      <p className="type-body m-0 text-black-normal leading-[1.5] max-w-[1120px]">
+                        Outfit, Gothic A1, and Zen Kaku Gothic support multilingual communication across English, Korean, and Japanese.
+                        <br />
+                        Clear weight contrast and a structured type scale maintain hierarchy and readability while reinforcing a clean, restrained aesthetic.
+                      </p>
+                      <div className="grid gap-7">
                         {veilanceTypographyGroups.map((group) => (
                           <div key={group.language} className="grid gap-4">
                             <p className="type-body m-0 text-black-normal leading-[1.5]">{group.language}</p>
@@ -244,6 +254,25 @@ export default function ProjectArchiveOfVeilance({ currentPage, language, onNavi
                               </div>
                             </div>
                           </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="project-sub-block mt-12">
+                      <p className="type-body-lg m-0 text-black-normal font-semibold">Background</p>
+                      <p className="type-body m-0 text-black-normal leading-[1.5] max-w-[1120px]">
+                        Subtle textures and minimal graphic elements are layered to support the project&apos;s atmospheric tone.
+                        <br />
+                        Concrete surfaces, grain, and blurred forms add depth while keeping the visual language minimal and controlled.
+                      </p>
+                      <div className="grid grid-cols-4 gap-6 max-w-[1180px]">
+                        {VEILANCE_BACKGROUND_COMPONENTS.map((imageSrc, index) => (
+                          <img
+                            key={imageSrc}
+                            src={imageSrc}
+                            alt={`Archive of Veilance background component ${index + 1}`}
+                            className="w-full h-auto block"
+                          />
                         ))}
                       </div>
                     </div>

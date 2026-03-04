@@ -302,7 +302,7 @@ export default function ProjectMatchaLatte({ currentPage, language, onNavigate, 
                             key={imageSrc}
                             src={imageSrc}
                             alt={`Matcha latte label design ${index + 1}`}
-                            className="w-full h-auto block"
+                            className="w-full h-auto block first:mt-0 -mt-[2px]"
                           />
                         ))}
                       </div>

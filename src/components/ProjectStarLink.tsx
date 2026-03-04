@@ -4,7 +4,7 @@ import Footer from './Footer';
 import ProjectHeader from './ProjectHeader';
 import { Language, Page } from '../types';
 import { useProjectImageLightbox } from '../hooks/useProjectImageLightbox';
-import MatchaBanner from '../assets/projects/matcha/matcha_banner.webp';
+import StarLinkBanner from '../assets/projects/starlink/starlink_banner.jpeg';
 import MatchaComponents1 from '../assets/projects/matcha/matcha_components1.webp';
 import MatchaComponents2 from '../assets/projects/matcha/matcha_components2.webp';
 import MatchaDieline1 from '../assets/projects/matcha/matcha_dieline1.webp';
@@ -134,13 +134,15 @@ export default function ProjectStarLink({ currentPage, language, onNavigate, onL
             <Header currentPage={currentPage} language={language} onNavigate={onNavigate} onLanguageChange={onLanguageChange} />
             <div className="flex flex-col gap-0 mt-12">
               <ProjectHeader
-                title="StarLink"
+                title="Starlink"
                 titleFontSize={148}
                 category="Motion"
-                timeline="2 weeks"
-                tools={['Adobe InDesign', 'Adobe Photoshop', 'Adobe Illustrator']}
+                timeline="1 month"
+                tools={['Adobe After Effect', 'Adobe Illustrator']}
                 role="Independent"
                 roleLabel="Role"
+                reference="Starlink"
+                referenceUrl="https://starlink.com/"
                 description={[
                   'Temporary page created from the Matcha Latte layout as a placeholder for the StarLink project.',
                   'This section will be replaced with the final StarLink motion project content.',
@@ -150,11 +152,13 @@ export default function ProjectStarLink({ currentPage, language, onNavigate, onL
               {/* Hero image */}
               <section className="px-7" data-lightbox-disabled="true">
                 <div className="flex justify-center">
-                  <img
-                    src={MatchaBanner}
-                    alt="Matcha Latte overview"
-                    className="w-full max-w-[1400px] h-auto"
-                  />
+                  <div className="w-full max-w-[1400px] h-[520px] overflow-hidden">
+                    <img
+                      src={StarLinkBanner}
+                      alt="StarLink overview"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
                 </div>
               </section>
             </div>

@@ -486,6 +486,12 @@ body::-webkit-scrollbar {
   opacity: 1;
 }
 
+.project-header-link:hover .nav-underline::after,
+.project-header-link:focus-visible .nav-underline::after {
+  transform: translateY(0) scaleX(1);
+  opacity: 1;
+}
+
 .header-mode-toggle {
   width: 80px;
   height: 28px;

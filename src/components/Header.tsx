@@ -258,7 +258,7 @@ export default function Header({
     currentPage === 'tinypaws' ||
     currentPage === 'muji' ||
     currentPage === 'archivehouse' ||
-    currentPage === 'archiveofveliance' ||
+    currentPage === 'archiveofveilance' ||
     currentPage === 'matchalatte' ||
     currentPage === 'starlink';
 

@@ -236,7 +236,7 @@ const PAGE_PATHS: Record<Page, string> = {
   tinypaws: '/projects/tinypaws',
   muji: '/projects/muji',
   archivehouse: '/projects/archive-house',
-  archiveofveliance: '/projects/archive-of-veliance',
+  archiveofveilance: '/projects/archive-of-veilance',
   matchalatte: '/projects/matcha-latte',
   starlink: '/projects/starlink',
 };
@@ -256,7 +256,7 @@ function pageFromPath(pathname: string): Page {
   if (path === '/projects/tinypaws' || path === '/tinypaws') return 'tinypaws';
   if (path === '/projects/muji' || path === '/muji') return 'muji';
   if (path === '/projects/archive-house' || path === '/archive-house') return 'archivehouse';
-  if (path === '/projects/archive-of-veliance' || path === '/archive-of-veliance') return 'archiveofveliance';
+  if (path === '/projects/archive-of-veilance' || path === '/archive-of-veilance') return 'archiveofveilance';
   if (path === '/projects/matcha-latte' || path === '/matcha-latte') return 'matchalatte';
   if (path === '/projects/starlink' || path === '/starlink') return 'starlink';
 
@@ -666,7 +666,7 @@ export default function App() {
     );
   }
 
-  if (currentPage === 'archiveofveliance') {
+  if (currentPage === 'archiveofveilance') {
     return (
       <ProjectArchiveOfVeilance
         currentPage={currentPage}

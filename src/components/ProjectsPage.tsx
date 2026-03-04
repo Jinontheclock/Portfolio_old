@@ -73,7 +73,7 @@ const rows: ProjectRow[] = [
     title: 'Archive of Veilance',
     role: 'Independent',
     year: '2025',
-    page: 'archiveofveliance',
+    page: 'archiveofveilance',
     thumbnail: VeilanceResult2,
     hoverThumbnailWidth: 252,
     hoverThumbnailHeight: 350,

@@ -15,6 +15,7 @@ type ProjectHeaderProps = {
   tools: string[];
   role: string;
   reference?: string;
+  referenceUrl?: string;
   referenceLabel?: string;
   category?: string;
   link?: string | string[];
@@ -38,6 +39,7 @@ export default function ProjectHeader({
   tools,
   role,
   reference,
+  referenceUrl,
   referenceLabel = 'Reference',
   category,
   link,
@@ -105,7 +107,18 @@ export default function ProjectHeader({
           {reference && (
             <div>
               <p className="m-0 type-category text-black-normal">{wrapRevealText(referenceLabel)}</p>
-              <p className="m-0 type-body-lg text-black-normal">{wrapRevealText(reference)}</p>
+              {referenceUrl ? (
+                <a
+                  href={referenceUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="project-header-link block m-0 type-body-lg text-black-normal leading-[1.35]"
+                >
+                  <span className="nav-underline">{wrapRevealText(reference)}</span>
+                </a>
+              ) : (
+                <p className="m-0 type-body-lg text-black-normal">{wrapRevealText(reference)}</p>
+              )}
             </div>
           )}
           {linkItems.length > 0 && (
@@ -118,9 +131,9 @@ export default function ProjectHeader({
                     href={linkUrls[item]}
                     target="_blank"
                     rel="noreferrer"
-                    className="block m-0 type-body-lg text-black-normal leading-[1.35]"
+                    className="project-header-link block m-0 type-body-lg text-black-normal leading-[1.35]"
                   >
-                    {wrapRevealText(item)}
+                    <span className="nav-underline">{wrapRevealText(item)}</span>
                   </a>
                 ) : (
                   <p key={item} className="m-0 type-body-lg text-black-normal leading-[1.35]">
