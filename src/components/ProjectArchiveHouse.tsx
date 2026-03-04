@@ -98,7 +98,7 @@ const archiveMockupImages = [
   ArchiveHouseMockup6,
 ];
 
-const ARCHIVE_HOUSE_LAYOUT_BASE_HEIGHT = 5700;
+const ARCHIVE_HOUSE_LAYOUT_BASE_HEIGHT = 5600;
 const ARCHIVE_HOUSE_FOOTER_TOP = ARCHIVE_HOUSE_LAYOUT_BASE_HEIGHT - 300;
 
 export default function ProjectArchiveHouse({ currentPage, language, onNavigate, onLanguageChange }: Props) {
@@ -117,7 +117,8 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
 
             <div className="flex flex-col gap-0 mt-12">
               <ProjectHeader
-                title="Archive House"
+                title="Saku Archive House"
+                titleFontSize={140}
                 category="Poster Design"
                 timeline="2 weeks"
                 tools={['Adobe InDesign', 'Adobe Photoshop', 'Adobe Illustrator']}
@@ -377,14 +378,14 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
               <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
                 <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">03 Final Result</h2>
                 <div className="project-right-column pl-48 max-w-[1280px]">
-                  <div className="project-sub-block">
+                  <div className="project-sub-block gap-1">
                     <p className="type-body-lg m-0 text-black-normal font-semibold leading-[1.2]">Original View</p>
-                    <div className="grid grid-cols-3 gap-6 max-w-[1180px]">
+                    <div className="project-media-block grid grid-cols-3 gap-6 max-w-[1180px]">
                       <div className="grid gap-2">
                         <img
                           src={ArchiveHouseResult1}
                           alt="Archive House poster result 01"
-                          className="w-full h-[460px] object-contain"
+                          className="w-full h-auto block"
                         />
                         <p className="type-body m-0 text-black-normal leading-[1.5]">Poster 01</p>
                       </div>
@@ -392,7 +393,7 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
                         <img
                           src={ArchiveHouseResult2}
                           alt="Archive House poster result 02"
-                          className="w-full h-[460px] object-contain"
+                          className="w-full h-auto block"
                         />
                         <p className="type-body m-0 text-black-normal leading-[1.5]">Poster 02</p>
                       </div>
@@ -400,7 +401,7 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
                         <img
                           src={ArchiveHouseResult3}
                           alt="Archive House poster result 03"
-                          className="w-full h-[460px] object-contain"
+                          className="w-full h-auto block"
                         />
                         <p className="type-body m-0 text-black-normal leading-[1.5]">Poster 03</p>
                       </div>

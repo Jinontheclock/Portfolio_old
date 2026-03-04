@@ -22,7 +22,7 @@ type Props = {
   onLanguageChange: (language: Language) => void;
 };
 
-const ICELAND_LAYOUT_BASE_HEIGHT = 5300;
+const ICELAND_LAYOUT_BASE_HEIGHT = 5100;
 const ICELAND_FOOTER_TOP = ICELAND_LAYOUT_BASE_HEIGHT - 300;
 
 export default function ProjectIceland({ currentPage, language, onNavigate, onLanguageChange }: Props) {
@@ -42,6 +42,7 @@ export default function ProjectIceland({ currentPage, language, onNavigate, onLa
             <div className="flex flex-col gap-0 mt-12">
               <ProjectHeader
                 title="Best of Iceland"
+                category="Brochure"
                 timeline="1 month"
                 tools={['Adobe InDesign', 'Adobe Photoshop', 'Adobe Illustrator']}
                 role="Independent"
@@ -154,16 +155,18 @@ export default function ProjectIceland({ currentPage, language, onNavigate, onLa
             <section className="px-7 pb-16 mt-12">
               <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
                 <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">02 Digital Edition</h2>
-                <div className="project-right-column pl-48">
-                  <div className="rounded-[4px] shadow-sm overflow-hidden bg-white" style={{ height: 640, minHeight: 400 }}>
-                    <iframe
-                      title="Best of Iceland publication"
-                      src="https://indd.adobe.com/view/6f46e287-a8e6-4a4a-ae30-9abd17aed38b"
-                      width="100%"
-                      height="100%"
-                      style={{ border: 'none' }}
-                      allowFullScreen
-                    />
+                <div className="project-right-column pl-48 max-w-[1280px]">
+                  <div className="project-right-block">
+                    <div className="rounded-[4px] shadow-sm overflow-hidden bg-white" style={{ height: 640, minHeight: 400 }}>
+                      <iframe
+                        title="Best of Iceland publication"
+                        src="https://indd.adobe.com/view/6f46e287-a8e6-4a4a-ae30-9abd17aed38b"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 'none' }}
+                        allowFullScreen
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -173,16 +176,18 @@ export default function ProjectIceland({ currentPage, language, onNavigate, onLa
             <section className="px-7 pb-16 mt-12">
               <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
                 <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">03 Final Result</h2>
-                <div className="project-right-column pl-48">
-                  <div className="grid grid-cols-[3fr_2fr] gap-8 items-start">
-                    <div className="flex flex-col gap-8">
-                      <img src={Mock5} alt="Final spread mockup 5" className="w-full h-auto block object-cover" />
-                      <img src={Mock4} alt="Final spread mockup 4" className="w-full h-[580px] block object-cover object-top" />
-                    </div>
-                    <div className="flex flex-col gap-8">
-                      <img src={Mock1} alt="Final spread mockup 1" className="w-full h-auto block object-cover" />
-                      <img src={Mock2} alt="Final spread mockup 2" className="w-full h-auto block object-cover" />
-                      <img src={Mock3} alt="Final spread mockup 3" className="w-full h-auto block object-cover object-center" />
+                <div className="project-right-column pl-48 max-w-[1280px]">
+                  <div className="project-right-block">
+                    <div className="grid grid-cols-[3fr_2fr] gap-8 items-start">
+                      <div className="flex flex-col gap-8">
+                        <img src={Mock5} alt="Final spread mockup 5" className="w-full h-auto block object-cover" />
+                        <img src={Mock4} alt="Final spread mockup 4" className="w-full h-[580px] block object-cover object-top" />
+                      </div>
+                      <div className="flex flex-col gap-8">
+                        <img src={Mock1} alt="Final spread mockup 1" className="w-full h-auto block object-cover" />
+                        <img src={Mock2} alt="Final spread mockup 2" className="w-full h-auto block object-cover" />
+                        <img src={Mock3} alt="Final spread mockup 3" className="w-full h-auto block object-cover object-center" />
+                      </div>
                     </div>
                   </div>
                 </div>

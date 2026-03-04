@@ -259,7 +259,8 @@ export default function Header({
     currentPage === 'muji' ||
     currentPage === 'archivehouse' ||
     currentPage === 'archiveofveliance' ||
-    currentPage === 'matchalatte';
+    currentPage === 'matchalatte' ||
+    currentPage === 'starlink';
 
   const headerContent = (
     <header className="relative h-[96px]">

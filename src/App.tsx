@@ -15,6 +15,7 @@ import ProjectMuji from "./components/ProjectMuji";
 import ProjectArchiveHouse from "./components/ProjectArchiveHouse";
 import ProjectArchiveOfVeilance from "./components/ProjectArchiveOfVeilance";
 import ProjectMatchaLatte from "./components/ProjectMatchaLatte";
+import ProjectStarLink from "./components/ProjectStarLink";
 import { Language, Page } from "./types";
 import RevealLine, { RevealHLine } from "./components/RevealLine";
 
@@ -237,6 +238,7 @@ const PAGE_PATHS: Record<Page, string> = {
   archivehouse: '/projects/archive-house',
   archiveofveliance: '/projects/archive-of-veliance',
   matchalatte: '/projects/matcha-latte',
+  starlink: '/projects/starlink',
 };
 
 function normalizePath(pathname: string) {
@@ -256,6 +258,7 @@ function pageFromPath(pathname: string): Page {
   if (path === '/projects/archive-house' || path === '/archive-house') return 'archivehouse';
   if (path === '/projects/archive-of-veliance' || path === '/archive-of-veliance') return 'archiveofveliance';
   if (path === '/projects/matcha-latte' || path === '/matcha-latte') return 'matchalatte';
+  if (path === '/projects/starlink' || path === '/starlink') return 'starlink';
 
   return 'home';
 }
@@ -677,6 +680,17 @@ export default function App() {
   if (currentPage === 'matchalatte') {
     return (
       <ProjectMatchaLatte
+        currentPage={currentPage}
+        language={language}
+        onNavigate={navigateTo}
+        onLanguageChange={(lang) => setLanguage(lang)}
+      />
+    );
+  }
+
+  if (currentPage === 'starlink') {
+    return (
+      <ProjectStarLink
         currentPage={currentPage}
         language={language}
         onNavigate={navigateTo}

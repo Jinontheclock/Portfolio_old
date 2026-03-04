@@ -48,6 +48,7 @@ type ProjectRow = {
   thumbnail?: string;
   hoverThumbnailWidth?: number;
   hoverThumbnailHeight?: number;
+  topOffset?: number;
 };
 
 const rows: ProjectRow[] = [
@@ -77,10 +78,19 @@ const rows: ProjectRow[] = [
     hoverThumbnailWidth: 252,
     hoverThumbnailHeight: 350,
   },
-  { offset: 6, workType: 'Motion', title: 'StarLink', role: 'Independent', year: '2025', hidden: true },
-  { offset: 7, workType: 'Package', title: 'Matcha Latte', role: 'Independent', year: '2024', page: 'matchalatte', thumbnail: MatchaMockup4 },
+  { offset: 6, workType: '', title: '', role: '', year: '', hidden: true },
+  { offset: 7, workType: 'Motion', title: 'StarLink', role: 'Independent', year: '2025', page: 'starlink' },
   {
     offset: 8,
+    workType: 'Package',
+    title: 'Matcha Latte',
+    role: 'Independent',
+    year: '2024',
+    page: 'matchalatte',
+    thumbnail: MatchaMockup4,
+  },
+  {
+    offset: 9,
     workType: 'Promotional Material',
     title: 'MUJI',
     role: 'VMD',
@@ -89,6 +99,7 @@ const rows: ProjectRow[] = [
     thumbnail: MujiThumbnail,
     hoverThumbnailWidth: 240,
     hoverThumbnailHeight: 333,
+    topOffset: 40,
   },
 ];
 const HIDDEN_ROW_OFFSETS = rows.filter((row) => row.hidden).map((row) => row.offset);
@@ -237,7 +248,7 @@ export default function ProjectsPage({ currentPage, language, onNavigate, onLang
             )}
 
             {visibleRows.map((row, visibleIndex) => {
-              const top = getRowTop(row.offset);
+              const top = getRowTop(row.offset) + (row.topOffset ?? 0);
               const isInteractive = Boolean(row.page);
               const isActive = hoveredRow === row.offset;
               const rowBaseDelay = 1260 + visibleIndex * 42;
