@@ -66,12 +66,12 @@ export default function ProjectIceland({ currentPage, language, onNavigate, onLa
 
             <div>
 
-            {/* Typography block */}
+            {/* 01 Design Process */}
             <section className="px-7 pb-16 mt-16">
               <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
                 <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">01 Design Process</h2>
 
-                <div className="project-right-column pl-48">
+                <div className="project-right-column pl-48 max-w-[1280px]">
                   <div className="project-right-block">
                     <p className="type-heading-3 text-black-normal m-0 leading-[1.2]">Typography</p>
                     <p className="type-body text-black-normal m-0 leading-[1.6]">
@@ -106,21 +106,12 @@ export default function ProjectIceland({ currentPage, language, onNavigate, onLa
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </section>
 
-            {/* Grid System */}
-            <section className="px-7 pb-16 mt-8">
-              <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
-                <div className="h-0" />
-
-                <div className="project-right-column pl-48">
                   <div className="project-right-block">
-                  <h3 className="type-heading-3 text-black-normal m-0 leading-[1.3]">Grid System</h3>
-                  <p className="type-body text-black-normal m-0 leading-[1.6]">
-                    It uses a flexible column-based grid system to ensure clarity and consistency across spreads. Both 2–column and 3–column layouts were applied depending on content needs, balancing imagery with readable travel information.
-                  </p>
+                    <h3 className="type-heading-3 text-black-normal m-0 leading-[1.3]">Grid System</h3>
+                    <p className="type-body text-black-normal m-0 leading-[1.6]">
+                      It uses a flexible column-based grid system to ensure clarity and consistency across spreads. Both 2–column and 3–column layouts were applied depending on content needs, balancing imagery with readable travel information.
+                    </p>
                     <div className="grid grid-cols-2 gap-8 items-start">
                       <figure className="p-0 m-0 text-left">
                         <img src={layout2col} alt="2-column grid layout" className="w-full h-auto block" />
@@ -141,21 +132,12 @@ export default function ProjectIceland({ currentPage, language, onNavigate, onLa
                       <p className="m-0">The slightly larger bottom margin creates breathing space for captions and page flow.</p>
                     </div>
                   </div>
-                </div>
-              </div>
-            </section>
 
-            {/* Graphics */}
-            <section className="px-7 pb-16 mt-8">
-              <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
-                <div className="h-0" />
-
-                <div className="project-right-column pl-48">
                   <div className="project-right-block">
-                  <h3 className="type-heading-3 text-black-normal m-0 leading-[1.3]">Graphics</h3>
-                  <p className="type-body text-black-normal m-0 leading-[1.6]">
-                    A simplified route map visualizing the journey across Iceland, highlighting key destinations and travel flow.
-                  </p>
+                    <h3 className="type-heading-3 text-black-normal m-0 leading-[1.3]">Graphics</h3>
+                    <p className="type-body text-black-normal m-0 leading-[1.6]">
+                      A simplified route map visualizing the journey across Iceland, highlighting key destinations and travel flow.
+                    </p>
                     <div className="flex flex-wrap gap-4 justify-start">
                       {[Map1, Map2, Map3].map((src, idx) => (
                         <figure key={src} className="p-0 m-0 text-left w-[32%]">
