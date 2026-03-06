@@ -5,13 +5,10 @@ import ProjectHeader from './ProjectHeader';
 import { Language, Page } from '../types';
 import { useProjectImageLightbox } from '../hooks/useProjectImageLightbox';
 import StarLinkBanner from '../assets/projects/starlink/starlink_banner.jpeg';
-import MatchaComponents1 from '../assets/projects/matcha/matcha_components1.webp';
-import MatchaComponents2 from '../assets/projects/matcha/matcha_components2.webp';
-import MatchaDieline1 from '../assets/projects/matcha/matcha_dieline1.webp';
-import MatchaDieline2 from '../assets/projects/matcha/matcha_dieline2.webp';
-import MatchaLabels1 from '../assets/projects/matcha/matcha_labels1.webp';
-import MatchaLabels2 from '../assets/projects/matcha/matcha_labels2.webp';
-import MatchaLabels3 from '../assets/projects/matcha/matcha_labels3.webp';
+import StarlinkBackground1 from '../assets/projects/starlink/Starlink_background1.png';
+import StarlinkBackground2 from '../assets/projects/starlink/Starlink_background2.png';
+import StarlinkSoundtrack from '../assets/projects/starlink/Starlink_soundtrack.mp3';
+import StarlinkVideo from '../assets/projects/starlink/starlink_video.mp4';
 import MatchaMockup1 from '../assets/projects/matcha/matcha_mockup1.webp';
 import MatchaMockup2 from '../assets/projects/matcha/matcha_mockup2.webp';
 import MatchaMockup3 from '../assets/projects/matcha/matcha_mockup3.webp';
@@ -26,11 +23,10 @@ type Props = {
 
 const VEILANCE_LAYOUT_BASE_HEIGHT = 6700;
 const VEILANCE_FOOTER_TOP = VEILANCE_LAYOUT_BASE_HEIGHT - 300;
-const MATCHA_GRADIENT_END = '#FAFFEC';
-const MATCHA_LABEL_IMAGES = [MatchaLabels1, MatchaLabels2, MatchaLabels3];
 const MATCHA_MOCKUP_ROW_ONE_IMAGES = [MatchaMockup1, MatchaMockup2, MatchaMockup3];
+const STARLINK_BACKGROUND_IMAGES = [StarlinkBackground1, StarlinkBackground2];
 
-type MatchaTypographyRow = {
+type StarlinkTypographyRow = {
   label: string;
   value: string;
   sample: string;
@@ -38,86 +34,46 @@ type MatchaTypographyRow = {
   sampleMinHeight?: number;
 };
 
-const matchaTypographyRows: MatchaTypographyRow[] = [
+const STARLINK_TYPOGRAPHY_SAMPLE = 'A new generation of satellites orbiting the Earth.';
+
+const starlinkTypographyRows: StarlinkTypographyRow[] = [
   {
-    label: 'Name_jp',
-    value: '40px ExtraBold NotoSans',
-    sample: '抹茶、本来の味わい。',
-    sampleMinHeight: 56,
+    label: 'Headline',
+    value: 'Avenir Heavy 56px',
+    sample: STARLINK_TYPOGRAPHY_SAMPLE,
+    sampleMinHeight: 36,
     style: {
-      fontFamily: '"Noto Sans JP", "Noto Sans", "Plus Jakarta Sans", sans-serif',
-      fontSize: 40,
+      fontFamily: '"Avenir", "Avenir Next", "Plus Jakarta Sans", sans-serif',
+      fontSize: 24,
       fontWeight: 800,
       lineHeight: '1',
     },
   },
   {
-    label: 'Name_sub_jp',
-    value: '32px ExtraBold NotoSans',
-    sample: '抹茶、本来の味わい。',
-    sampleMinHeight: 48,
+    label: 'Subhead',
+    value: 'Avenir Medium 32px',
+    sample: STARLINK_TYPOGRAPHY_SAMPLE,
+    sampleMinHeight: 32,
     style: {
-      fontFamily: '"Noto Sans JP", "Noto Sans", "Plus Jakarta Sans", sans-serif',
-      fontSize: 32,
-      fontWeight: 800,
+      fontFamily: '"Avenir", "Avenir Next", "Plus Jakarta Sans", sans-serif',
+      fontSize: 20,
+      fontWeight: 500,
       lineHeight: '1',
-    },
-  },
-  {
-    label: 'Flavor',
-    value: '12px Bold NotoSans',
-    sample: 'Matcha, in its purest form.',
-    sampleMinHeight: 28,
-    style: {
-      fontFamily: '"Noto Sans", "Noto Sans JP", "Plus Jakarta Sans", sans-serif',
-      fontSize: 12,
-      fontWeight: 700,
-      lineHeight: '1.2',
-    },
-  },
-  {
-    label: 'Title_jp',
-    value: '8px SemiBold NotoSerif',
-    sample: '抹茶、本来の味わい。',
-    sampleMinHeight: 20,
-    style: {
-      fontFamily: '"Noto Serif JP", "Noto Serif", "Plus Jakarta Sans", serif',
-      fontSize: 8,
-      fontWeight: 600,
-      lineHeight: '1.2',
     },
   },
   {
     label: 'Body',
-    value: '6px NotoSans',
-    sample: 'Matcha, in its purest form.',
-    sampleMinHeight: 16,
+    value: 'Avenir Book 24px',
+    sample: STARLINK_TYPOGRAPHY_SAMPLE,
+    sampleMinHeight: 28,
     style: {
-      fontFamily: '"Noto Sans", "Noto Sans JP", "Plus Jakarta Sans", sans-serif',
-      fontSize: 6,
+      fontFamily: '"Avenir", "Avenir Next", "Plus Jakarta Sans", sans-serif',
+      fontSize: 16,
       fontWeight: 400,
-      lineHeight: '1.2',
+      lineHeight: '1.1',
     },
   },
 ];
-
-const matchaColorRows = [
-  {
-    label: 'Flavor Deep',
-    solid: '#2C4001',
-    gradientStart: '#3C5B00',
-  },
-  {
-    label: 'Flavor Classic',
-    solid: '#7D8C0B',
-    gradientStart: '#6F8922',
-  },
-  {
-    label: 'Flavor Mild',
-    solid: '#B9BF04',
-    gradientStart: '#B0C168',
-  },
-] as const;
 
 export default function ProjectStarLink({ currentPage, language, onNavigate, onLanguageChange }: Props) {
   const { handleProjectImageClickCapture, projectImageLightbox } = useProjectImageLightbox();
@@ -144,13 +100,13 @@ export default function ProjectStarLink({ currentPage, language, onNavigate, onL
                 reference="Starlink"
                 referenceUrl="https://starlink.com/"
                 description={[
-                  'Temporary page created from the Matcha Latte layout as a placeholder for the StarLink project.',
-                  'This section will be replaced with the final StarLink motion project content.',
+                  'Developed as an academic motion graphics project, this video explains Starlink’s satellite system to help viewers understand how it works. ',
+                  'Using fully graphic visuals created in Adobe After Effects, the project compares Starlink’s low-Earth orbit satellites with traditional satellites, highlighting differences in orbit, coverage, and communication.'
                 ]}
               />
 
               {/* Hero image */}
-              <section className="px-7" data-lightbox-disabled="true">
+              <section className="px-7 -mt-8" data-lightbox-disabled="true">
                 <div className="flex justify-center">
                   <div className="w-full max-w-[1400px] h-[520px] overflow-hidden">
                     <img
@@ -172,29 +128,27 @@ export default function ProjectStarLink({ currentPage, language, onNavigate, onL
                     <div className="project-sub-block">
                       <p className="type-body-lg m-0 text-black-normal font-semibold leading-[1.2]">Design Approach</p>
                       <p className="type-body m-0 text-black-normal leading-[1.5]">
-                        This matcha latte project reinterprets traditional Japanese tea culture as a modern packaging concept.
+                        This motion graphics project adopts Starlink’s official visual language, characterized by monochrome tones and sharp graphic elements.
                         <br />
-                        The brand centers on calm, minimal expression, using a restrained green palette to reflect the natural depth of matcha. The product highlights distinct flavor variations through subtle tonal differences, creating a cohesive yet differentiated lineup.
+                        The design recreates the futuristic atmosphere associated with space technology, using modern and minimal visuals to reflect SpaceX’s focus on space exploration. All graphics were illustrated from scratch and animated in Adobe After Effects, with an emphasis on smooth motion to create a clear and cohesive visual experience.
                       </p>
                     </div>
 
                     <div className="project-sub-block mt-8">
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Typography</p>
                       <p className="type-body m-0 text-black-normal leading-[1.5] max-w-[1120px]">
-                        This project uses a bilingual typographic system that supports both Japanese and English, ensuring
-                        consistency across languages. Type was selected for clarity, balance, and compatibility between
-                        character sets.
+                        Avenir was used for the typography to reinforce the project’s modern and clean visual tone, providing clear readability while complementing the minimal, technology-focused design.
                       </p>
                       <div className="grid grid-cols-[260px_1fr] gap-10 items-start mt-1">
                         <div className="text-[12px] leading-[1.5] text-black-normal space-y-3">
-                          {matchaTypographyRows.map((row) => (
+                          {starlinkTypographyRows.map((row) => (
                             <div key={row.label} className="grid grid-cols-[140px_1fr] items-start gap-6">
                               <div>
                                 <p className="m-0 text-[16px] font-normal leading-[1.3]">{row.label}</p>
                                 <p className="m-0 text-[12px] font-normal leading-[1.3] whitespace-nowrap">{row.value}</p>
                               </div>
                               <div className="flex items-center pl-14" style={{ minHeight: row.sampleMinHeight ?? 44 }}>
-                                <p className="m-0 text-black-normal whitespace-nowrap" style={row.style}>
+                                <p className="m-0 text-black-normal leading-[1.1] whitespace-nowrap" style={row.style}>
                                   {row.sample}
                                 </p>
                               </div>
@@ -205,90 +159,44 @@ export default function ProjectStarLink({ currentPage, language, onNavigate, onL
                     </div>
 
                     <div className="project-sub-block mt-12">
-                      <p className="type-body-lg m-0 text-black-normal font-semibold">Color</p>
+                      <p className="type-body-lg m-0 text-black-normal font-semibold">Background</p>
                       <p className="type-body m-0 text-black-normal leading-[1.5] max-w-[1120px]">
-                        Each flavor is represented through a distinct green tone that reflects the depth and intensity of
-                        the matcha. The palette helps differentiate flavors while maintaining a cohesive, natural look.
+                        The background uses a black canvas with white dots to represent stars, creating a minimal graphic
+                        interpretation of outer space. Varying dot sizes add a sense of depth and distance.
+                        <br />
+                        For the intro and outro, the CC Star Burst effect was keyframed to create a rapid star-field
+                        motion, reinforcing the feeling of entering and exiting space.
                       </p>
 
-                      <div className="grid gap-8 max-w-[980px] mt-1">
-                        {matchaColorRows.map((row, index) => (
-                          <div key={row.label} className="grid grid-cols-[220px_1fr] gap-8 items-start">
-                            <div className="grid gap-2">
-                              <p className="m-0 text-[16px] font-normal leading-[1.3] text-black-normal">{row.label}</p>
-                              <div
-                                className="relative h-[90px] rounded-[4px] overflow-hidden"
-                                style={{ backgroundColor: row.solid }}
-                              >
-                                <p className="absolute left-2 top-1.5 m-0 text-[12px] leading-[1] text-black-normal">
-                                  {row.solid}
-                                </p>
-                              </div>
-                            </div>
-
-                            <div className="grid gap-2">
-                              {index === 0 ? (
-                                <p className="m-0 text-[16px] font-normal leading-[1.3] text-black-normal">background</p>
-                              ) : (
-                                <div className="h-[21px]" aria-hidden="true" />
-                              )}
-                              <div
-                                className="relative h-[90px] rounded-[4px] overflow-hidden"
-                                style={{
-                                  backgroundImage: `linear-gradient(90deg, ${row.gradientStart} 0%, ${MATCHA_GRADIENT_END} 100%)`,
-                                }}
-                              >
-                                <p className="absolute left-2 top-1.5 m-0 text-[12px] leading-[1] text-black-normal">
-                                  {row.gradientStart}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
+                      <div className="grid grid-cols-2 gap-8 max-w-[1120px] mt-2 items-start">
+                        {STARLINK_BACKGROUND_IMAGES.map((imageSrc, index) => (
+                          <img
+                            key={imageSrc}
+                            src={imageSrc}
+                            alt={`Starlink background ${index + 1}`}
+                            className="w-full h-auto block"
+                          />
                         ))}
                       </div>
                     </div>
 
                     <div className="project-sub-block mt-12">
-                      <p className="type-body-lg m-0 text-black-normal font-semibold">Dieline Template</p>
+                      <p className="type-body-lg m-0 text-black-normal font-semibold">Soundtrack</p>
                       <p className="type-body m-0 text-black-normal leading-[1.5] max-w-[1120px]">
-                        The layout is based on standard 355 ml aluminum can dimensions to ensure production accuracy.
-                        Clear trim, bleed, and seam areas were considered throughout the design.
+                        The soundtrack &quot;First Step&quot; from the Interstellar Original Motion Picture Soundtrack by Hans
+                        Zimmer was used to reinforce the sense of scale and exploration associated with space. Its gradual
+                        build and atmospheric tone support the smooth motion graphics and enhance the immersive, space-themed
+                        narrative.
                       </p>
 
-                      <div className="grid grid-cols-[1.12fr_1fr] gap-8 max-w-[1120px] mt-2 items-start">
-                        <img
-                          src={MatchaDieline1}
-                          alt="Matcha latte dieline label dimensions"
-                          className="w-full h-auto block"
-                        />
-                        <img
-                          src={MatchaDieline2}
-                          alt="Matcha latte can side and top dimensions"
-                          className="w-full h-auto block"
-                        />
+                      <div className="max-w-[1120px] mt-2">
+                        <audio controls preload="metadata" className="w-full">
+                          <source src={StarlinkSoundtrack} type="audio/mpeg" />
+                          Your browser does not support the audio element.
+                        </audio>
                       </div>
                     </div>
 
-                    <div className="project-sub-block mt-12">
-                      <p className="type-body-lg m-0 text-black-normal font-semibold">Components</p>
-                      <p className="type-body m-0 text-black-normal leading-[1.5] max-w-[1120px]">
-                        The matcha whisk serves as a key visual motif, referencing traditional preparation methods.
-                        Background textures are inspired by the smooth, layered surface of matcha latte foam.
-                      </p>
-
-                      <div className="grid grid-cols-[0.73fr_1fr] gap-8 max-w-[1120px] mt-2 items-start">
-                        <img
-                          src={MatchaComponents1}
-                          alt="Matcha latte brand components whisk motif and flavor circles"
-                          className="w-full h-auto block"
-                        />
-                        <img
-                          src={MatchaComponents2}
-                          alt="Matcha latte background texture components"
-                          className="w-full h-auto block"
-                        />
-                      </div>
-                    </div>
                   </div>
                 </div>
               </section>
@@ -299,16 +207,12 @@ export default function ProjectStarLink({ currentPage, language, onNavigate, onL
                   <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">02 Final Result</h2>
                   <div className="project-right-column pl-48 max-w-[1280px]">
                     <div className="project-right-block">
-                      <p className="type-heading-3 text-black-normal m-0 leading-[1.2]">Labels</p>
-                      <div className="grid grid-cols-1 gap-0 max-w-[1180px]">
-                        {MATCHA_LABEL_IMAGES.map((imageSrc, index) => (
-                          <img
-                            key={imageSrc}
-                            src={imageSrc}
-                            alt={`Matcha latte label design ${index + 1}`}
-                            className="w-full h-auto block"
-                          />
-                        ))}
+                      <p className="type-heading-3 text-black-normal m-0 leading-[1.2]">Video</p>
+                      <div className="max-w-[1180px] mt-2">
+                        <video controls preload="metadata" className="w-full h-auto block">
+                          <source src={StarlinkVideo} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
                       </div>
                     </div>
                     <div className="project-right-block">
