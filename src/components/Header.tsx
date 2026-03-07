@@ -218,7 +218,7 @@ export default function Header({ currentPage, language, onNavigate, onLanguageCh
         setHoveredMode(nextMode);
     };
     const isProjectsActive = isProjectsNavActive(currentPage);
-    const headerContent = (<header className="relative h-[96px]">
+    const headerContent = (<header className="relative h-[96px]" data-lightbox-disabled="true">
       <div aria-hidden className="absolute pointer-events-none z-[1]" style={{
             left: `calc(${NAV_LEFT_BASE} - 4px)`,
             right: `${HEADER_EDGE_INSET}px`,
@@ -237,6 +237,7 @@ export default function Header({ currentPage, language, onNavigate, onLanguageCh
         className="absolute size-[48px] top-[24px] cursor-pointer z-10"
         style={{ left: `${HEADER_EDGE_INSET}px` }}
         aria-label="Go to home"
+        data-lightbox-disabled="true"
         onMouseEnter={() => startLooping(false)}
         onMouseLeave={stopAfterOne}
       >
