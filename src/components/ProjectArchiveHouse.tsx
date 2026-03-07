@@ -2,8 +2,11 @@ import type { CSSProperties } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import ProjectHeader from './ProjectHeader';
+import ProjectTwoColumnSection from './ProjectTwoColumnSection';
 import { Language, Page } from '../types';
 import { useProjectImageLightbox } from '../hooks/useProjectImageLightbox';
+import { PROJECT_HEADER_CONTENT } from '../config/projectContent';
+import { PROJECT_LAYOUT_METRICS } from '../config/layoutConfig';
 import ArchiveHouseBanner from '../assets/projects/archivehouse/archivehouse_banner.webp';
 import ArchiveHouseLogo from '../assets/projects/archivehouse/archivehouse_logo.webp';
 import ArchiveHouseChair from '../assets/projects/archivehouse/archivehouse_chair.webp';
@@ -24,128 +27,104 @@ import ArchiveHouseMockup3 from '../assets/projects/archivehouse/archivehouse_Mo
 import ArchiveHouseMockup4 from '../assets/projects/archivehouse/archivehouse_Mockup4.webp';
 import ArchiveHouseMockup5 from '../assets/projects/archivehouse/archivehouse_Mockup5.webp';
 import ArchiveHouseMockup6 from '../assets/projects/archivehouse/archivehouse_Mockup6.webp';
-
 type Props = {
-  currentPage: Page;
-  language: Language;
-  onNavigate: (page: Page) => void;
-  onLanguageChange: (language: Language) => void;
+    currentPage: Page;
+    language: Language;
+    onNavigate: (page: Page) => void;
+    onLanguageChange: (language: Language) => void;
 };
-
-const archiveTypographyScale: Array<{ label: string; value: string; sample: string; style: CSSProperties }> = [
-  {
-    label: 'H1',
-    value: '80px Black Avenir',
-    sample: 'Timeless form',
-    style: { fontFamily: '"Avenir", "Plus Jakarta Sans", sans-serif', fontSize: 80, fontWeight: 800, lineHeight: '1', letterSpacing: '0em' },
-  },
-  {
-    label: 'H2',
-    value: '56px Black Avenir',
-    sample: 'Timeless form',
-    style: { fontFamily: '"Avenir", "Plus Jakarta Sans", sans-serif', fontSize: 56, fontWeight: 800, lineHeight: '1', letterSpacing: '0em' },
-  },
-  {
-    label: 'H3',
-    value: '40px Black Avenir',
-    sample: 'Timeless form',
-    style: { fontFamily: '"Avenir", "Plus Jakarta Sans", sans-serif', fontSize: 40, fontWeight: 800, lineHeight: '1', letterSpacing: '0em' },
-  },
-  {
-    label: 'Body_large',
-    value: '16px Heavy Avenir',
-    sample: 'Timeless form',
-    style: { fontFamily: '"Avenir", "Plus Jakarta Sans", sans-serif', fontSize: 16, fontWeight: 700, lineHeight: '1.35', letterSpacing: '0em' },
-  },
-  {
-    label: 'Body',
-    value: '12px Medium Avenir',
-    sample: 'Timeless form',
-    style: { fontFamily: '"Avenir", "Plus Jakarta Sans", sans-serif', fontSize: 12, fontWeight: 500, lineHeight: '1.35', letterSpacing: '0em' },
-  },
-  {
-    label: 'Caption',
-    value: '8px Roman Avenir',
-    sample: 'Timeless form',
-    style: { fontFamily: '"Avenir", "Plus Jakarta Sans", sans-serif', fontSize: 8, fontWeight: 400, lineHeight: '1.35', letterSpacing: '0em' },
-  },
+const archiveTypographyScale: Array<{
+    label: string;
+    value: string;
+    sample: string;
+    style: CSSProperties;
+}> = [
+    {
+        label: 'H1',
+        value: '80px Black Avenir',
+        sample: 'Timeless form',
+        style: { fontFamily: '"Avenir", "Plus Jakarta Sans", sans-serif', fontSize: 80, fontWeight: 800, lineHeight: '1', letterSpacing: '0em' },
+    },
+    {
+        label: 'H2',
+        value: '56px Black Avenir',
+        sample: 'Timeless form',
+        style: { fontFamily: '"Avenir", "Plus Jakarta Sans", sans-serif', fontSize: 56, fontWeight: 800, lineHeight: '1', letterSpacing: '0em' },
+    },
+    {
+        label: 'H3',
+        value: '40px Black Avenir',
+        sample: 'Timeless form',
+        style: { fontFamily: '"Avenir", "Plus Jakarta Sans", sans-serif', fontSize: 40, fontWeight: 800, lineHeight: '1', letterSpacing: '0em' },
+    },
+    {
+        label: 'Body_large',
+        value: '16px Heavy Avenir',
+        sample: 'Timeless form',
+        style: { fontFamily: '"Avenir", "Plus Jakarta Sans", sans-serif', fontSize: 16, fontWeight: 700, lineHeight: '1.35', letterSpacing: '0em' },
+    },
+    {
+        label: 'Body',
+        value: '12px Medium Avenir',
+        sample: 'Timeless form',
+        style: { fontFamily: '"Avenir", "Plus Jakarta Sans", sans-serif', fontSize: 12, fontWeight: 500, lineHeight: '1.35', letterSpacing: '0em' },
+    },
+    {
+        label: 'Caption',
+        value: '8px Roman Avenir',
+        sample: 'Timeless form',
+        style: { fontFamily: '"Avenir", "Plus Jakarta Sans", sans-serif', fontSize: 8, fontWeight: 400, lineHeight: '1.35', letterSpacing: '0em' },
+    },
 ];
-
 const posterPalette = [
-  { hex: '#141416', textClass: 'text-black-normal' },
-  { hex: '#00315A', textClass: 'text-black-normal' },
-  { hex: '#E4EAF0', textClass: 'text-black-normal' },
+    { hex: '#141416', textClass: 'text-black-normal' },
+    { hex: '#00315A', textClass: 'text-black-normal' },
+    { hex: '#E4EAF0', textClass: 'text-black-normal' },
 ];
-
 const posterPalette02 = [
-  { hex: '#141416', textClass: 'text-black-normal' },
-  { hex: '#DBDADB', textClass: 'text-black-normal' },
+    { hex: '#141416', textClass: 'text-black-normal' },
+    { hex: '#DBDADB', textClass: 'text-black-normal' },
 ];
-
 const posterPalette03 = [
-  { hex: '#141416', textClass: 'text-black-normal' },
-  { hex: '#7AC8EB', textClass: 'text-black-normal' },
-  { hex: '#FF7885', textClass: 'text-black-normal' },
-  { hex: '#F2E782', textClass: 'text-black-normal' },
+    { hex: '#141416', textClass: 'text-black-normal' },
+    { hex: '#7AC8EB', textClass: 'text-black-normal' },
+    { hex: '#FF7885', textClass: 'text-black-normal' },
+    { hex: '#F2E782', textClass: 'text-black-normal' },
 ];
-
 const archiveMockupImages = [
-  ArchiveHouseMockup1,
-  ArchiveHouseMockup2,
-  ArchiveHouseMockup3,
-  ArchiveHouseMockup4,
-  ArchiveHouseMockup5,
-  ArchiveHouseMockup6,
+    ArchiveHouseMockup1,
+    ArchiveHouseMockup2,
+    ArchiveHouseMockup3,
+    ArchiveHouseMockup4,
+    ArchiveHouseMockup5,
+    ArchiveHouseMockup6,
 ];
-
-const ARCHIVE_HOUSE_LAYOUT_BASE_HEIGHT = 5600;
-const ARCHIVE_HOUSE_FOOTER_TOP = ARCHIVE_HOUSE_LAYOUT_BASE_HEIGHT - 300;
-
 export default function ProjectArchiveHouse({ currentPage, language, onNavigate, onLanguageChange }: Props) {
-  const { handleProjectImageClickCapture, projectImageLightbox } = useProjectImageLightbox();
-
-  return (
-    <div className="layout-viewport hide-scrollbar bg-grey-normal">
-      <div className="layout-canvas" style={{ "--layout-base-height": `${ARCHIVE_HOUSE_LAYOUT_BASE_HEIGHT}px` } as CSSProperties}>
+    const { handleProjectImageClickCapture, projectImageLightbox } = useProjectImageLightbox();
+    return (<div className="layout-viewport hide-scrollbar bg-grey-normal" style={{ "--layout-gutter": "0px" } as CSSProperties}>
+      <div className="layout-canvas" style={{ "--layout-base-height": `${PROJECT_LAYOUT_METRICS.archivehouse.baseHeight}px` } as CSSProperties}>
         <div className="layout-canvas-inner">
           <div className="relative" style={{ minHeight: "var(--layout-base-height)" } as CSSProperties}>
             <div className="tinypaws-page-enter-overlay" aria-hidden>
-              <span className="tinypaws-page-enter-overlay-base" />
+              <span className="tinypaws-page-enter-overlay-base"/>
             </div>
             <div className="tinypaws-page-enter-content" onClickCapture={handleProjectImageClickCapture}>
-            <Header currentPage={currentPage} language={language} onNavigate={onNavigate} onLanguageChange={onLanguageChange} />
+            <Header currentPage={currentPage} language={language} onNavigate={onNavigate} onLanguageChange={onLanguageChange}/>
 
             <div className="flex flex-col gap-0 mt-12">
-              <ProjectHeader
-                title="Saku Archive House"
-                titleFontSize={140}
-                category="Poster Design"
-                timeline="2 weeks"
-                tools={['Adobe InDesign', 'Adobe Photoshop', 'Adobe Illustrator']}
-                role="Independent"
-                description={[
-                  'A promotional poster project for a fictional furniture concept store, designed around a featured plywood lounge chair as the key product.',
-                  'Three posters explore different visual moods, demonstrating how atmosphere and layout influence brand perception in retail promotion.',
-                ]}
-              />
+              <ProjectHeader {...PROJECT_HEADER_CONTENT.archivehouse}/>
 
-              <section className="px-7" data-lightbox-disabled="true">
+              <section className="px-6" data-lightbox-disabled="true">
                 <div className="flex justify-center">
                   <div className="w-full max-w-[1400px] overflow-hidden">
-                    <img
-                      src={ArchiveHouseBanner}
-                      alt="Archive House overview"
-                      className="w-full h-auto block scale-[1.01] origin-center"
-                    />
+                    <img src={ArchiveHouseBanner} alt="Archive House overview" className="w-full h-auto block scale-[1.01] origin-center"/>
                   </div>
                 </div>
               </section>
             </div>
 
-            <section className="px-7 pb-16 mt-16">
-              <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
-                <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">01 Design Approach</h2>
-                <div className="project-right-column pl-48 max-w-[1280px]">
+            <section className="px-6 pb-16 mt-16">
+              <ProjectTwoColumnSection left={<h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">01 Design Approach</h2>} rightClassName="project-right-column pl-48 max-w-[1280px]">
                   <div className="project-right-block">
                     <div className="project-sub-block">
                       <p className="type-body-lg m-0 text-black-normal font-semibold leading-[1.2]">Branding</p>
@@ -158,24 +137,14 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
                     </div>
                     <div className="project-sub-block">
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Brand Logo</p>
-                      <img
-                        src={ArchiveHouseLogo}
-                        alt="Archive House logo"
-                        className="h-auto block"
-                        style={{ width: 320, maxWidth: '100%' }}
-                      />
+                      <img src={ArchiveHouseLogo} alt="Archive House logo" className="h-auto block" style={{ width: 320, maxWidth: '100%' }}/>
                     </div>
                   </div>
 
                   <div className="project-sub-block">
                     <p className="type-body-lg m-0 text-black-normal font-semibold">Hero Product</p>
                     <div className="flex items-start max-w-[860px]" style={{ columnGap: 96 }}>
-                      <img
-                        src={ArchiveHouseChair}
-                        alt="Plywood Lounge Chair"
-                        className="h-auto block"
-                        style={{ width: 200, maxWidth: '100%', flex: '0 0 auto' }}
-                      />
+                      <img src={ArchiveHouseChair} alt="Plywood Lounge Chair" className="h-auto block" style={{ width: 200, maxWidth: '100%', flex: '0 0 auto' }}/>
                       <div className="grid gap-2" style={{ width: 600, maxWidth: '100%', flex: '0 0 auto' }}>
                         <p className="type-body text-black-normal m-0 leading-[1.5]">Plywood Lounge Chair</p>
                         <p className="type-body text-black-normal m-0 leading-[1.5]">
@@ -196,11 +165,7 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
                     </p>
                     <div className="grid grid-cols-[260px_1fr] gap-10 items-start">
                       <div className="text-[12px] leading-[1.5] text-black-normal space-y-3">
-                        {archiveTypographyScale.map(({ label, value, sample, style }, index) => (
-                          <div
-                            key={label}
-                            className={`grid grid-cols-[140px_1fr] gap-6 ${index === 0 ? 'items-center' : 'items-start'}`}
-                          >
+                        {archiveTypographyScale.map(({ label, value, sample, style }, index) => (<div key={label} className={`grid grid-cols-[140px_1fr] gap-6 ${index === 0 ? 'items-center' : 'items-start'}`}>
                             <div>
                               <p className="m-0 text-[16px] font-normal leading-[1.3]">{label}</p>
                               <p className="m-0 text-[12px] font-normal leading-[1.3] whitespace-nowrap">{value}</p>
@@ -210,19 +175,15 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
                                 {sample}
                               </p>
                             </div>
-                          </div>
-                        ))}
+                          </div>))}
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+              </ProjectTwoColumnSection>
             </section>
 
-            <section className="px-7 pb-16 mt-12">
-              <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
-                <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">02 Comparison</h2>
-                <div className="project-right-column pl-48 max-w-[1280px]">
+            <section className="px-6 pb-16 mt-12">
+              <ProjectTwoColumnSection left={<h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">02 Comparison</h2>} rightClassName="project-right-column pl-48 max-w-[1280px]">
                   <div className="project-sub-block">
                     <p className="type-body-lg m-0 text-black-normal font-semibold leading-[1.2]">Poster 01/03</p>
                     <p className="type-body text-black-normal m-0 leading-[1.5] max-w-[1080px]">
@@ -233,61 +194,22 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
 
                   <div className="project-sub-block">
                     <p className="type-body text-black-normal m-0 leading-[1.5]">Color</p>
-                    <div
-                      className="grid gap-6 max-w-[860px]"
-                      style={{ gridTemplateColumns: 'repeat(4, minmax(0, 1fr))' }}
-                    >
-                      {posterPalette.map(({ hex, textClass }) => (
-                        <div
-                          key={hex}
-                          className={`h-[96px] rounded-[4px] ${textClass}`}
-                          style={{ backgroundColor: hex, padding: '14px 16px' }}
-                        >
+                    <div className="grid gap-6 max-w-[860px]" style={{ gridTemplateColumns: 'repeat(4, minmax(0, 1fr))' }}>
+                      {posterPalette.map(({ hex, textClass }) => (<div key={hex} className={`h-[96px] rounded-[4px] ${textClass}`} style={{ backgroundColor: hex, padding: '14px 16px' }}>
                           <p className="m-0 text-[12px] leading-[1.2]">{hex}</p>
-                        </div>
-                      ))}
+                        </div>))}
                     </div>
                   </div>
 
                   <div className="project-sub-block">
                     <p className="type-body text-black-normal m-0 leading-[1.5]">Graphics</p>
                     <div className="flex items-end gap-4 max-w-[1180px]">
-                      <img
-                        src={ArchiveHouseGraphic1}
-                        alt="Archive House poster graphic lines"
-                        className="w-auto object-contain"
-                        style={{ height: 112, width: 'auto', maxWidth: 'none', flex: '0 0 auto' }}
-                      />
-                      <img
-                        src={ArchiveHouseGraphic2}
-                        alt="Archive House poster graphic chair 1"
-                        className="w-auto object-contain"
-                        style={{ height: 112, width: 'auto', maxWidth: 'none', flex: '0 0 auto' }}
-                      />
-                      <img
-                        src={ArchiveHouseGraphic3}
-                        alt="Archive House poster graphic chair 2"
-                        className="w-auto object-contain"
-                        style={{ height: 112, width: 'auto', maxWidth: 'none', flex: '0 0 auto' }}
-                      />
-                      <img
-                        src={ArchiveHouseGraphic4}
-                        alt="Archive House poster graphic chair 3"
-                        className="w-auto object-contain"
-                        style={{ height: 112, width: 'auto', maxWidth: 'none', flex: '0 0 auto' }}
-                      />
-                      <img
-                        src={ArchiveHouseGraphic5}
-                        alt="Archive House poster graphic chair 4"
-                        className="w-auto object-contain"
-                        style={{ height: 112, width: 'auto', maxWidth: 'none', flex: '0 0 auto' }}
-                      />
-                      <img
-                        src={ArchiveHouseGraphic6}
-                        alt="Archive House poster graphic chair 5"
-                        className="w-auto object-contain"
-                        style={{ height: 112, width: 'auto', maxWidth: 'none', flex: '0 0 auto' }}
-                      />
+                      <img src={ArchiveHouseGraphic1} alt="Archive House poster graphic lines" className="w-auto object-contain" style={{ height: 112, width: 'auto', maxWidth: 'none', flex: '0 0 auto' }}/>
+                      <img src={ArchiveHouseGraphic2} alt="Archive House poster graphic chair 1" className="w-auto object-contain" style={{ height: 112, width: 'auto', maxWidth: 'none', flex: '0 0 auto' }}/>
+                      <img src={ArchiveHouseGraphic3} alt="Archive House poster graphic chair 2" className="w-auto object-contain" style={{ height: 112, width: 'auto', maxWidth: 'none', flex: '0 0 auto' }}/>
+                      <img src={ArchiveHouseGraphic4} alt="Archive House poster graphic chair 3" className="w-auto object-contain" style={{ height: 112, width: 'auto', maxWidth: 'none', flex: '0 0 auto' }}/>
+                      <img src={ArchiveHouseGraphic5} alt="Archive House poster graphic chair 4" className="w-auto object-contain" style={{ height: 112, width: 'auto', maxWidth: 'none', flex: '0 0 auto' }}/>
+                      <img src={ArchiveHouseGraphic6} alt="Archive House poster graphic chair 5" className="w-auto object-contain" style={{ height: 112, width: 'auto', maxWidth: 'none', flex: '0 0 auto' }}/>
                     </div>
                   </div>
 
@@ -302,31 +224,17 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
 
                     <div className="project-sub-block">
                       <p className="type-body text-black-normal m-0 leading-[1.5]">Color</p>
-                      <div
-                        className="grid gap-6 max-w-[860px]"
-                        style={{ gridTemplateColumns: 'repeat(4, minmax(0, 1fr))' }}
-                      >
-                        {posterPalette02.map(({ hex, textClass }) => (
-                          <div
-                            key={hex}
-                            className={`h-[96px] rounded-[4px] ${textClass}`}
-                            style={{ backgroundColor: hex, padding: '14px 16px' }}
-                          >
+                      <div className="grid gap-6 max-w-[860px]" style={{ gridTemplateColumns: 'repeat(4, minmax(0, 1fr))' }}>
+                        {posterPalette02.map(({ hex, textClass }) => (<div key={hex} className={`h-[96px] rounded-[4px] ${textClass}`} style={{ backgroundColor: hex, padding: '14px 16px' }}>
                             <p className="m-0 text-[12px] leading-[1.2]">{hex}</p>
-                          </div>
-                        ))}
+                          </div>))}
                       </div>
                     </div>
 
                     <div className="project-sub-block">
                       <p className="type-body text-black-normal m-0 leading-[1.5]">Graphics</p>
                       <div className="flex items-end gap-4 max-w-[1180px]">
-                        <img
-                          src={ArchiveHouseGraphic7}
-                          alt="Archive House poster 02 graphic chair"
-                          className="w-auto object-contain"
-                          style={{ height: 112, width: 'auto', maxWidth: 'none', flex: '0 0 auto' }}
-                        />
+                        <img src={ArchiveHouseGraphic7} alt="Archive House poster 02 graphic chair" className="w-auto object-contain" style={{ height: 112, width: 'auto', maxWidth: 'none', flex: '0 0 auto' }}/>
                       </div>
                     </div>
                   </div>
@@ -342,67 +250,38 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
 
                     <div className="project-sub-block">
                       <p className="type-body text-black-normal m-0 leading-[1.5]">Color</p>
-                      <div
-                        className="grid gap-6 max-w-[860px]"
-                        style={{ gridTemplateColumns: 'repeat(4, minmax(0, 1fr))' }}
-                      >
-                        {posterPalette03.map(({ hex, textClass }) => (
-                          <div
-                            key={hex}
-                            className={`h-[96px] rounded-[4px] ${textClass}`}
-                            style={{ backgroundColor: hex, padding: '14px 16px' }}
-                          >
+                      <div className="grid gap-6 max-w-[860px]" style={{ gridTemplateColumns: 'repeat(4, minmax(0, 1fr))' }}>
+                        {posterPalette03.map(({ hex, textClass }) => (<div key={hex} className={`h-[96px] rounded-[4px] ${textClass}`} style={{ backgroundColor: hex, padding: '14px 16px' }}>
                             <p className="m-0 text-[12px] leading-[1.2]">{hex}</p>
-                          </div>
-                        ))}
+                          </div>))}
                       </div>
                     </div>
 
                     <div className="project-sub-block">
                       <p className="type-body text-black-normal m-0 leading-[1.5]">Graphics</p>
                       <div className="flex items-end gap-4 max-w-[1180px]">
-                        <img
-                          src={ArchiveHouseGraphic8}
-                          alt="Archive House poster 03 graphic composition"
-                          className="w-auto object-contain"
-                          style={{ height: 180, width: 'auto', maxWidth: 'none', flex: '0 0 auto' }}
-                        />
+                        <img src={ArchiveHouseGraphic8} alt="Archive House poster 03 graphic composition" className="w-auto object-contain" style={{ height: 180, width: 'auto', maxWidth: 'none', flex: '0 0 auto' }}/>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+              </ProjectTwoColumnSection>
             </section>
 
-            <section className="px-7 pb-16 mt-12">
-              <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
-                <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">03 Final Result</h2>
-                <div className="project-right-column pl-48 max-w-[1280px]">
+            <section className="px-6 pb-16 mt-12">
+              <ProjectTwoColumnSection left={<h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">03 Final Result</h2>} rightClassName="project-right-column pl-48 max-w-[1280px]">
                   <div className="project-sub-block gap-1">
                     <p className="type-body-lg m-0 text-black-normal font-semibold leading-[1.2]">Original View</p>
                     <div className="project-media-block grid grid-cols-3 gap-6 max-w-[1180px]">
                       <div className="grid gap-2">
-                        <img
-                          src={ArchiveHouseResult1}
-                          alt="Archive House poster result 01"
-                          className="w-full h-auto block"
-                        />
+                        <img src={ArchiveHouseResult1} alt="Archive House poster result 01" className="w-full h-auto block"/>
                         <p className="type-body m-0 text-black-normal leading-[1.5]">Poster 01</p>
                       </div>
                       <div className="grid gap-2">
-                        <img
-                          src={ArchiveHouseResult2}
-                          alt="Archive House poster result 02"
-                          className="w-full h-auto block"
-                        />
+                        <img src={ArchiveHouseResult2} alt="Archive House poster result 02" className="w-full h-auto block"/>
                         <p className="type-body m-0 text-black-normal leading-[1.5]">Poster 02</p>
                       </div>
                       <div className="grid gap-2">
-                        <img
-                          src={ArchiveHouseResult3}
-                          alt="Archive House poster result 03"
-                          className="w-full h-auto block"
-                        />
+                        <img src={ArchiveHouseResult3} alt="Archive House poster result 03" className="w-full h-auto block"/>
                         <p className="type-body m-0 text-black-normal leading-[1.5]">Poster 03</p>
                       </div>
                     </div>
@@ -410,27 +289,19 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
                   <div className="project-sub-block">
                     <p className="type-body-lg m-0 text-black-normal font-semibold">Mockup</p>
                     <div className="grid grid-cols-2 gap-6 max-w-[1180px]">
-                      {archiveMockupImages.map((imageSrc, index) => (
-                        <div key={imageSrc} className="w-full aspect-[16/10] overflow-hidden">
-                          <img
-                            src={imageSrc}
-                            alt={`Archive House mockup ${index + 1}`}
-                            className="w-full h-full object-cover object-center block"
-                          />
-                        </div>
-                      ))}
+                      {archiveMockupImages.map((imageSrc, index) => (<div key={imageSrc} className="w-full aspect-[16/10] overflow-hidden">
+                          <img src={imageSrc} alt={`Archive House mockup ${index + 1}`} className="w-full h-full object-cover object-center block"/>
+                        </div>))}
                     </div>
                   </div>
-                </div>
-              </div>
+              </ProjectTwoColumnSection>
             </section>
 
             {projectImageLightbox}
-            <Footer onNavigate={onNavigate} top={ARCHIVE_HOUSE_FOOTER_TOP} />
+            <Footer onNavigate={onNavigate} top={PROJECT_LAYOUT_METRICS.archivehouse.footerTop}/>
           </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>);
 }

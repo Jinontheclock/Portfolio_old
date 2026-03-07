@@ -1,0 +1,25 @@
+export const PROJECTS_PAGE_LAYOUT = {
+  columnLeft: {
+    workType: 'left-[20px]',
+    title: 'left-[calc(25%+18px)]',
+    role: 'left-[calc(75%+6px)]',
+    year: 'right-[20px]',
+  },
+  columnWidths: {
+    workType: 'calc(25% - 14px)',
+    title: 'calc(50% - 20px)',
+    role: 'calc(25% - 130px)',
+    year: 84,
+  },
+  rowStart: 696,
+  rowGapWithinCategory: 40,
+  rowGapBetweenCategories: 80,
+  firstCategoryLastOffset: 2,
+  sideInset: 20,
+  titleTop: 205,
+  subtitleTop: 373,
+  headerTop: 648,
+  rowHeight: 32,
+  thumbOffsetX: 28,
+  thumbOffsetY: 24,
+} as const;

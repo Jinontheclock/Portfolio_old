@@ -3,7 +3,11 @@ import { createPortal } from 'react-dom';
 import Header from './Header';
 import Footer from './Footer';
 import ProjectHeader from './ProjectHeader';
+import ProjectTwoColumnSection from './ProjectTwoColumnSection';
 import { Language, Page } from '../types';
+import { PROJECT_HEADER_CONTENT } from '../config/projectContent';
+import { PROJECT_LAYOUT_METRICS } from '../config/layoutConfig';
+import { PROJECT_EMBED_URLS } from '../config/projectEmbeds';
 import PrologBanner from '../assets/projects/prolog/prolog_banner.webp';
 import PrologPersonaPrimary from '../assets/projects/prolog/prolog_persona_primary.webp';
 import PrologPersonaSecondary from '../assets/projects/prolog/prolog_persona_secondary.webp';
@@ -26,170 +30,135 @@ import PrologBillboard2 from '../assets/projects/prolog/prolog_billboard2.webp';
 import PrologInstagram1 from '../assets/projects/prolog/prolog_instagram1.webp';
 import PrologInstagram2 from '../assets/projects/prolog/prolog_instagram2.webp';
 import PrologInstagram3 from '../assets/projects/prolog/prolog_instagram3.webp';
-
 type Props = {
-  currentPage: Page;
-  language: Language;
-  onNavigate: (page: Page) => void;
-  onLanguageChange: (language: Language) => void;
+    currentPage: Page;
+    language: Language;
+    onNavigate: (page: Page) => void;
+    onLanguageChange: (language: Language) => void;
 };
-
 type PersonaLightboxImage = {
-  src: string;
-  alt: string;
+    src: string;
+    alt: string;
 };
-
 const brandPalette = ['#141411', '#E06D34', '#323232', '#F2F2F2'];
-
-const typographyScale: Array<{ label: string; value: string; style: CSSProperties }> = [
-  {
-    label: 'Title',
-    value: '32px Medium SpaceGrotesk',
-    style: { fontFamily: '"Space Grotesk", "Plus Jakarta Sans", sans-serif', fontSize: 32, fontWeight: 500, lineHeight: '1.2', letterSpacing: '0em' },
-  },
-  {
-    label: 'Content_bold',
-    value: '24px Bold SpaceGrotesk',
-    style: { fontFamily: '"Space Grotesk", "Plus Jakarta Sans", sans-serif', fontSize: 24, fontWeight: 700, lineHeight: '1.25', letterSpacing: '0em' },
-  },
-  {
-    label: 'Content_regular',
-    value: '24px Regular SpaceGrotesk',
-    style: { fontFamily: '"Space Grotesk", "Plus Jakarta Sans", sans-serif', fontSize: 24, fontWeight: 400, lineHeight: '1.25', letterSpacing: '0em' },
-  },
-  {
-    label: 'Section header',
-    value: '20px Regular SpaceGrotesk',
-    style: { fontFamily: '"Space Grotesk", "Plus Jakarta Sans", sans-serif', fontSize: 20, fontWeight: 400, lineHeight: '1.3', letterSpacing: '0em' },
-  },
-  {
-    label: 'Content_medium',
-    value: '20px Medium Roboto',
-    style: { fontFamily: '"Roboto", "Plus Jakarta Sans", sans-serif', fontSize: 20, fontWeight: 500, lineHeight: '1.3', letterSpacing: '0em' },
-  },
-  {
-    label: 'Content_suffix',
-    value: '16px Light SpaceGrotesk',
-    style: { fontFamily: '"Space Grotesk", "Plus Jakarta Sans", sans-serif', fontSize: 16, fontWeight: 300, lineHeight: '1.4', letterSpacing: '0em' },
-  },
-  {
-    label: 'bg_body',
-    value: '16px Regular Roboto',
-    style: { fontFamily: '"Roboto", "Plus Jakarta Sans", sans-serif', fontSize: 16, fontWeight: 400, lineHeight: '1.4', letterSpacing: '0em' },
-  },
-  {
-    label: 'Content_title',
-    value: '16px Medium Roboto',
-    style: { fontFamily: '"Roboto", "Plus Jakarta Sans", sans-serif', fontSize: 16, fontWeight: 500, lineHeight: '1.4', letterSpacing: '0em' },
-  },
-  {
-    label: 'Button_text',
-    value: '14px Medium Roboto',
-    style: { fontFamily: '"Roboto", "Plus Jakarta Sans", sans-serif', fontSize: 14, fontWeight: 500, lineHeight: '1.4', letterSpacing: '0em' },
-  },
-  {
-    label: 'Content_subtitle',
-    value: '14px Light Roboto',
-    style: { fontFamily: '"Roboto", "Plus Jakarta Sans", sans-serif', fontSize: 14, fontWeight: 300, lineHeight: '1.4', letterSpacing: '0em' },
-  },
-  {
-    label: 'sm_body',
-    value: '12px Regular Roboto',
-    style: { fontFamily: '"Roboto", "Plus Jakarta Sans", sans-serif', fontSize: 12, fontWeight: 400, lineHeight: '1.4', letterSpacing: '0em' },
-  },
-  {
-    label: 'Caption_bold',
-    value: '10px Bold SpaceGrotesk',
-    style: { fontFamily: '"Space Grotesk", "Plus Jakarta Sans", sans-serif', fontSize: 10, fontWeight: 700, lineHeight: '1.35', letterSpacing: '0em' },
-  },
-  {
-    label: 'Caption_light',
-    value: '10px Regular SpaceGrotesk',
-    style: { fontFamily: '"Space Grotesk", "Plus Jakarta Sans", sans-serif', fontSize: 10, fontWeight: 400, lineHeight: '1.35', letterSpacing: '0em' },
-  },
+const typographyScale: Array<{
+    label: string;
+    value: string;
+    style: CSSProperties;
+}> = [
+    {
+        label: 'Title',
+        value: '32px Medium SpaceGrotesk',
+        style: { fontFamily: '"Space Grotesk", "Plus Jakarta Sans", sans-serif', fontSize: 32, fontWeight: 500, lineHeight: '1.2', letterSpacing: '0em' },
+    },
+    {
+        label: 'Content_bold',
+        value: '24px Bold SpaceGrotesk',
+        style: { fontFamily: '"Space Grotesk", "Plus Jakarta Sans", sans-serif', fontSize: 24, fontWeight: 700, lineHeight: '1.25', letterSpacing: '0em' },
+    },
+    {
+        label: 'Content_regular',
+        value: '24px Regular SpaceGrotesk',
+        style: { fontFamily: '"Space Grotesk", "Plus Jakarta Sans", sans-serif', fontSize: 24, fontWeight: 400, lineHeight: '1.25', letterSpacing: '0em' },
+    },
+    {
+        label: 'Section header',
+        value: '20px Regular SpaceGrotesk',
+        style: { fontFamily: '"Space Grotesk", "Plus Jakarta Sans", sans-serif', fontSize: 20, fontWeight: 400, lineHeight: '1.3', letterSpacing: '0em' },
+    },
+    {
+        label: 'Content_medium',
+        value: '20px Medium Roboto',
+        style: { fontFamily: '"Roboto", "Plus Jakarta Sans", sans-serif', fontSize: 20, fontWeight: 500, lineHeight: '1.3', letterSpacing: '0em' },
+    },
+    {
+        label: 'Content_suffix',
+        value: '16px Light SpaceGrotesk',
+        style: { fontFamily: '"Space Grotesk", "Plus Jakarta Sans", sans-serif', fontSize: 16, fontWeight: 300, lineHeight: '1.4', letterSpacing: '0em' },
+    },
+    {
+        label: 'bg_body',
+        value: '16px Regular Roboto',
+        style: { fontFamily: '"Roboto", "Plus Jakarta Sans", sans-serif', fontSize: 16, fontWeight: 400, lineHeight: '1.4', letterSpacing: '0em' },
+    },
+    {
+        label: 'Content_title',
+        value: '16px Medium Roboto',
+        style: { fontFamily: '"Roboto", "Plus Jakarta Sans", sans-serif', fontSize: 16, fontWeight: 500, lineHeight: '1.4', letterSpacing: '0em' },
+    },
+    {
+        label: 'Button_text',
+        value: '14px Medium Roboto',
+        style: { fontFamily: '"Roboto", "Plus Jakarta Sans", sans-serif', fontSize: 14, fontWeight: 500, lineHeight: '1.4', letterSpacing: '0em' },
+    },
+    {
+        label: 'Content_subtitle',
+        value: '14px Light Roboto',
+        style: { fontFamily: '"Roboto", "Plus Jakarta Sans", sans-serif', fontSize: 14, fontWeight: 300, lineHeight: '1.4', letterSpacing: '0em' },
+    },
+    {
+        label: 'sm_body',
+        value: '12px Regular Roboto',
+        style: { fontFamily: '"Roboto", "Plus Jakarta Sans", sans-serif', fontSize: 12, fontWeight: 400, lineHeight: '1.4', letterSpacing: '0em' },
+    },
+    {
+        label: 'Caption_bold',
+        value: '10px Bold SpaceGrotesk',
+        style: { fontFamily: '"Space Grotesk", "Plus Jakarta Sans", sans-serif', fontSize: 10, fontWeight: 700, lineHeight: '1.35', letterSpacing: '0em' },
+    },
+    {
+        label: 'Caption_light',
+        value: '10px Regular SpaceGrotesk',
+        style: { fontFamily: '"Space Grotesk", "Plus Jakarta Sans", sans-serif', fontSize: 10, fontWeight: 400, lineHeight: '1.35', letterSpacing: '0em' },
+    },
 ];
-
-const PROLOG_LAYOUT_BASE_HEIGHT = 13800;
-const PROLOG_FOOTER_TOP = PROLOG_LAYOUT_BASE_HEIGHT - 300;
-
 export default function ProjectProLog({ currentPage, language, onNavigate, onLanguageChange }: Props) {
-  const [activeUsabilitySide, setActiveUsabilitySide] = useState<'left' | 'right'>('left');
-  const [activeUsabilitySideSecond, setActiveUsabilitySideSecond] = useState<'left' | 'right'>('left');
-  const [activeUsabilitySideThird, setActiveUsabilitySideThird] = useState<'left' | 'right'>('left');
-  const [activePersonaImage, setActivePersonaImage] = useState<PersonaLightboxImage | null>(null);
-  const openImageLightbox = (src: string, alt: string) => {
-    setActivePersonaImage({ src, alt });
-  };
-
-  useEffect(() => {
-    if (!activePersonaImage || typeof window === 'undefined') return;
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setActivePersonaImage(null);
-      }
+    const [activeUsabilitySide, setActiveUsabilitySide] = useState<'left' | 'right'>('left');
+    const [activeUsabilitySideSecond, setActiveUsabilitySideSecond] = useState<'left' | 'right'>('left');
+    const [activeUsabilitySideThird, setActiveUsabilitySideThird] = useState<'left' | 'right'>('left');
+    const [activePersonaImage, setActivePersonaImage] = useState<PersonaLightboxImage | null>(null);
+    const openImageLightbox = (src: string, alt: string) => {
+        setActivePersonaImage({ src, alt });
     };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [activePersonaImage]);
-
-  return (
-    <div className="layout-viewport hide-scrollbar bg-grey-normal">
-      <div className="layout-canvas" style={{ "--layout-base-height": `${PROLOG_LAYOUT_BASE_HEIGHT}px` } as CSSProperties}>
+    useEffect(() => {
+        if (!activePersonaImage || typeof window === 'undefined')
+            return;
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setActivePersonaImage(null);
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [activePersonaImage]);
+    return (<div className="layout-viewport hide-scrollbar bg-grey-normal" style={{ "--layout-gutter": "0px" } as CSSProperties}>
+      <div className="layout-canvas" style={{ "--layout-base-height": `${PROJECT_LAYOUT_METRICS.prolog.baseHeight}px` } as CSSProperties}>
         <div className="layout-canvas-inner">
           <div className="relative" style={{ minHeight: "var(--layout-base-height)" } as CSSProperties}>
             <div className="tinypaws-page-enter-overlay" aria-hidden>
-              <span className="tinypaws-page-enter-overlay-base" />
+              <span className="tinypaws-page-enter-overlay-base"/>
             </div>
             <div className="tinypaws-page-enter-content">
-              <Header currentPage={currentPage} language={language} onNavigate={onNavigate} onLanguageChange={onLanguageChange} />
+              <Header currentPage={currentPage} language={language} onNavigate={onNavigate} onLanguageChange={onLanguageChange}/>
 
             <div className="flex flex-col gap-0 mt-12">
-              <ProjectHeader
-                title="ProLog"
-                category="App"
-                timeline="4 months"
-                tools={['Figma', 'HTML5', 'CSS3', 'JavaScript', 'React Native Expo', 'Adobe Creative Suite', 'Framer', 'Trello']}
-                role="UI Developer"
-                roleLabel="Role"
-                dividerHeight={300}
-                link={['Website', 'Instagram', 'Blog', 'GitHub']}
-                linkUrls={{
-                  Website: 'https://prolog.framer.website/',
-                  Instagram: 'https://www.instagram.com/prolog.app/',
-                  Blog: 'https://prolog.framer.website/blog',
-                  GitHub: 'https://github.com/Jinontheclock/ProLog.git',
-                }}
-                description={[
-                  'ProLog is a mobile platform developed in collaboration with SkilledTradesBC and ConnectHER to address the lack of clarity in the apprenticeship journey across British Columbia.',
-                  'Many apprentices struggle to understand their progress due to fragmented systems and disconnected resources, making it difficult to see where they stand in their training.',
-                  'ProLog centralizes key information into a structured platform that enables apprentices to track their progress and move toward certification with clearer direction and accountability.'
-                ]}
-              />
+              <ProjectHeader {...PROJECT_HEADER_CONTENT.prolog}/>
 
-              {/* Hero image */}
-              <section className="px-7">
+              <section className="px-6">
                 <div className="flex justify-center">
                   <div className="relative w-full max-w-[1400px] aspect-[14/4.6] overflow-hidden">
-                    <img
-                      src={PrologBanner}
-                      alt="ProLog overview"
-                      className="absolute left-0 top-1/2 w-full h-auto -translate-y-1/2"
-                    />
+                    <img src={PrologBanner} alt="ProLog overview" className="absolute left-0 top-1/2 w-full h-auto -translate-y-1/2"/>
                   </div>
                 </div>
               </section>
             </div>
 
             <div>
-              {/* 01 Why ProLog was created */}
-              <section className="px-7 pb-16 mt-16">
-                <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
-                  <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">01 Why ProLog was created</h2>
-                  <div className="prolog-right-column pl-48 max-w-[1280px]">
+
+              <section className="px-6 pb-16 mt-16">
+                <ProjectTwoColumnSection left={<h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">01 Why ProLog was created</h2>} rightClassName="prolog-right-column pl-48 max-w-[1280px]">
                     <div className="prolog-sub-block">
                       <p className="type-body-lg m-0 text-black-normal font-semibold leading-[1.2]">Low Completion Rate</p>
                       <p className="type-body m-0 text-black-normal leading-[1.5]">
@@ -216,15 +185,11 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                         making it difficult for individuals to understand where they stand.
                       </p>
                     </div>
-                  </div>
-                </div>
+                </ProjectTwoColumnSection>
               </section>
 
-              {/* 02 Research & Analysis */}
-              <section className="px-7 pb-16 mt-12">
-                <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
-                  <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">02 Research & Analysis</h2>
-                  <div className="prolog-right-column pl-48 max-w-[1280px]">
+              <section className="px-6 pb-16 mt-12">
+                <ProjectTwoColumnSection left={<h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">02 Research & Analysis</h2>} rightClassName="prolog-right-column pl-48 max-w-[1280px]">
                     <div className="prolog-right-block">
                       <p className="type-heading-3 text-black-normal m-0 leading-[1.2]">User Interview</p>
                       <p className="type-body text-black-normal m-0 leading-[1.5]">
@@ -275,7 +240,6 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                       </p>
                     </div>
 
-                    {/* User Persona */}
                     <div className="prolog-right-block">
                       <p className="type-heading-3 text-black-normal m-0 leading-[1.3]">User Persona</p>
                       <p className="type-body text-black-normal m-0 leading-[1.5]">
@@ -283,41 +247,19 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                         These insights informed key feature directions such as progress tracking, resource accessibility, and financial support.
                       </p>
                       <div className="prolog-media-block grid grid-cols-2 gap-6">
-                        <button
-                          type="button"
-                          onClick={() => openImageLightbox(PrologPersonaPrimary, 'ProLog primary persona')}
-                          className="block w-full p-0 m-0 border-0 bg-transparent cursor-zoom-in"
-                          aria-label="Expand ProLog primary persona"
-                        >
-                          <img
-                            src={PrologPersonaPrimary}
-                            alt="ProLog primary persona"
-                            className="w-full h-auto block object-contain"
-                          />
+                        <button type="button" onClick={() => openImageLightbox(PrologPersonaPrimary, 'ProLog primary persona')} className="block w-full p-0 m-0 border-0 bg-transparent cursor-zoom-in" aria-label="Expand ProLog primary persona">
+                          <img src={PrologPersonaPrimary} alt="ProLog primary persona" className="w-full h-auto block object-contain"/>
                         </button>
-                        <button
-                          type="button"
-                          onClick={() => openImageLightbox(PrologPersonaSecondary, 'ProLog secondary persona')}
-                          className="block w-full p-0 m-0 border-0 bg-transparent cursor-zoom-in"
-                          aria-label="Expand ProLog secondary persona"
-                        >
-                          <img
-                            src={PrologPersonaSecondary}
-                            alt="ProLog secondary persona"
-                            className="w-full h-auto block object-contain"
-                          />
+                        <button type="button" onClick={() => openImageLightbox(PrologPersonaSecondary, 'ProLog secondary persona')} className="block w-full p-0 m-0 border-0 bg-transparent cursor-zoom-in" aria-label="Expand ProLog secondary persona">
+                          <img src={PrologPersonaSecondary} alt="ProLog secondary persona" className="w-full h-auto block object-contain"/>
                         </button>
                       </div>
                     </div>
-                  </div>
-                </div>
+                </ProjectTwoColumnSection>
               </section>
 
-              {/* 03 Design Process */}
-              <section className="px-7 pb-16 mt-12">
-                <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
-                  <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">03 Design Process</h2>
-                  <div className="prolog-right-column pl-48 max-w-[1280px]">
+              <section className="px-6 pb-16 mt-12">
+                <ProjectTwoColumnSection left={<h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">03 Design Process</h2>} rightClassName="prolog-right-column pl-48 max-w-[1280px]">
                     <div className="prolog-right-block">
                       <p className="type-heading-3 text-black-normal m-0 leading-[1.2]">Site Map</p>
                       <p className="type-body text-black-normal m-0 leading-[1.5]">
@@ -325,24 +267,14 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                         It structures the user flow to centralize scattered resources and make progress tracking and navigation more intuitive.
                       </p>
                       <div className="prolog-media-block w-full rounded-[4px] overflow-hidden">
-                        <iframe
-                          title="ProLog Site Map"
-                          style={{ border: '0' }}
-                          width="100%"
-                          height="520"
-                          src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fboard%2FPk2juekCD0mfnQ9oxcyWqh%2FSitemaps%3Fnode-id%3D0-1%26t%3Dcw8l2CASw0Xs9Hra-1"
-                          allowFullScreen
-                        />
+                        <iframe title="ProLog Site Map" style={{ border: '0' }} width="100%" height="520" src={PROJECT_EMBED_URLS.prolog.siteMap} allowFullScreen/>
                       </div>
                     </div>
-                  </div>
-                </div>
+                </ProjectTwoColumnSection>
               </section>
 
-              {/* Branding */}
-              <section className="px-7 pb-16 mt-0">
-                <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
-                  <div className="prolog-right-column pl-48 max-w-[1280px] col-start-2">
+              <section className="px-6 pb-16 mt-0">
+                <ProjectTwoColumnSection rightClassName="prolog-right-column pl-48 max-w-[1280px] col-start-2">
                     <div className="prolog-right-block">
                       <p className="type-heading-3 text-black-normal m-0 leading-[1]">Branding</p>
                       <div className="prolog-sub-block">
@@ -353,18 +285,8 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                         </p>
                       </div>
                       <div className="prolog-media-block grid grid-cols-[200px_1fr] gap-10 items-center max-w-[980px]">
-                        <img
-                          src={PrologLogoPrimary}
-                          alt="ProLog primary logo"
-                          className="w-full h-[200px] object-contain object-top cursor-zoom-in"
-                          onClick={() => openImageLightbox(PrologLogoPrimary, 'ProLog primary logo')}
-                        />
-                        <img
-                          src={PrologLogoSecondary}
-                          alt="ProLog horizontal logo"
-                          className="w-full h-[200px] object-contain object-top cursor-zoom-in"
-                          onClick={() => openImageLightbox(PrologLogoSecondary, 'ProLog horizontal logo')}
-                        />
+                        <img src={PrologLogoPrimary} alt="ProLog primary logo" className="w-full h-[200px] object-contain object-top cursor-zoom-in" onClick={() => openImageLightbox(PrologLogoPrimary, 'ProLog primary logo')}/>
+                        <img src={PrologLogoSecondary} alt="ProLog horizontal logo" className="w-full h-[200px] object-contain object-top cursor-zoom-in" onClick={() => openImageLightbox(PrologLogoSecondary, 'ProLog horizontal logo')}/>
                       </div>
                     </div>
 
@@ -375,22 +297,13 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                       </p>
                       <div className="prolog-media-block grid grid-cols-5 gap-6">
                         {brandPalette.map((hex) => {
-                          const isLightSwatch = hex.toUpperCase() === '#F2F2F2';
-                          return (
-                            <div
-                              key={hex}
-                              className="w-full aspect-square rounded-[14px] flex items-center justify-center border border-black/5"
-                              style={{ backgroundColor: hex }}
-                            >
-                              <span
-                                className="text-[14px] leading-none font-medium text-black-normal"
-                                style={isLightSwatch ? undefined : { color: 'var(--color-grey-normal)' }}
-                              >
+            const isLightSwatch = hex.toUpperCase() === '#F2F2F2';
+            return (<div key={hex} className="w-full aspect-square rounded-[14px] flex items-center justify-center border border-black/5" style={{ backgroundColor: hex }}>
+                              <span className="text-[14px] leading-none font-medium text-black-normal" style={isLightSwatch ? undefined : { color: 'var(--color-grey-normal)' }}>
                                 {hex}
                               </span>
-                            </div>
-                          );
-                        })}
+                            </div>);
+        })}
                       </div>
                     </div>
 
@@ -401,8 +314,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                       </p>
                       <div className="prolog-media-block grid grid-cols-[260px_1fr] gap-10 items-start">
                         <div className="text-[12px] leading-[1.5] text-black-normal space-y-3">
-                          {typographyScale.map(({ label, value, style }) => (
-                            <div key={label} className="grid grid-cols-[140px_1fr] items-start gap-6">
+                          {typographyScale.map(({ label, value, style }) => (<div key={label} className="grid grid-cols-[140px_1fr] items-start gap-6">
                               <div>
                                 <p className="m-0 text-[16px] font-normal leading-[1.3]">{label}</p>
                                 <p className="m-0 text-[12px] font-normal leading-[1.3] whitespace-nowrap">{value}</p>
@@ -412,8 +324,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                                   You've completed 1,240 hours, keep going.
                                 </p>
                               </div>
-                            </div>
-                          ))}
+                            </div>))}
                         </div>
                       </div>
                     </div>
@@ -429,14 +340,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                             This stage focused on structuring key features and validating early interaction patterns.
                           </p>
                           <div className="prolog-media-block w-full rounded-[4px] overflow-hidden">
-                            <iframe
-                              title="ProLog low fidelity wireframes"
-                              style={{ border: '0' }}
-                              width="100%"
-                              height="560"
-                              src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FxhdHkhEMLlKW1obKSbXiRi%2FWireframe--Old-%3Fnode-id%3D1157-13592%26t%3DEaRVkTnZdixYNRzQ-1"
-                              allowFullScreen
-                            />
+                            <iframe title="ProLog low fidelity wireframes" style={{ border: '0' }} width="100%" height="560" src={PROJECT_EMBED_URLS.prolog.lowFidelityWireframes} allowFullScreen/>
                           </div>
                         </div>
 
@@ -447,14 +351,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                             This stage focused on improving usability, consistency, and preparing for visual design.
                           </p>
                           <div className="prolog-media-block w-full rounded-[4px] overflow-hidden">
-                            <iframe
-                              title="ProLog middle fidelity wireframes"
-                              style={{ border: '0' }}
-                              width="100%"
-                              height="400"
-                              src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FxhdHkhEMLlKW1obKSbXiRi%2FWireframe--Old-%3Fnode-id%3D1157-8496%26t%3DEaRVkTnZdixYNRzQ-1"
-                              allowFullScreen
-                            />
+                            <iframe title="ProLog middle fidelity wireframes" style={{ border: '0' }} width="100%" height="400" src={PROJECT_EMBED_URLS.prolog.midFidelityWireframes} allowFullScreen/>
                           </div>
                         </div>
                       </div>
@@ -467,73 +364,38 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                       </p>
 
                       <div className="prolog-usability-comparison">
-                        <div
-                          className="grid grid-cols-2 gap-8 items-start justify-items-center"
-                          style={{ perspective: '1800px' }}
-                        >
-                          <button
-                            type="button"
-                            onMouseEnter={() => setActiveUsabilitySide('left')}
-                            onFocus={() => setActiveUsabilitySide('left')}
-                            onClick={() => setActiveUsabilitySide('left')}
-                            className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
-                            style={{
-                              transformOrigin: 'left center',
-                              transform:
-                                activeUsabilitySide === 'left'
-                                  ? 'rotateY(0deg) scale(1)'
-                                  : 'rotateY(28deg) scale(0.93)',
-                              boxShadow:
-                                activeUsabilitySide === 'left'
-                                  ? '0 18px 40px rgba(0, 0, 0, 0.16)'
-                                  : '0 10px 24px rgba(0, 0, 0, 0.1)',
-                              filter: activeUsabilitySide === 'left' ? 'none' : 'saturate(0.8) brightness(0.96)',
-                            }}
-                            aria-label="Show ProLog usability progress baseline"
-                          >
-                            <img
-                              src={PrologUser1}
-                              alt="ProLog usability test baseline progress view"
-                              className="w-full h-auto block object-cover"
-                            />
+                        <div className="grid grid-cols-2 gap-8 items-start justify-items-center" style={{ perspective: '1800px' }}>
+                          <button type="button" onMouseEnter={() => setActiveUsabilitySide('left')} onFocus={() => setActiveUsabilitySide('left')} onClick={() => setActiveUsabilitySide('left')} className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
+            transformOrigin: 'left center',
+            transform: activeUsabilitySide === 'left'
+                ? 'rotateY(0deg) scale(1)'
+                : 'rotateY(28deg) scale(0.93)',
+            boxShadow: activeUsabilitySide === 'left'
+                ? '0 18px 40px rgba(0, 0, 0, 0.16)'
+                : '0 10px 24px rgba(0, 0, 0, 0.1)',
+            filter: activeUsabilitySide === 'left' ? 'none' : 'saturate(0.8) brightness(0.96)',
+        }} aria-label="Show ProLog usability progress baseline">
+                            <img src={PrologUser1} alt="ProLog usability test baseline progress view" className="w-full h-auto block object-cover"/>
                           </button>
 
-                          <button
-                            type="button"
-                            onMouseEnter={() => setActiveUsabilitySide('right')}
-                            onFocus={() => setActiveUsabilitySide('right')}
-                            onClick={() => setActiveUsabilitySide('right')}
-                            className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
-                            style={{
-                              transformOrigin: 'right center',
-                              transform:
-                                activeUsabilitySide === 'right'
-                                  ? 'rotateY(0deg) scale(1)'
-                                  : 'rotateY(-28deg) scale(0.93)',
-                              boxShadow:
-                                activeUsabilitySide === 'right'
-                                  ? '0 18px 40px rgba(0, 0, 0, 0.16)'
-                                  : '0 10px 24px rgba(0, 0, 0, 0.1)',
-                              filter: activeUsabilitySide === 'right' ? 'none' : 'saturate(0.8) brightness(0.96)',
-                            }}
-                            aria-label="Show ProLog usability improved progress view"
-                          >
-                            <img
-                              src={PrologUser2}
-                              alt="ProLog usability test improved progress view"
-                              className="w-full h-auto block object-cover"
-                            />
+                          <button type="button" onMouseEnter={() => setActiveUsabilitySide('right')} onFocus={() => setActiveUsabilitySide('right')} onClick={() => setActiveUsabilitySide('right')} className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
+            transformOrigin: 'right center',
+            transform: activeUsabilitySide === 'right'
+                ? 'rotateY(0deg) scale(1)'
+                : 'rotateY(-28deg) scale(0.93)',
+            boxShadow: activeUsabilitySide === 'right'
+                ? '0 18px 40px rgba(0, 0, 0, 0.16)'
+                : '0 10px 24px rgba(0, 0, 0, 0.1)',
+            filter: activeUsabilitySide === 'right' ? 'none' : 'saturate(0.8) brightness(0.96)',
+        }} aria-label="Show ProLog usability improved progress view">
+                            <img src={PrologUser2} alt="ProLog usability test improved progress view" className="w-full h-auto block object-cover"/>
                           </button>
                         </div>
 
                         <div className="relative prolog-usability-caption">
-                          <div
-                            className={`absolute inset-0 transition-all duration-300 ${
-                              activeUsabilitySide === 'left'
-                                ? 'opacity-100 translate-y-0'
-                                : 'opacity-0 translate-y-2 pointer-events-none'
-                            }`}
-                          >
+                          <div className={`absolute inset-0 transition-all duration-300 ${activeUsabilitySide === 'left'
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-2 pointer-events-none'}`}>
                             <p className="type-body text-black-normal m-0 text-left leading-[1.5]">
                               Limited Progress Visibility:
                             </p>
@@ -544,13 +406,9 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                             </p>
                           </div>
 
-                          <div
-                            className={`absolute inset-0 transition-all duration-300 ${
-                              activeUsabilitySide === 'right'
-                                ? 'opacity-100 translate-y-0'
-                                : 'opacity-0 translate-y-2 pointer-events-none'
-                            }`}
-                          >
+                          <div className={`absolute inset-0 transition-all duration-300 ${activeUsabilitySide === 'right'
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-2 pointer-events-none'}`}>
                             <p className="type-body text-black-normal m-0 text-right leading-[1.5]">
                               Improving Progress Tracking:
                             </p>
@@ -565,73 +423,38 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                     </div>
 
                     <div className="prolog-usability-comparison">
-                      <div
-                        className="grid grid-cols-2 gap-8 items-start justify-items-center"
-                        style={{ perspective: '1800px' }}
-                      >
-                        <button
-                          type="button"
-                          onMouseEnter={() => setActiveUsabilitySideSecond('left')}
-                          onFocus={() => setActiveUsabilitySideSecond('left')}
-                          onClick={() => setActiveUsabilitySideSecond('left')}
-                          className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
-                          style={{
-                            transformOrigin: 'left center',
-                            transform:
-                              activeUsabilitySideSecond === 'left'
-                                ? 'rotateY(0deg) scale(1)'
-                                : 'rotateY(28deg) scale(0.93)',
-                            boxShadow:
-                              activeUsabilitySideSecond === 'left'
-                                ? '0 18px 40px rgba(0, 0, 0, 0.16)'
-                                : '0 10px 24px rgba(0, 0, 0, 0.1)',
-                            filter: activeUsabilitySideSecond === 'left' ? 'none' : 'saturate(0.8) brightness(0.96)',
-                          }}
-                          aria-label="Show ProLog usability navigation baseline"
-                        >
-                          <img
-                            src={PrologUser3}
-                            alt="ProLog usability test baseline navigation view"
-                            className="w-full h-auto block object-cover"
-                          />
+                      <div className="grid grid-cols-2 gap-8 items-start justify-items-center" style={{ perspective: '1800px' }}>
+                        <button type="button" onMouseEnter={() => setActiveUsabilitySideSecond('left')} onFocus={() => setActiveUsabilitySideSecond('left')} onClick={() => setActiveUsabilitySideSecond('left')} className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
+            transformOrigin: 'left center',
+            transform: activeUsabilitySideSecond === 'left'
+                ? 'rotateY(0deg) scale(1)'
+                : 'rotateY(28deg) scale(0.93)',
+            boxShadow: activeUsabilitySideSecond === 'left'
+                ? '0 18px 40px rgba(0, 0, 0, 0.16)'
+                : '0 10px 24px rgba(0, 0, 0, 0.1)',
+            filter: activeUsabilitySideSecond === 'left' ? 'none' : 'saturate(0.8) brightness(0.96)',
+        }} aria-label="Show ProLog usability navigation baseline">
+                          <img src={PrologUser3} alt="ProLog usability test baseline navigation view" className="w-full h-auto block object-cover"/>
                         </button>
 
-                        <button
-                          type="button"
-                          onMouseEnter={() => setActiveUsabilitySideSecond('right')}
-                          onFocus={() => setActiveUsabilitySideSecond('right')}
-                          onClick={() => setActiveUsabilitySideSecond('right')}
-                          className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
-                          style={{
-                            transformOrigin: 'right center',
-                            transform:
-                              activeUsabilitySideSecond === 'right'
-                                ? 'rotateY(0deg) scale(1)'
-                                : 'rotateY(-28deg) scale(0.93)',
-                            boxShadow:
-                              activeUsabilitySideSecond === 'right'
-                                ? '0 18px 40px rgba(0, 0, 0, 0.16)'
-                                : '0 10px 24px rgba(0, 0, 0, 0.1)',
-                            filter: activeUsabilitySideSecond === 'right' ? 'none' : 'saturate(0.8) brightness(0.96)',
-                          }}
-                          aria-label="Show ProLog usability improved navigation view"
-                        >
-                          <img
-                            src={PrologUser4}
-                            alt="ProLog usability test improved navigation view"
-                            className="w-full h-auto block object-cover"
-                          />
+                        <button type="button" onMouseEnter={() => setActiveUsabilitySideSecond('right')} onFocus={() => setActiveUsabilitySideSecond('right')} onClick={() => setActiveUsabilitySideSecond('right')} className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
+            transformOrigin: 'right center',
+            transform: activeUsabilitySideSecond === 'right'
+                ? 'rotateY(0deg) scale(1)'
+                : 'rotateY(-28deg) scale(0.93)',
+            boxShadow: activeUsabilitySideSecond === 'right'
+                ? '0 18px 40px rgba(0, 0, 0, 0.16)'
+                : '0 10px 24px rgba(0, 0, 0, 0.1)',
+            filter: activeUsabilitySideSecond === 'right' ? 'none' : 'saturate(0.8) brightness(0.96)',
+        }} aria-label="Show ProLog usability improved navigation view">
+                          <img src={PrologUser4} alt="ProLog usability test improved navigation view" className="w-full h-auto block object-cover"/>
                         </button>
                       </div>
 
                       <div className="relative prolog-usability-caption">
-                        <div
-                          className={`absolute inset-0 transition-all duration-300 ${
-                            activeUsabilitySideSecond === 'left'
-                              ? 'opacity-100 translate-y-0'
-                              : 'opacity-0 translate-y-2 pointer-events-none'
-                          }`}
-                        >
+                        <div className={`absolute inset-0 transition-all duration-300 ${activeUsabilitySideSecond === 'left'
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-2 pointer-events-none'}`}>
                           <p className="type-body text-black-normal m-0 text-left leading-[1.5]">
                             Confusing Navigation:
                           </p>
@@ -642,13 +465,9 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                           </p>
                         </div>
 
-                        <div
-                          className={`absolute inset-0 transition-all duration-300 ${
-                            activeUsabilitySideSecond === 'right'
-                              ? 'opacity-100 translate-y-0'
-                              : 'opacity-0 translate-y-2 pointer-events-none'
-                          }`}
-                        >
+                        <div className={`absolute inset-0 transition-all duration-300 ${activeUsabilitySideSecond === 'right'
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-2 pointer-events-none'}`}>
                           <p className="type-body text-black-normal m-0 text-right leading-[1.5]">
                             Enhancing Navigation Clarity:
                           </p>
@@ -662,73 +481,38 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                     </div>
 
                     <div className="prolog-usability-comparison">
-                      <div
-                        className="grid grid-cols-2 gap-8 items-start justify-items-center"
-                        style={{ perspective: '1800px' }}
-                      >
-                        <button
-                          type="button"
-                          onMouseEnter={() => setActiveUsabilitySideThird('left')}
-                          onFocus={() => setActiveUsabilitySideThird('left')}
-                          onClick={() => setActiveUsabilitySideThird('left')}
-                          className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
-                          style={{
-                            transformOrigin: 'left center',
-                            transform:
-                              activeUsabilitySideThird === 'left'
-                                ? 'rotateY(0deg) scale(1)'
-                                : 'rotateY(28deg) scale(0.93)',
-                            boxShadow:
-                              activeUsabilitySideThird === 'left'
-                                ? '0 18px 40px rgba(0, 0, 0, 0.16)'
-                                : '0 10px 24px rgba(0, 0, 0, 0.1)',
-                            filter: activeUsabilitySideThird === 'left' ? 'none' : 'saturate(0.8) brightness(0.96)',
-                          }}
-                          aria-label="Show ProLog usability visual cues baseline"
-                        >
-                          <img
-                            src={PrologUser5}
-                            alt="ProLog usability test baseline visual cues view"
-                            className="w-full h-auto block object-cover"
-                          />
+                      <div className="grid grid-cols-2 gap-8 items-start justify-items-center" style={{ perspective: '1800px' }}>
+                        <button type="button" onMouseEnter={() => setActiveUsabilitySideThird('left')} onFocus={() => setActiveUsabilitySideThird('left')} onClick={() => setActiveUsabilitySideThird('left')} className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
+            transformOrigin: 'left center',
+            transform: activeUsabilitySideThird === 'left'
+                ? 'rotateY(0deg) scale(1)'
+                : 'rotateY(28deg) scale(0.93)',
+            boxShadow: activeUsabilitySideThird === 'left'
+                ? '0 18px 40px rgba(0, 0, 0, 0.16)'
+                : '0 10px 24px rgba(0, 0, 0, 0.1)',
+            filter: activeUsabilitySideThird === 'left' ? 'none' : 'saturate(0.8) brightness(0.96)',
+        }} aria-label="Show ProLog usability visual cues baseline">
+                          <img src={PrologUser5} alt="ProLog usability test baseline visual cues view" className="w-full h-auto block object-cover"/>
                         </button>
 
-                        <button
-                          type="button"
-                          onMouseEnter={() => setActiveUsabilitySideThird('right')}
-                          onFocus={() => setActiveUsabilitySideThird('right')}
-                          onClick={() => setActiveUsabilitySideThird('right')}
-                          className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
-                          style={{
-                            transformOrigin: 'right center',
-                            transform:
-                              activeUsabilitySideThird === 'right'
-                                ? 'rotateY(0deg) scale(1)'
-                                : 'rotateY(-28deg) scale(0.93)',
-                            boxShadow:
-                              activeUsabilitySideThird === 'right'
-                                ? '0 18px 40px rgba(0, 0, 0, 0.16)'
-                                : '0 10px 24px rgba(0, 0, 0, 0.1)',
-                            filter: activeUsabilitySideThird === 'right' ? 'none' : 'saturate(0.8) brightness(0.96)',
-                          }}
-                          aria-label="Show ProLog usability improved visual cues view"
-                        >
-                          <img
-                            src={PrologUser6}
-                            alt="ProLog usability test improved visual cues view"
-                            className="w-full h-auto block object-cover"
-                          />
+                        <button type="button" onMouseEnter={() => setActiveUsabilitySideThird('right')} onFocus={() => setActiveUsabilitySideThird('right')} onClick={() => setActiveUsabilitySideThird('right')} className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
+            transformOrigin: 'right center',
+            transform: activeUsabilitySideThird === 'right'
+                ? 'rotateY(0deg) scale(1)'
+                : 'rotateY(-28deg) scale(0.93)',
+            boxShadow: activeUsabilitySideThird === 'right'
+                ? '0 18px 40px rgba(0, 0, 0, 0.16)'
+                : '0 10px 24px rgba(0, 0, 0, 0.1)',
+            filter: activeUsabilitySideThird === 'right' ? 'none' : 'saturate(0.8) brightness(0.96)',
+        }} aria-label="Show ProLog usability improved visual cues view">
+                          <img src={PrologUser6} alt="ProLog usability test improved visual cues view" className="w-full h-auto block object-cover"/>
                         </button>
                       </div>
 
                       <div className="relative prolog-usability-caption">
-                        <div
-                          className={`absolute inset-0 transition-all duration-300 ${
-                            activeUsabilitySideThird === 'left'
-                              ? 'opacity-100 translate-y-0'
-                              : 'opacity-0 translate-y-2 pointer-events-none'
-                          }`}
-                        >
+                        <div className={`absolute inset-0 transition-all duration-300 ${activeUsabilitySideThird === 'left'
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-2 pointer-events-none'}`}>
                           <p className="type-body text-black-normal m-0 text-left leading-[1.5]">
                             Unclear Visual Cues:
                           </p>
@@ -739,13 +523,9 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                           </p>
                         </div>
 
-                        <div
-                          className={`absolute inset-0 transition-all duration-300 ${
-                            activeUsabilitySideThird === 'right'
-                              ? 'opacity-100 translate-y-0'
-                              : 'opacity-0 translate-y-2 pointer-events-none'
-                          }`}
-                        >
+                        <div className={`absolute inset-0 transition-all duration-300 ${activeUsabilitySideThird === 'right'
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-2 pointer-events-none'}`}>
                           <p className="type-body text-black-normal m-0 text-right leading-[1.5]">
                             Strengthening Interface Feedback:
                           </p>
@@ -765,25 +545,14 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                         Refinements were informed by usability testing, improving interactions and ensuring consistency across the main user flows.
                       </p>
                       <div className="prolog-media-block w-full rounded-[4px] overflow-hidden">
-                        <iframe
-                          title="ProLog high fidelity wireframes"
-                          style={{ border: '0' }}
-                          width="100%"
-                          height="480"
-                          src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FZmmIx6VY9EicEFrv7Rvdjh%2FWireFrames%3Fnode-id%3D2332-2031%26t%3DDaKp6m2Vxulc4R1d-1"
-                          allowFullScreen
-                        />
+                        <iframe title="ProLog high fidelity wireframes" style={{ border: '0' }} width="100%" height="480" src={PROJECT_EMBED_URLS.prolog.highFidelityWireframes} allowFullScreen/>
                       </div>
                     </div>
-                  </div>
-                </div>
+                </ProjectTwoColumnSection>
               </section>
 
-              {/* 04 Promotional Material */}
-              <section className="px-7 pb-16 mt-12">
-                <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
-                  <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">04 Promotional Material</h2>
-                  <div className="prolog-right-column pl-48 max-w-[1280px]">
+              <section className="px-6 pb-16 mt-12">
+                <ProjectTwoColumnSection left={<h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">04 Promotional Material</h2>} rightClassName="prolog-right-column pl-48 max-w-[1280px]">
                     <div className="prolog-right-block">
                       <p className="type-heading-3 text-black-normal m-0 leading-[1.2]">Advertisment</p>
                       <p className="type-body text-black-normal m-0 leading-[1.5]">
@@ -792,27 +561,17 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                       <div className="prolog-media-block grid gap-2">
                         <div className="grid grid-cols-2 gap-6">
                           <div className="w-full rounded-[4px] overflow-hidden h-[460px]">
-                            <img
-                              src={PrologVideoItem1}
-                              alt="ProLog advertisement item 1"
-                              className="w-full h-full block object-contain object-top cursor-zoom-in"
-                              onClick={() => openImageLightbox(PrologVideoItem1, 'ProLog advertisement item 1')}
-                            />
+                            <img src={PrologVideoItem1} alt="ProLog advertisement item 1" className="w-full h-full block object-contain object-top cursor-zoom-in" onClick={() => openImageLightbox(PrologVideoItem1, 'ProLog advertisement item 1')}/>
                           </div>
                           <div className="w-full rounded-[4px] overflow-hidden h-[460px]">
-                            <img
-                              src={PrologVideoItem2}
-                              alt="ProLog advertisement item 2"
-                              className="w-full h-full block object-contain object-top cursor-zoom-in"
-                              onClick={() => openImageLightbox(PrologVideoItem2, 'ProLog advertisement item 2')}
-                            />
+                            <img src={PrologVideoItem2} alt="ProLog advertisement item 2" className="w-full h-full block object-contain object-top cursor-zoom-in" onClick={() => openImageLightbox(PrologVideoItem2, 'ProLog advertisement item 2')}/>
                           </div>
                         </div>
                         <div className="prolog-sub-block">
                           <p className="type-body-lg m-0 text-black-normal font-semibold">Video</p>
                           <div className="w-full rounded-[4px] overflow-hidden bg-black">
                             <video className="w-full h-auto block" controls playsInline preload="metadata">
-                              <source src={PrologPromotionalVideo} type="video/mp4" />
+                              <source src={PrologPromotionalVideo} type="video/mp4"/>
                             </video>
                           </div>
                         </div>
@@ -829,12 +588,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                     <div className="prolog-sub-block">
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Brochure</p>
                       <div className="prolog-media-block w-full aspect-[16/10] rounded-[4px] overflow-hidden">
-                        <img
-                          src={PrologBrochureMockup}
-                          alt="ProLog brochure mockup"
-                          className="w-full h-full block object-cover object-center cursor-zoom-in"
-                          onClick={() => openImageLightbox(PrologBrochureMockup, 'ProLog brochure mockup')}
-                        />
+                        <img src={PrologBrochureMockup} alt="ProLog brochure mockup" className="w-full h-full block object-cover object-center cursor-zoom-in" onClick={() => openImageLightbox(PrologBrochureMockup, 'ProLog brochure mockup')}/>
                       </div>
                     </div>
 
@@ -842,20 +596,10 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Sticker</p>
                       <div className="prolog-media-block grid grid-cols-2 gap-6 items-end">
                         <div className="flex h-[320px] items-end justify-center">
-                          <img
-                            src={PrologSticker2}
-                            alt="ProLog sticker mockup 2"
-                            className="w-auto h-[280px] block object-contain cursor-zoom-in"
-                            onClick={() => openImageLightbox(PrologSticker2, 'ProLog sticker mockup 2')}
-                          />
+                          <img src={PrologSticker2} alt="ProLog sticker mockup 2" className="w-auto h-[280px] block object-contain cursor-zoom-in" onClick={() => openImageLightbox(PrologSticker2, 'ProLog sticker mockup 2')}/>
                         </div>
                         <div className="flex h-[320px] items-end justify-center">
-                          <img
-                            src={PrologSticker1}
-                            alt="ProLog sticker mockup 1"
-                            className="w-auto h-[320px] block object-contain cursor-zoom-in"
-                            onClick={() => openImageLightbox(PrologSticker1, 'ProLog sticker mockup 1')}
-                          />
+                          <img src={PrologSticker1} alt="ProLog sticker mockup 1" className="w-auto h-[320px] block object-contain cursor-zoom-in" onClick={() => openImageLightbox(PrologSticker1, 'ProLog sticker mockup 1')}/>
                         </div>
                       </div>
                     </div>
@@ -864,20 +608,10 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Billboard</p>
                       <div className="prolog-media-block grid grid-cols-2 gap-6">
                         <div className="w-full rounded-[4px] overflow-hidden">
-                          <img
-                            src={PrologBillboard1}
-                            alt="ProLog billboard mockup 1"
-                            className="w-full h-auto block object-cover cursor-zoom-in"
-                            onClick={() => openImageLightbox(PrologBillboard1, 'ProLog billboard mockup 1')}
-                          />
+                          <img src={PrologBillboard1} alt="ProLog billboard mockup 1" className="w-full h-auto block object-cover cursor-zoom-in" onClick={() => openImageLightbox(PrologBillboard1, 'ProLog billboard mockup 1')}/>
                         </div>
                         <div className="w-full rounded-[4px] overflow-hidden">
-                          <img
-                            src={PrologBillboard2}
-                            alt="ProLog billboard mockup 2"
-                            className="w-full h-auto block object-cover cursor-zoom-in"
-                            onClick={() => openImageLightbox(PrologBillboard2, 'ProLog billboard mockup 2')}
-                          />
+                          <img src={PrologBillboard2} alt="ProLog billboard mockup 2" className="w-full h-auto block object-cover cursor-zoom-in" onClick={() => openImageLightbox(PrologBillboard2, 'ProLog billboard mockup 2')}/>
                         </div>
                       </div>
                     </div>
@@ -890,106 +624,54 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                       </p>
                       <div className="prolog-media-block grid gap-6">
                         <div className="w-full rounded-[4px] overflow-hidden">
-                          <img
-                            src={PrologInstagram1}
-                            alt="ProLog instagram post 1"
-                            className="w-full h-auto block object-cover cursor-zoom-in"
-                            onClick={() => openImageLightbox(PrologInstagram1, 'ProLog instagram post 1')}
-                          />
+                          <img src={PrologInstagram1} alt="ProLog instagram post 1" className="w-full h-auto block object-cover cursor-zoom-in" onClick={() => openImageLightbox(PrologInstagram1, 'ProLog instagram post 1')}/>
                         </div>
                         <div className="w-full rounded-[4px] overflow-hidden">
-                          <img
-                            src={PrologInstagram2}
-                            alt="ProLog instagram post 2"
-                            className="w-full h-auto block object-cover cursor-zoom-in"
-                            onClick={() => openImageLightbox(PrologInstagram2, 'ProLog instagram post 2')}
-                          />
+                          <img src={PrologInstagram2} alt="ProLog instagram post 2" className="w-full h-auto block object-cover cursor-zoom-in" onClick={() => openImageLightbox(PrologInstagram2, 'ProLog instagram post 2')}/>
                         </div>
                         <div className="w-full rounded-[4px] overflow-hidden">
-                          <img
-                            src={PrologInstagram3}
-                            alt="ProLog instagram post 3"
-                            className="w-full h-auto block object-cover cursor-zoom-in"
-                            onClick={() => openImageLightbox(PrologInstagram3, 'ProLog instagram post 3')}
-                          />
+                          <img src={PrologInstagram3} alt="ProLog instagram post 3" className="w-full h-auto block object-cover cursor-zoom-in" onClick={() => openImageLightbox(PrologInstagram3, 'ProLog instagram post 3')}/>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
+                </ProjectTwoColumnSection>
               </section>
 
-              {/* 05 Final Results */}
-              <section className="px-7 pb-16 mt-12">
-                <div className="grid grid-cols-[260px_1fr] gap-12 items-start">
-                  <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">05 Final Results</h2>
-                  <div className="prolog-right-column pl-48 max-w-[1280px]">
+              <section className="px-6 pb-16 mt-12">
+                <ProjectTwoColumnSection left={<h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">05 Final Results</h2>} rightClassName="prolog-right-column pl-48 max-w-[1280px]">
                     <div className="prolog-media-block flex gap-6 items-start">
                       <div className="prolog-sub-block w-1/2 min-w-0">
                         <p className="type-heading-3 text-black-normal m-0 leading-[1.2]">Prototyping</p>
                         <div className="w-full rounded-[4px] overflow-hidden">
-                          <iframe
-                            title="ProLog prototype"
-                            style={{ border: '0' }}
-                            width="100%"
-                            height="800"
-                            src="https://www.figma.com/embed?embed_host=share&hide-ui=1&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FZmmIx6VY9EicEFrv7Rvdjh%2FWireFrames%3Fpage-id%3D2332%253A2031%26node-id%3D3814-20926%26p%3Df%26viewport%3D719%252C470%252C0.06%26t%3DbRs0KPqwlh1Pl2k9-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26starting-point-node-id%3D3814%253A20926%26show-proto-sidebar%3D1"
-                            allowFullScreen
-                          />
+                          <iframe title="ProLog prototype" style={{ border: '0' }} width="100%" height="800" src={PROJECT_EMBED_URLS.prolog.prototype} allowFullScreen/>
                         </div>
                       </div>
 
                       <div className="prolog-sub-block w-1/2 min-w-0">
                         <p className="type-heading-3 text-black-normal m-0 leading-[1.3]">App</p>
                         <div className="w-full rounded-[4px] overflow-hidden bg-white">
-                          <iframe
-                            title="ProLog app (React Expo)"
-                            style={{ border: '0' }}
-                            width="100%"
-                            height="800"
-                            src="/prolog/app/index.html?v=20260219"
-                            allowFullScreen
-                          />
+                          <iframe title="ProLog app (React Expo)" style={{ border: '0' }} width="100%" height="800" src={PROJECT_EMBED_URLS.prolog.app} allowFullScreen/>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
+                </ProjectTwoColumnSection>
               </section>
 
               {activePersonaImage && typeof document !== 'undefined'
-                ? createPortal(
-                    <div
-                      className="fixed inset-0 z-[500] flex items-center justify-center p-6 md:p-10"
-                      role="dialog"
-                      aria-modal="true"
-                      aria-label="Expanded ProLog persona image"
-                      onClick={() => setActivePersonaImage(null)}
-                    >
-                      <div
-                        className="absolute inset-0 bg-black/35"
-                        style={{
-                          backdropFilter: 'blur(8px)',
-                          WebkitBackdropFilter: 'blur(8px)',
-                        }}
-                      />
-                      <img
-                        src={activePersonaImage.src}
-                        alt={activePersonaImage.alt}
-                        className="relative z-[1] block w-auto h-auto max-w-[92vw] max-h-[88vh] rounded-[4px] object-contain shadow-[0_24px_72px_rgba(0,0,0,0.35)]"
-                        onClick={(event) => event.stopPropagation()}
-                      />
-                    </div>,
-                    document.body
-                  )
-                : null}
+            ? createPortal(<div className="fixed inset-0 z-[500] flex items-center justify-center p-6 md:p-10" role="dialog" aria-modal="true" aria-label="Expanded ProLog persona image" onClick={() => setActivePersonaImage(null)}>
+                      <div className="absolute inset-0 bg-black/35" style={{
+                    backdropFilter: 'blur(8px)',
+                    WebkitBackdropFilter: 'blur(8px)',
+                }}/>
+                      <img src={activePersonaImage.src} alt={activePersonaImage.alt} className="relative z-[1] block w-auto h-auto max-w-[92vw] max-h-[88vh] rounded-[4px] object-contain shadow-[0_24px_72px_rgba(0,0,0,0.35)]" onClick={(event) => event.stopPropagation()}/>
+                    </div>, document.body)
+            : null}
 
-              <Footer onNavigate={onNavigate} top={PROLOG_FOOTER_TOP} />
+              <Footer onNavigate={onNavigate} top={PROJECT_LAYOUT_METRICS.prolog.footerTop}/>
             </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>);
 }
