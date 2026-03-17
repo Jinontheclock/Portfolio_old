@@ -266,7 +266,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                         The site map organizes core features into clear sections such as Work, School, Journey, Finances, and Competencies.
                         It structures the user flow to centralize scattered resources and make progress tracking and navigation more intuitive.
                       </p>
-                      <div className="prolog-media-block w-full rounded-[4px] overflow-hidden">
+                      <div className="prolog-media-block w-full overflow-hidden">
                         <iframe title="ProLog Site Map" style={{ border: '0' }} width="100%" height="520" src={PROJECT_EMBED_URLS.prolog.siteMap} allowFullScreen/>
                       </div>
                     </div>
@@ -298,7 +298,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                       <div className="prolog-media-block grid grid-cols-5 gap-6">
                         {brandPalette.map((hex) => {
             const isLightSwatch = hex.toUpperCase() === '#F2F2F2';
-            return (<div key={hex} className="w-full aspect-square rounded-[14px] flex items-center justify-center border border-black/5" style={{ backgroundColor: hex }}>
+            return (<div key={hex} className="w-full aspect-square flex items-center justify-center border border-black/5" style={{ backgroundColor: hex }}>
                               <span className="text-[14px] leading-none font-medium text-black-normal" style={isLightSwatch ? undefined : { color: 'var(--color-grey-normal)' }}>
                                 {hex}
                               </span>
@@ -339,7 +339,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                             Low-fidelity wireframes were used to quickly explore layout, user flow, and core functionality.
                             This stage focused on structuring key features and validating early interaction patterns.
                           </p>
-                          <div className="prolog-media-block w-full rounded-[4px] overflow-hidden">
+                          <div className="prolog-media-block w-full overflow-hidden">
                             <iframe title="ProLog low fidelity wireframes" style={{ border: '0' }} width="100%" height="560" src={PROJECT_EMBED_URLS.prolog.lowFidelityWireframes} allowFullScreen/>
                           </div>
                         </div>
@@ -350,7 +350,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                             Mid-fidelity wireframes refined the interface with clearer hierarchy and more defined components.
                             This stage focused on improving usability, consistency, and preparing for visual design.
                           </p>
-                          <div className="prolog-media-block w-full rounded-[4px] overflow-hidden">
+                          <div className="prolog-media-block w-full overflow-hidden">
                             <iframe title="ProLog middle fidelity wireframes" style={{ border: '0' }} width="100%" height="400" src={PROJECT_EMBED_URLS.prolog.midFidelityWireframes} allowFullScreen/>
                           </div>
                         </div>
@@ -364,8 +364,16 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                       </p>
 
                       <div className="prolog-usability-comparison">
+                        <div className="grid grid-cols-2 gap-8 items-end">
+                          <p className={`type-body-lg m-0 text-black-normal font-semibold text-left w-full whitespace-nowrap transition-opacity duration-200 ${activeUsabilitySide === 'left' ? 'opacity-100' : 'opacity-0'}`}>
+                            Limited Progress Visibility
+                          </p>
+                          <p className={`type-body-lg m-0 text-black-normal font-semibold text-right w-full whitespace-nowrap transition-opacity duration-200 ${activeUsabilitySide === 'right' ? 'opacity-100' : 'opacity-0'}`}>
+                            Improving Progress Tracking
+                          </p>
+                        </div>
                         <div className="grid grid-cols-2 gap-8 items-start justify-items-center" style={{ perspective: '1800px' }}>
-                          <button type="button" onMouseEnter={() => setActiveUsabilitySide('left')} onFocus={() => setActiveUsabilitySide('left')} onClick={() => setActiveUsabilitySide('left')} className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
+                          <button type="button" onMouseEnter={() => setActiveUsabilitySide('left')} onFocus={() => setActiveUsabilitySide('left')} onClick={() => setActiveUsabilitySide('left')} className="w-[46.2%] p-0 overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
             transformOrigin: 'left center',
             transform: activeUsabilitySide === 'left'
                 ? 'rotateY(0deg) scale(1)'
@@ -378,7 +386,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                             <img src={PrologUser1} alt="ProLog usability test baseline progress view" className="w-full h-auto block object-cover"/>
                           </button>
 
-                          <button type="button" onMouseEnter={() => setActiveUsabilitySide('right')} onFocus={() => setActiveUsabilitySide('right')} onClick={() => setActiveUsabilitySide('right')} className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
+                          <button type="button" onMouseEnter={() => setActiveUsabilitySide('right')} onFocus={() => setActiveUsabilitySide('right')} onClick={() => setActiveUsabilitySide('right')} className="w-[46.2%] p-0 overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
             transformOrigin: 'right center',
             transform: activeUsabilitySide === 'right'
                 ? 'rotateY(0deg) scale(1)'
@@ -397,9 +405,6 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
             ? 'opacity-100 translate-y-0'
             : 'opacity-0 translate-y-2 pointer-events-none'}`}>
                             <p className="type-body text-black-normal m-0 text-left leading-[1.5]">
-                              Limited Progress Visibility:
-                            </p>
-                            <p className="type-body text-black-normal m-0 text-left leading-[1.5]">
                               Training hours were not interactive
                               <br />
                                making it difficult for users to understand detailed progress toward the next level.
@@ -409,9 +414,6 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                           <div className={`absolute inset-0 transition-all duration-300 ${activeUsabilitySide === 'right'
             ? 'opacity-100 translate-y-0'
             : 'opacity-0 translate-y-2 pointer-events-none'}`}>
-                            <p className="type-body text-black-normal m-0 text-right leading-[1.5]">
-                              Improving Progress Tracking:
-                            </p>
                             <p className="type-body text-black-normal m-0 text-right leading-[1.5]">
                               Clickable hour breakdowns and clearer progress indicators were introduced
                               <br />
@@ -423,8 +425,16 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                     </div>
 
                     <div className="prolog-usability-comparison">
+                      <div className="grid grid-cols-2 gap-8 items-end">
+                        <p className={`type-body-lg m-0 text-black-normal font-semibold text-left w-full whitespace-nowrap transition-opacity duration-200 ${activeUsabilitySideSecond === 'left' ? 'opacity-100' : 'opacity-0'}`}>
+                          Confusing Navigation
+                        </p>
+                        <p className={`type-body-lg m-0 text-black-normal font-semibold text-right w-full whitespace-nowrap transition-opacity duration-200 ${activeUsabilitySideSecond === 'right' ? 'opacity-100' : 'opacity-0'}`}>
+                          Enhancing Navigation Clarity
+                        </p>
+                      </div>
                       <div className="grid grid-cols-2 gap-8 items-start justify-items-center" style={{ perspective: '1800px' }}>
-                        <button type="button" onMouseEnter={() => setActiveUsabilitySideSecond('left')} onFocus={() => setActiveUsabilitySideSecond('left')} onClick={() => setActiveUsabilitySideSecond('left')} className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
+                        <button type="button" onMouseEnter={() => setActiveUsabilitySideSecond('left')} onFocus={() => setActiveUsabilitySideSecond('left')} onClick={() => setActiveUsabilitySideSecond('left')} className="w-[46.2%] p-0 overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
             transformOrigin: 'left center',
             transform: activeUsabilitySideSecond === 'left'
                 ? 'rotateY(0deg) scale(1)'
@@ -437,7 +447,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                           <img src={PrologUser3} alt="ProLog usability test baseline navigation view" className="w-full h-auto block object-cover"/>
                         </button>
 
-                        <button type="button" onMouseEnter={() => setActiveUsabilitySideSecond('right')} onFocus={() => setActiveUsabilitySideSecond('right')} onClick={() => setActiveUsabilitySideSecond('right')} className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
+                        <button type="button" onMouseEnter={() => setActiveUsabilitySideSecond('right')} onFocus={() => setActiveUsabilitySideSecond('right')} onClick={() => setActiveUsabilitySideSecond('right')} className="w-[46.2%] p-0 overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
             transformOrigin: 'right center',
             transform: activeUsabilitySideSecond === 'right'
                 ? 'rotateY(0deg) scale(1)'
@@ -456,9 +466,6 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
             ? 'opacity-100 translate-y-0'
             : 'opacity-0 translate-y-2 pointer-events-none'}`}>
                           <p className="type-body text-black-normal m-0 text-left leading-[1.5]">
-                            Confusing Navigation:
-                          </p>
-                          <p className="type-body text-black-normal m-0 text-left leading-[1.5]">
                             Several key buttons (finance tools, reminders) were non-functional or difficult to locate,
                             <br />
                             interrupting the user flow.
@@ -469,9 +476,6 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
             ? 'opacity-100 translate-y-0'
             : 'opacity-0 translate-y-2 pointer-events-none'}`}>
                           <p className="type-body text-black-normal m-0 text-right leading-[1.5]">
-                            Enhancing Navigation Clarity:
-                          </p>
-                          <p className="type-body text-black-normal m-0 text-right leading-[1.5]">
                             Core features were reorganized and primary actions
                             <br />
                             were made more visible to ensure smoother task completion.
@@ -481,8 +485,16 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                     </div>
 
                     <div className="prolog-usability-comparison">
+                      <div className="grid grid-cols-2 gap-8 items-end">
+                        <p className={`type-body-lg m-0 text-black-normal font-semibold text-left w-full whitespace-nowrap transition-opacity duration-200 ${activeUsabilitySideThird === 'left' ? 'opacity-100' : 'opacity-0'}`}>
+                          Unclear Visual Cues
+                        </p>
+                        <p className={`type-body-lg m-0 text-black-normal font-semibold text-right w-full whitespace-nowrap transition-opacity duration-200 ${activeUsabilitySideThird === 'right' ? 'opacity-100' : 'opacity-0'}`}>
+                          Strengthening Interface Feedback
+                        </p>
+                      </div>
                       <div className="grid grid-cols-2 gap-8 items-start justify-items-center" style={{ perspective: '1800px' }}>
-                        <button type="button" onMouseEnter={() => setActiveUsabilitySideThird('left')} onFocus={() => setActiveUsabilitySideThird('left')} onClick={() => setActiveUsabilitySideThird('left')} className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
+                        <button type="button" onMouseEnter={() => setActiveUsabilitySideThird('left')} onFocus={() => setActiveUsabilitySideThird('left')} onClick={() => setActiveUsabilitySideThird('left')} className="w-[46.2%] p-0 overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
             transformOrigin: 'left center',
             transform: activeUsabilitySideThird === 'left'
                 ? 'rotateY(0deg) scale(1)'
@@ -495,7 +507,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                           <img src={PrologUser5} alt="ProLog usability test baseline visual cues view" className="w-full h-auto block object-cover"/>
                         </button>
 
-                        <button type="button" onMouseEnter={() => setActiveUsabilitySideThird('right')} onFocus={() => setActiveUsabilitySideThird('right')} onClick={() => setActiveUsabilitySideThird('right')} className="w-[46.2%] p-0 rounded-[4px] overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
+                        <button type="button" onMouseEnter={() => setActiveUsabilitySideThird('right')} onFocus={() => setActiveUsabilitySideThird('right')} onClick={() => setActiveUsabilitySideThird('right')} className="w-[46.2%] p-0 overflow-hidden bg-white cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{
             transformOrigin: 'right center',
             transform: activeUsabilitySideThird === 'right'
                 ? 'rotateY(0deg) scale(1)'
@@ -510,12 +522,9 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                       </div>
 
                       <div className="relative prolog-usability-caption">
-                        <div className={`absolute inset-0 transition-all duration-300 ${activeUsabilitySideThird === 'left'
+                      <div className={`absolute inset-0 transition-all duration-300 ${activeUsabilitySideThird === 'left'
             ? 'opacity-100 translate-y-0'
             : 'opacity-0 translate-y-2 pointer-events-none'}`}>
-                          <p className="type-body text-black-normal m-0 text-left leading-[1.5]">
-                            Unclear Visual Cues:
-                          </p>
                           <p className="type-body text-black-normal m-0 text-left leading-[1.5]">
                             Users requested stronger contrast and clearer indicators
                             <br />
@@ -523,12 +532,9 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                           </p>
                         </div>
 
-                        <div className={`absolute inset-0 transition-all duration-300 ${activeUsabilitySideThird === 'right'
+                      <div className={`absolute inset-0 transition-all duration-300 ${activeUsabilitySideThird === 'right'
             ? 'opacity-100 translate-y-0'
             : 'opacity-0 translate-y-2 pointer-events-none'}`}>
-                          <p className="type-body text-black-normal m-0 text-right leading-[1.5]">
-                            Strengthening Interface Feedback:
-                          </p>
                           <p className="type-body text-black-normal m-0 text-right leading-[1.5]">
                             Visual hierarchy and interaction cues were refined
                             <br />
@@ -544,7 +550,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                         High-fidelity wireframes translate validated layouts into detailed screens with finalized UI components and visual styles.
                         Refinements were informed by usability testing, improving interactions and ensuring consistency across the main user flows.
                       </p>
-                      <div className="prolog-media-block w-full rounded-[4px] overflow-hidden">
+                      <div className="prolog-media-block w-full overflow-hidden">
                         <iframe title="ProLog high fidelity wireframes" style={{ border: '0' }} width="100%" height="480" src={PROJECT_EMBED_URLS.prolog.highFidelityWireframes} allowFullScreen/>
                       </div>
                     </div>
@@ -560,16 +566,16 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                       </p>
                       <div className="prolog-media-block grid gap-2">
                         <div className="grid grid-cols-2 gap-6">
-                          <div className="w-full rounded-[4px] overflow-hidden h-[460px]">
+                          <div className="w-full overflow-hidden h-[460px]">
                             <img src={PrologVideoItem1} alt="ProLog advertisement item 1" className="w-full h-full block object-contain object-top cursor-zoom-in" onClick={() => openImageLightbox(PrologVideoItem1, 'ProLog advertisement item 1')}/>
                           </div>
-                          <div className="w-full rounded-[4px] overflow-hidden h-[460px]">
+                          <div className="w-full overflow-hidden h-[460px]">
                             <img src={PrologVideoItem2} alt="ProLog advertisement item 2" className="w-full h-full block object-contain object-top cursor-zoom-in" onClick={() => openImageLightbox(PrologVideoItem2, 'ProLog advertisement item 2')}/>
                           </div>
                         </div>
                         <div className="prolog-sub-block">
                           <p className="type-body-lg m-0 text-black-normal font-semibold">Video</p>
-                          <div className="w-full rounded-[4px] overflow-hidden bg-black">
+                          <div className="w-full overflow-hidden bg-black">
                             <video className="w-full h-auto block" controls playsInline preload="metadata">
                               <source src={PrologPromotionalVideo} type="video/mp4"/>
                             </video>
@@ -587,7 +593,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
 
                     <div className="prolog-sub-block">
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Brochure</p>
-                      <div className="prolog-media-block w-full aspect-[16/10] rounded-[4px] overflow-hidden">
+                      <div className="prolog-media-block w-full aspect-[16/10] overflow-hidden">
                         <img src={PrologBrochureMockup} alt="ProLog brochure mockup" className="w-full h-full block object-cover object-center cursor-zoom-in" onClick={() => openImageLightbox(PrologBrochureMockup, 'ProLog brochure mockup')}/>
                       </div>
                     </div>
@@ -607,10 +613,10 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                     <div className="prolog-sub-block">
                       <p className="type-body-lg m-0 text-black-normal font-semibold">Billboard</p>
                       <div className="prolog-media-block grid grid-cols-2 gap-6">
-                        <div className="w-full rounded-[4px] overflow-hidden">
+                        <div className="w-full overflow-hidden">
                           <img src={PrologBillboard1} alt="ProLog billboard mockup 1" className="w-full h-auto block object-cover cursor-zoom-in" onClick={() => openImageLightbox(PrologBillboard1, 'ProLog billboard mockup 1')}/>
                         </div>
-                        <div className="w-full rounded-[4px] overflow-hidden">
+                        <div className="w-full overflow-hidden">
                           <img src={PrologBillboard2} alt="ProLog billboard mockup 2" className="w-full h-auto block object-cover cursor-zoom-in" onClick={() => openImageLightbox(PrologBillboard2, 'ProLog billboard mockup 2')}/>
                         </div>
                       </div>
@@ -623,13 +629,13 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                         Each frame was intentionally connected to create a seamless and continuous narrative when swiping.
                       </p>
                       <div className="prolog-media-block grid gap-6">
-                        <div className="w-full rounded-[4px] overflow-hidden">
+                        <div className="w-full overflow-hidden">
                           <img src={PrologInstagram1} alt="ProLog instagram post 1" className="w-full h-auto block object-cover cursor-zoom-in" onClick={() => openImageLightbox(PrologInstagram1, 'ProLog instagram post 1')}/>
                         </div>
-                        <div className="w-full rounded-[4px] overflow-hidden">
+                        <div className="w-full overflow-hidden">
                           <img src={PrologInstagram2} alt="ProLog instagram post 2" className="w-full h-auto block object-cover cursor-zoom-in" onClick={() => openImageLightbox(PrologInstagram2, 'ProLog instagram post 2')}/>
                         </div>
-                        <div className="w-full rounded-[4px] overflow-hidden">
+                        <div className="w-full overflow-hidden">
                           <img src={PrologInstagram3} alt="ProLog instagram post 3" className="w-full h-auto block object-cover cursor-zoom-in" onClick={() => openImageLightbox(PrologInstagram3, 'ProLog instagram post 3')}/>
                         </div>
                       </div>
@@ -642,14 +648,14 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                     <div className="prolog-media-block flex gap-6 items-start">
                       <div className="prolog-sub-block w-1/2 min-w-0">
                         <p className="type-heading-3 text-black-normal m-0 leading-[1.2]">Prototyping</p>
-                        <div className="w-full rounded-[4px] overflow-hidden">
+                        <div className="w-full overflow-hidden">
                           <iframe title="ProLog prototype" style={{ border: '0' }} width="100%" height="800" src={PROJECT_EMBED_URLS.prolog.prototype} allowFullScreen/>
                         </div>
                       </div>
 
                       <div className="prolog-sub-block w-1/2 min-w-0">
                         <p className="type-heading-3 text-black-normal m-0 leading-[1.3]">App</p>
-                        <div className="w-full rounded-[4px] overflow-hidden bg-white">
+                        <div className="w-full overflow-hidden bg-white">
                           <iframe title="ProLog app (React Expo)" style={{ border: '0' }} width="100%" height="800" src={PROJECT_EMBED_URLS.prolog.app} allowFullScreen/>
                         </div>
                       </div>
@@ -663,7 +669,7 @@ export default function ProjectProLog({ currentPage, language, onNavigate, onLan
                     backdropFilter: 'blur(8px)',
                     WebkitBackdropFilter: 'blur(8px)',
                 }}/>
-                      <img src={activePersonaImage.src} alt={activePersonaImage.alt} className="relative z-[1] block w-auto h-auto max-w-[92vw] max-h-[88vh] rounded-[4px] object-contain shadow-[0_24px_72px_rgba(0,0,0,0.35)]" onClick={(event) => event.stopPropagation()}/>
+                      <img src={activePersonaImage.src} alt={activePersonaImage.alt} className="relative z-[1] block w-auto h-auto max-w-[92vw] max-h-[88vh] object-contain shadow-[0_24px_72px_rgba(0,0,0,0.35)]" onClick={(event) => event.stopPropagation()}/>
                     </div>, document.body)
             : null}
 

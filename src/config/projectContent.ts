@@ -27,9 +27,9 @@ export const PROJECT_HEADER_CONTENT: Record<ProjectHeaderContentKey, ProjectHead
       GitHub: 'https://github.com/Jinontheclock/ProLog.git',
     },
     description: [
-      'ProLog is a mobile platform developed in collaboration with SkilledTradesBC and ConnectHER to address the lack of clarity in the apprenticeship journey across British Columbia.',
-      'Many apprentices struggle to understand their progress due to fragmented systems and disconnected resources, making it difficult to see where they stand in their training.',
-      'ProLog centralizes key information into a structured platform that enables apprentices to track their progress and move toward certification with clearer direction and accountability.',
+      'ProLog is a progress-tracking mobile app designed to support neurodivergent apprentices in the skilled trades.',
+      'The project was developed as part of the D3 & FSWD × ConnectHER Technology Showcase, where students design digital solutions to address challenges faced by underrepresented people in the trades.',
+      'ProLog centralizes fragmented training information into a clear, structured roadmap that helps apprentices track their progress, stay organized, and confidently navigate their journey toward Red Seal certification.',
     ],
   },
   tinypaws: {
