@@ -53,8 +53,10 @@ export const PROJECT_HEADER_CONTENT: Record<ProjectHeaderContentKey, ProjectHead
     tools: ['Adobe InDesign', 'Adobe Photoshop', 'Adobe Illustrator'],
     role: 'Independent',
     reference: 'G Adventures',
+    referenceUrl: 'https://www.gadventures.com/',
     description: [
-      'Developed as an academic project, this brochure redesign reinterprets G Adventures’ “Best of Iceland” tour as a structured editorial publication.',
+      'Developed as an academic project, this brochure redesign reinterprets',
+      'G Adventures “Best of Iceland” tour as a structured editorial publication.',
       'By reorganizing the itinerary into a clear day-by-day narrative with strong visual hierarchy, the project enhances product visibility and positions the tour as both a promotional piece and an informative guide.',
     ],
   },

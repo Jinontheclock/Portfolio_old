@@ -86,11 +86,16 @@ const posterPalette02 = [
     { hex: '#DBDADB', textClass: 'text-black-normal' },
 ];
 const posterPalette03 = [
-    { hex: '#141416', textClass: 'text-black-normal' },
-    { hex: '#7AC8EB', textClass: 'text-black-normal' },
-    { hex: '#FF7885', textClass: 'text-black-normal' },
-    { hex: '#F2E782', textClass: 'text-black-normal' },
+  { hex: '#141416', textClass: 'text-black-normal' },
+  { hex: '#7AC8EB', textClass: 'text-black-normal' },
+  { hex: '#FF7885', textClass: 'text-black-normal' },
+  { hex: '#F2E782', textClass: 'text-black-normal' },
 ];
+const SWATCH_TEXT_OVERRIDE = new Set(['#141416', '#00315A']);
+const resolveSwatchTextStyle = (hex: string) =>
+  SWATCH_TEXT_OVERRIDE.has(hex.toUpperCase())
+    ? { color: 'var(--color-grey-light-active)' }
+    : undefined;
 const archiveMockupImages = [
     ArchiveHouseMockup1,
     ArchiveHouseMockup2,
@@ -196,7 +201,7 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
                     <p className="type-body text-black-normal m-0 leading-[1.5]">Color</p>
                     <div className="grid gap-6 max-w-[860px]" style={{ gridTemplateColumns: 'repeat(4, minmax(0, 1fr))' }}>
                       {posterPalette.map(({ hex, textClass }) => (<div key={hex} className={`h-[96px] rounded-[4px] ${textClass}`} style={{ backgroundColor: hex, padding: '14px 16px' }}>
-                          <p className="m-0 text-[12px] leading-[1.2]">{hex}</p>
+                          <p className="m-0 text-[12px] leading-[1.2]" style={resolveSwatchTextStyle(hex)}>{hex}</p>
                         </div>))}
                     </div>
                   </div>
@@ -226,7 +231,7 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
                       <p className="type-body text-black-normal m-0 leading-[1.5]">Color</p>
                       <div className="grid gap-6 max-w-[860px]" style={{ gridTemplateColumns: 'repeat(4, minmax(0, 1fr))' }}>
                         {posterPalette02.map(({ hex, textClass }) => (<div key={hex} className={`h-[96px] rounded-[4px] ${textClass}`} style={{ backgroundColor: hex, padding: '14px 16px' }}>
-                            <p className="m-0 text-[12px] leading-[1.2]">{hex}</p>
+                            <p className="m-0 text-[12px] leading-[1.2]" style={resolveSwatchTextStyle(hex)}>{hex}</p>
                           </div>))}
                       </div>
                     </div>
@@ -252,7 +257,7 @@ export default function ProjectArchiveHouse({ currentPage, language, onNavigate,
                       <p className="type-body text-black-normal m-0 leading-[1.5]">Color</p>
                       <div className="grid gap-6 max-w-[860px]" style={{ gridTemplateColumns: 'repeat(4, minmax(0, 1fr))' }}>
                         {posterPalette03.map(({ hex, textClass }) => (<div key={hex} className={`h-[96px] rounded-[4px] ${textClass}`} style={{ backgroundColor: hex, padding: '14px 16px' }}>
-                            <p className="m-0 text-[12px] leading-[1.2]">{hex}</p>
+                            <p className="m-0 text-[12px] leading-[1.2]" style={resolveSwatchTextStyle(hex)}>{hex}</p>
                           </div>))}
                       </div>
                     </div>
