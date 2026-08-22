@@ -2,13 +2,25 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/",
       "has": [{ "type": "host", "value": "hajin.app" }],
       "destination": "https://hajin-lee.com/",
       "statusCode": 301
     },
     {
-      "source": "/:path*",
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "hajin.app" }],
+      "destination": "https://hajin-lee.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "www.hajin.app" }],
+      "destination": "https://hajin-lee.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "www.hajin.app" }],
       "destination": "https://hajin-lee.com/",
       "statusCode": 301
